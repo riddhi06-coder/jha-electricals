@@ -47,15 +47,15 @@
                     </svg><span>Home page</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('home-banner.index') }}">Banner Details</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Founder's Desk</a></li>
-                    <li><a href="#">Explore Our Range</a></li>
-                    <li><a href="#">Product Qualities</a></li>
-                    <li><a href="#">Contact Details</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Latest Blogs</a></li>
-                    <li><a href="#">Company Details</a></li>
-                    <li><a href="#">Header Details</a></li>
+                    <li><a href="{{ route('home-about.index') }}">About</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Founder's Desk</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Explore Our Range</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Product Qualities</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Contact Details</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Testimonials</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Latest Blogs</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Company Details</a></li>
+                    <li><a href="{{ route('home-banner.index') }}">Header Details</a></li>
                   
                   </ul>
                 </li>
