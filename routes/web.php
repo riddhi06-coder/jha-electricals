@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Backend\HomeBannerDetailsController;
 
 Route::get('/', function () {
     return view('backend.login');
@@ -20,3 +21,7 @@ Route::group(['middleware' => ['auth:web', \App\Http\Middleware\PreventBackHisto
         return view('backend.dashboard'); 
     })->name('admin.dashboard');
 });
+
+
+// ==== Manage Banner Details in Home
+Route::resource('home-banner', HomeBannerDetailsController::class);

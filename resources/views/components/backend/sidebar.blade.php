@@ -38,6 +38,115 @@
                   </a>
                 </li>
 
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-knowledgebase') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#fill-knowledgebase') }}"></use>
+                    </svg><span>Home page</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('home-banner.index') }}">Banner Details</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Founder's Desk</a></li>
+                    <li><a href="#">Explore Our Range</a></li>
+                    <li><a href="#">Product Qualities</a></li>
+                    <li><a href="#">Contact Details</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Latest Blogs</a></li>
+                    <li><a href="#">Company Details</a></li>
+                    <li><a href="#">Header Details</a></li>
+                  
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#user-visitor') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#user-visitor') }}"></use>
+                    </svg><span>About Us</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Banner Details</a></li>
+                    <li><a href="#">Who We Are</a></li>
+                    <li><a href="#">Our Product Range</a></li>
+                    <li><a href="#">Explore Our Range</a></li>
+                    <li><a href="#">Why Choose Us?</a></li>
+                    <li><a href="#">Our Vision</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-support-tickets') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-support-tickets') }}"></use>
+                    </svg><span>Service & Support</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Professional Installation</a></li>
+                    <li><a href="#">Pre-Wiring Consultation</a></li>
+                    <li><a href="#">Post-Installation Training</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-ecommerce') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-ecommerce') }}"></use>
+                    </svg><span>Application Area</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Residential Lighting</a></li>
+                    <li><a href="#">Commercial Lighting</a></li>
+                  </ul>
+                </li>
+
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-layout') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-layout') }}"></use>
+                    </svg><span>Careers</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Banner Details</a></li>
+                    <li><a href="#">Process</a></li>
+                    <li><a href="#">Current Openings</a></li>
+                    <li><a href="#">How to Apply</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
+                    </svg><span>Photo Gallery</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Banner Details</a></li>
+                    <li><a href="#">Gallery</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-contact') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#fill-contact') }}"></use>
+                    </svg><span>Contact Us</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="#">Banner Details</a></li>
+                    <li><a href="#">Contact Details</a></li>
+                  </ul>
+                </li>
+
+
 
               </ul>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
