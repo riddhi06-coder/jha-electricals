@@ -48,8 +48,8 @@
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('home-banner.index') }}">Banner Details</a></li>
                     <li><a href="{{ route('home-about.index') }}">About</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Founder's Desk</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Explore Our Range</a></li>
+                    <li><a href="{{ route('home-founder.index') }}">Founder's Desk</a></li>
+                    <li><a href="{{ route('home-range.index') }}">Explore Our Range</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Product Qualities</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Contact Details</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Testimonials</a></li>

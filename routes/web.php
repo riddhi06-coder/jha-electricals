@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Backend\HomeBannerDetailsController;
 use App\Http\Controllers\Backend\HomeAboutDetailsController;
+use App\Http\Controllers\Backend\HomeFounderDetailsController;
+use App\Http\Controllers\Backend\HomeRangeDetailsController;
 
 Route::get('/', function () {
     return view('backend.login');
@@ -29,3 +31,9 @@ Route::resource('home-banner', HomeBannerDetailsController::class);
 
 // ==== Manage About Details in Home
 Route::resource('home-about', HomeAboutDetailsController::class);
+
+// ==== Manage About Founder Details in Home
+Route::resource('home-founder', HomeFounderDetailsController::class);
+
+// ==== Manage About Range Details in Home
+Route::resource('home-range', HomeRangeDetailsController::class);
