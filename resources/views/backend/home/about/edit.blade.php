@@ -83,13 +83,15 @@
                                                 @foreach ($images as $index => $image)
                                                 <tr>
                                                     <td>
-                                                        <input type="file" onchange="previewThumbnail(this, {{ $index }})" accept=".png, .jpg, .jpeg, .webp" name="thumbnail_image[]" id="thumbnail_image_{{ $index }}" class="form-control" placeholder="Upload Thumbnail Image">
+                                                        <input type="file" onchange="previewThumbnail(this, {{ $index }})" accept=".png, .jpg, .jpeg, .webp" name="thumbnail_image[]" id="thumbnail_image_{{ $index }}" class="form-control">
                                                         <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                                         <br>
                                                         <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                                                        <!-- Hidden input for removing image -->
-                                                        <input type="hidden" name="removed_images[]" value="{{ $image }}">
+                                                        
+                                                        <!-- Hidden input to retain existing image names -->
+                                                        <input type="hidden" name="existing_images[]" value="{{ $image }}">
                                                     </td>
+
                                                     <td>
                                                         <div id="preview-container-{{ $index }}">
                                                             <img src="{{ asset('/uploads/home/about/' . $image) }}" style="max-width: 100px; max-height: 100px;" alt="Image Preview">

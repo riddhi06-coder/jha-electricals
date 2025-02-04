@@ -105,9 +105,6 @@ class HomeAboutDetailsController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request);  // Dump the request to check the values
-    
-        // Validate input
         $request->validate([
             'heading' => 'required|string|max:255',
             'description' => 'required|string',
@@ -121,15 +118,12 @@ class HomeAboutDetailsController extends Controller
             'thumbnail_image.*.mimes' => 'Only JPG, JPEG, PNG, and WEBP formats are allowed for the image.',
             'thumbnail_image.*.max' => 'The image must be less than 2MB.',
         ]);
-    
-        // Find the HomeAbout record to update
+
         $homeAbout = HomeAbout::findOrFail($id);
-    
-        // Update heading and description
+
         $homeAbout->heading = $request->heading;
         $homeAbout->description = $request->description;
-    
-        // Handle value and value_description arrays
+
         $values = $request->input('value', []);
         $values_description = $request->input('value_description', []);
     
@@ -144,52 +138,60 @@ class HomeAboutDetailsController extends Controller
         $homeAbout->value = json_encode($valuesArray);
         $homeAbout->value_description = json_encode($descriptionsArray);
     
-        // Handle image update
-        $existingImages = $homeAbout->images ? json_decode($homeAbout->images, true) : [];
-    
-        // Get removed images and exclude them
+        $existingImages = $request->input('existing_images', []);
+
         $removedImages = $request->input('removed_images', []);
-    
-        // Remove the images that are marked as removed
+
         $updatedImages = array_diff($existingImages, $removedImages);
-    
-        // Handle new images
+
         if ($request->hasFile('thumbnail_image')) {
             $newImages = $request->file('thumbnail_image');
             $newImagePaths = [];
-    
+
             foreach ($newImages as $image) {
                 if ($image->isValid()) {
                     $extension = $image->getClientOriginalExtension();
                     $new_name = time() . rand(10, 999) . '.' . $extension;
-    
+
                     $destinationPath = public_path('/uploads/home/about');
                     if (!file_exists($destinationPath)) {
                         mkdir($destinationPath, 0777, true);
                     }
-    
+
                     $image->move($destinationPath, $new_name);
                     $newImagePaths[] = $new_name;
                 }
             }
-    
-            // Merge existing images with new images
+
             $allImagePaths = array_merge($updatedImages, $newImagePaths);
         } else {
-            // If no new images, just use updated images
             $allImagePaths = $updatedImages;
         }
-    
-        // Save the updated images
+
         $homeAbout->images = json_encode($allImagePaths);
-    
-        // Save the updated record
+
         $homeAbout->modified_at = Carbon::now();
         $homeAbout->modified_by = Auth::id();
         $homeAbout->save();
     
         return redirect()->route('home-about.index')->with('message', 'Data updated successfully!');
     }
+
+
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();   
+        try {
+            $industries = HomeAbout::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('home-about.index')->with('message', 'Details deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
+    
     
     
     
