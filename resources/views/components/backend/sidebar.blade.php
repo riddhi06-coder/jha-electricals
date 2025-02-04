@@ -51,7 +51,7 @@
                     <li><a href="{{ route('home-founder.index') }}">Founder's Desk</a></li>
                     <li><a href="{{ route('home-range.index') }}">Explore Our Range</a></li>
                     <li><a href="{{ route('home-quality.index') }}">Product Qualities</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Contact Details</a></li>
+                    <li><a href="{{ route('home-contact.index') }}">Contact Details</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Testimonials</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Latest Blogs</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Company Details</a></li>

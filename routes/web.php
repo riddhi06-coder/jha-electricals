@@ -7,6 +7,10 @@ use App\Http\Controllers\Backend\HomeAboutDetailsController;
 use App\Http\Controllers\Backend\HomeFounderDetailsController;
 use App\Http\Controllers\Backend\HomeRangeDetailsController;
 use App\Http\Controllers\Backend\HomeQualityController;
+use App\Http\Controllers\Backend\HomeContactController;
+
+
+
 Route::get('/', function () {
     return view('backend.login');
 });
@@ -38,5 +42,8 @@ Route::resource('home-founder', HomeFounderDetailsController::class);
 // ==== Manage About Range Details in Home
 Route::resource('home-range', HomeRangeDetailsController::class);
 
-// ==== Manage About Range Details in Home
+// ==== Manage About quality Details in Home
 Route::resource('home-quality', HomeQualityController::class);
+
+// ==== Manage About contact Details in Home
+Route::resource('home-contact', HomeContactController::class);
