@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\HomeFounderDetailsController;
 use App\Http\Controllers\Backend\HomeRangeDetailsController;
 use App\Http\Controllers\Backend\HomeQualityController;
 use App\Http\Controllers\Backend\HomeContactController;
+use App\Http\Controllers\Backend\HomeTestimonailController;
 
 
 
@@ -47,3 +48,6 @@ Route::resource('home-quality', HomeQualityController::class);
 
 // ==== Manage About contact Details in Home
 Route::resource('home-contact', HomeContactController::class);
+
+// ==== Manage About Testimonails Details in Home
+Route::resource('home-testimonails', HomeTestimonailController::class);

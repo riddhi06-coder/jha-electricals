@@ -52,7 +52,7 @@
                     <li><a href="{{ route('home-range.index') }}">Explore Our Range</a></li>
                     <li><a href="{{ route('home-quality.index') }}">Product Qualities</a></li>
                     <li><a href="{{ route('home-contact.index') }}">Contact Details</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Testimonials</a></li>
+                    <li><a href="{{ route('home-testimonails.index') }}">Testimonials</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Latest Blogs</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Company Details</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Header Details</a></li>
