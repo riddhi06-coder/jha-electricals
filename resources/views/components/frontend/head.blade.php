@@ -1,26 +1,17 @@
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murupp</title>
-    
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/fonts/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/fonts/font-icons.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
-          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" 
-          crossorigin="anonymous" 
-          referrerpolicy="no-referrer">
-
-    <!-- CSS Files -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Jha Electricals</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    <link href="{{ asset('frontend/assets/img/logo/fav.png') }}" type="img/x-icon" rel="shortcut icon">
+    <!-- All css files are included here. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/swiper-bundle.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/styles.css') }}">
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" as="image" href="{{ asset('frontend/assets/images/home-bg.webp') }}" type="image/webp">
-    <link rel="preload" href="{{ asset('frontend/assets/css/styles.css') }}" as="style">
-    <link rel="preload" href="{{ asset('frontend/assets/fonts/font-icons.css') }}" as="style">
-    <link rel="preload" href="{{ asset('frontend/assets/fonts/fonts.css') }}" as="style">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/iconfont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/helper.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/effect.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/hover.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">

@@ -75,8 +75,8 @@
 
                                     <!-- Time -->
                                     <div class="col-xxl-4 col-sm-6">
-                                        <label class="form-label" for="blog_time">Time<span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="blog_time" type="text" name="blog_time" placeholder="Enter Time" required>
+                                        <label class="form-label" for="blog_time">Time <span class="txt-danger">*</span></label>
+                                        <textarea class="form-control" id="blog_time" name="blog_time" placeholder="Enter Time" required rows="3"></textarea>
                                         <div class="invalid-feedback">Please enter a Time.</div>
                                     </div>
 

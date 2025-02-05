@@ -71,13 +71,14 @@
                                         <textarea class="form-control" id="summernote" name="address" placeholder="Enter Address" required rows="3">{{ old('address', $footer->address) }}</textarea>
                                         <div class="invalid-feedback">Please enter an address.</div>
                                     </div>
-
+                                    
                                     <!-- Time -->
                                     <div class="col-xxl-4 col-sm-6">
-                                        <label class="form-label" for="blog_time">Time<span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="blog_time" type="text" name="blog_time" placeholder="Enter Time" value="{{ old('time', $footer->time) }}" required>
+                                        <label class="form-label" for="blog_time">Time <span class="txt-danger">*</span></label>
+                                        <textarea class="form-control" id="blog_time" name="blog_time" placeholder="Enter Time" required rows="3">{{ old('time', $footer->time) }}</textarea>
                                         <div class="invalid-feedback">Please enter a Time.</div>
                                     </div>
+
 
                                     <!-- Form Actions -->
                                     <div class="col-12 text-end">

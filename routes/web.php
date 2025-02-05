@@ -16,7 +16,7 @@ use App\Http\Controllers\Backend\SocialMediaController;
 
 
 Route::get('/', function () {
-    return view('backend.login');
+    return view('frontend.home');
 });
   
 // Authentication Routes

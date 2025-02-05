@@ -1,109 +1,360 @@
-        <!-- Scroll Top -->
-    <button id="scroll-top">
-        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_15741_24194)">
-            <path d="M3 11.9175L12 2.91748L21 11.9175H16.5V20.1675C16.5 20.3664 16.421 20.5572 16.2803 20.6978C16.1397 20.8385 15.9489 20.9175 15.75 20.9175H8.25C8.05109 20.9175 7.86032 20.8385 7.71967 20.6978C7.57902 20.5572 7.5 20.3664 7.5 20.1675V11.9175H3Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_15741_24194">
-            <rect width="24" height="24" fill="white" transform="translate(0 0.66748)"/>
-            </clipPath>
-            </defs>
-        </svg> 
-    </button>
+  <!--Header section start-->
+  <section class="topbar desktop-topbar">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="topbar-left">
+                      <ul>
+                          <!-- Loop through the social media links -->
+                          @foreach (\App\Models\SocialMedia::all()->whereNull('deleted_by') as $link)
+                              <li><a href="{{ $link->url }}" target="_blank"><i class="fa fa-{{ strtolower($link->platform) }}"></i></a></li>
+                          @endforeach
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                  <div class="topbar-right">
+                      <ul>
+                          <!-- Display contact number and email from the footer model -->
+                          @php
+                              $footer = \App\Models\HomeFooter::first();
+                          @endphp
 
-    <!-- preload -->
-    <div class="preload preload-container">
-        <div class="preload-logo">
-            <div class="spinner"></div>
-        </div>
-    </div>
-    <!-- /preload -->
+                          <li>Customer Care : <a href="tel:{{ $footer->contact_number }}">{{ $footer->contact_number }}</a></li>
+                          <li>|</li>
+                          <li><a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
+                          <li>|</li>
+                          <li>
+                              <div id="google_translate_element"></div>
+                              <script type="text/javascript">
+                                  function googleTranslateElementInit() {
+                                      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+                                  }
+                              </script>
+                              <label class="dropdown flag">
+                                  <div class="dd-button">
+                                      <span>Select Language</span>
+                                  </div>
+                                  <input type="checkbox" class="dd-input" id="test">
+                                  <ul class="dd-menu">
+                                      <li><a class="flag_link eng" data-lang="en">English</a></li>
+                                      <li><a class="flag_link eng" data-lang="hi">Hindi</a></li>
+                                  </ul>
+                              </label>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
-    <div id="wrapper">
-        <!-- Header -->
-        <header id="header" class="header-default">
-            <div class="container">
-                <div class="row wrapper-header align-items-center">
-                    <div class="col-md-4 col-3 d-xl-none">
-                        <a href="#mobileMenu" class="mobile-menu" data-bs-toggle="offcanvas" aria-controls="mobileMenu" aria-label="Open mobile menu">
-                            <i class="icon icon-categories"></i>
-                        </a>
-                    </div>
-                    <div class="col-xl-3 col-md-4 col-6">
-                        <a href="{{ route('frontend.index') }}" class="logo-header">
-                            <img src="{{ asset('frontend/assets/images/logo/logo.webp') }}" width="144px" height="26px" alt="Murupp Logo" class="logo">
-                        </a>
-                    </div>
-                    <div class="col-xl-6 d-none d-xl-block">
-                        <nav class="box-navigation text-center">
-                            <ul class="box-nav-ul d-flex align-items-center justify-content-center">
 
-                                <li class="menu-item"><a href="#" class="item-link">About Us</a></li>
-                                <li class="menu-item position-relative">
-                                    <a href="#" class="item-link" aria-expanded="false">Shop by Collection
-                                        <i class="icon icon-arrow-down"></i></a>
-                                    <div class="sub-menu submenu-default" aria-hidden="true">
-                                        <ul class="menu-list">
-                                            <li><a href="#" class="menu-link-text">T’SEM - AW 24/25</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="menu-item position-relative">
-                                    <a href="#" class="item-link" aria-expanded="false">Shop by Category<i class="icon icon-arrow-down"></i></a>
-                                    <div class="sub-menu submenu-default" aria-hidden="true">
-                                        <ul class="menu-list">
-                                            <li><a href="{{ route('frontend.dresses') }}" class="menu-link-text">Dresses</a></li>
-                                            <li><a href="{{ route('frontend.tops') }}" class="menu-link-text">Tops</a></li>
-                                            <li><a href="{{ route('frontend.bottoms') }}" class="menu-link-text">Bottoms</a></li>
-                                            <li><a href="{{ route('frontend.coords') }}" class="menu-link-text">Co-ords</a></li>
-                                            <li><a href="{{ route('frontend.blazers') }}" class="menu-link-text">Blazers/Jackets</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
+      <header class="header header-sticky d-none d-lg-block">
+        <div class="header-default">
+          <div
+            class="container">
+            <div class="row align-items-center">
+              <!-- Header Logo Start -->
+              <div class="col-lg-12">
+                <div class="header-nav d-flex justify-content-between align-items-center">
+                  <div class="header-logo text-center">
+                    <a href="./"><img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" alt="jha electricals logo" width="170" height="39" class="img-fluid"></a>
+                  </div>
+                  <nav class="main-menu main-menu-two">
+                    <ul>
+                      <li><a href="about-us.html">About Us</a></li>
+                      <li>
+                        <a href="products.html">Products</a>
+                        <ul class="mega-menu four-column left-0">
+                          <li>
+                            <a href="led-panel-lights.html" class="item-link">LED Panel Lights</a>
+                            <ul>
+                              <li><a href="led-panel-light-square-round-conceaded-type.html">LED Panel Light(Square/Round Conceaded Type)</a></li>
+                              <li><a href="#">LED Panel Light - Glow Model</a></li>
+                              <li><a href="#">LED Panel Light - Polyglow</a></li>
+                              <li><a href="#">LED Panel Light - Zenith</a></li>
+                              <li><a href="#">LED Panel Light (Square+Round Surface Type)</a></li>
+                              <li><a href="#">Twister Surface Light With Holder</a></li>
+                              <li><a href="#">LED Panel Light (Rectangle Concealed Type)</a></li>
+                              <li><a href="#">LED Down Light</a></li>
+                              <li><a href="#" class="item-title">COB Spot Lights</a></li>
+                              <li><a href="#">COB Spot Lights - Flat Model(Ro./Sq. Movable Type)</a></li>
+                              <li><a href="#">Delta COB Spot Light (Round Conceaded Type)</a></li>
                             </ul>
-                        </nav>
-                    </div>
-                    <div class="col-xl-3 col-md-4 col-3">
-                        <ul class="nav-icon d-flex justify-content-end align-items-center">
-                            <li class="nav-search"><a href="#search" data-bs-toggle="modal" class="nav-icon-item" aria-label="Search">
-                                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M21.35 21.0004L17 16.6504" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>    
-                            </a></li>
-                            <li class="nav-account" aria-label="Login">
-                                <a href="#" class="nav-icon-item" >
-                                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                                <div class="dropdown-account dropdown-login" >
-                                    <div class="sub-top">
-                                        <a href="#" class="tf-btn btn-reset">Login</a>
-                                        <p class="text-center text-secondary-2">Don’t have an account? <a href="#">Register</a></p>
-                                    </div>
-                                    <div class="sub-bot">
-                                        <span class="body-text-">Support</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-wishlist" aria-label="wishlist"><a href="wish-list.html" class="nav-icon-item">
-                                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.8401 4.60987C20.3294 4.09888 19.7229 3.69352 19.0555 3.41696C18.388 3.14039 17.6726 2.99805 16.9501 2.99805C16.2276 2.99805 15.5122 3.14039 14.8448 3.41696C14.1773 3.69352 13.5709 4.09888 13.0601 4.60987L12.0001 5.66987L10.9401 4.60987C9.90843 3.57818 8.50915 2.99858 7.05012 2.99858C5.59109 2.99858 4.19181 3.57818 3.16012 4.60987C2.12843 5.64156 1.54883 7.04084 1.54883 8.49987C1.54883 9.95891 2.12843 11.3582 3.16012 12.3899L4.22012 13.4499L12.0001 21.2299L19.7801 13.4499L20.8401 12.3899C21.3511 11.8791 21.7565 11.2727 22.033 10.6052C22.3096 9.93777 22.4519 9.22236 22.4519 8.49987C22.4519 7.77738 22.3096 7.06198 22.033 6.39452C21.7565 5.72706 21.3511 5.12063 20.8401 4.60987V4.60987Z" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>  
-                                </a>
-                            </li>
-                            <li class="nav-cart" aria-label="Shopping-Cart"><a href="#shoppingCart" data-bs-toggle="modal" class="nav-icon-item">
-                                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.5078 10.8734V6.36686C16.5078 5.17166 16.033 4.02541 15.1879 3.18028C14.3428 2.33514 13.1965 1.86035 12.0013 1.86035C10.8061 1.86035 9.65985 2.33514 8.81472 3.18028C7.96958 4.02541 7.49479 5.17166 7.49479 6.36686V10.8734M4.11491 8.62012H19.8877L21.0143 22.1396H2.98828L4.11491 8.62012Z" stroke="#181818" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>  
-                                <span class="count-box">1</span></a>
-                            </li>
+                          </li>
+                          <li>
+                            <ul>
+                              <li><a href="#">Curve COB Spot Light (Round Conceaded Type)</a></li>
+                              <li><a href="#">COB Spot Lights</a></li>
+                              <li><a href="#">Silver Chrome/Rose Gold Delta COB Spot Light(Round Conceaded Type)</a></li>
+                              <li><a href="#">New COB Lens</a></li>
+                              <li><a href="#">COB Spot Light (Conceaded & Junction Box Fittigs)</a></li>
+                              <li><a href="#">COB Spot Light Surface Cylinder & Hanging Light</a></li>
+                              <li><a href="#">COB Spot Light (Spike & Wall Outdoor Light)</a></li>
+                              <li><a href="#">PC Lens COB Spot Light(Tiltable)</a></li>
+                              <li><a href="#" class="item-title">Outdoor Wall Light</a></li>
+                              <li><a href="#" class="item-title">LED Bulb / Lamp Light</a></li>
+                              <li><a href="#" class="item-title">LED Tube / T</a></li>
+                              <li><a href="#" class="item-title">LED Track Light(ARM Type)</a></li>
+                              <li><a href="#" class="item-title">LED Track Light(Cylinder Type)</a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <ul>
+                              <li><a href="#" class="item-title">LED Track Light(Linear Type)</a></li>
+                              <li><a href="#" class="item-title">LED Bulk Head Alfa</a></li>
+                              <li><a href="#" class="item-title">LED Street Light</a></li>
+                              <li><a href="#">LED Street Light(Super Delux Model)</a></li>
+                              <li><a href="#">Super Lens LED Street Light</a></li>
+                              <li><a href="#">Lens LED Street Light (Back Side Driver System)</a></li>
+                              <li><a href="#" class="item-title">LED Flood Light</a></li>
+                              <li><a href="#">Flood Light</a></li>
+                              <li><a href="#">Back Choke Flood Light</a></li>
+                              <li><a href="#">Down Choke Super Delux Flood Light</a></li>
+                              <li><a href="#">Down Choke Lens Flood Light</a></li>
+                              <li><a href="#" class="item-title">High Bay Light</a></li>
+                            </ul>
+                          </li>
                         </ul>
+                      </li>
+                      <li>
+                        <span>Service & Support</span>
+                        <ul class="sub-menu">
+                          <li><a href="professional-installation.html">Professional Installation</a></li>
+                          <li><a href="pre-wiring-consultations.html">Pre-Wiring Consultations</a></li>
+                          <li><a href="post-installation-training.html">Post-Installation Training</a></li>
+                          <!--<li><a href="#">Online Knowledge Base</a></li>-->
+                        </ul>
+                      </li>
+                      <li>
+                        <span>Application Area</span>
+                        <ul class="sub-menu">
+                          <li><a href="residential-lighting.html">Residential Lighting</a></li>
+                          <li><a href="commercial-lighting.html">Commercial Lighting</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="career-resources.html">Career Resources</a></li>
+                        <li><a href="photo-gallery.html">Photo Gallery</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                  </nav>
+                  <div class="header-right_wrap d-flex">
+                    <div class="header-search">
+                      <button class="header-search-toggle"><i
+                        class="fa fa-search"></i></button>
+                      <div class="header-search-form">
+                        <form action="#">
+                          <input type="text" placeholder="Type and hit enter">
+                          <button><i class="fa fa-search"></i></button>
+                        </form>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <!-- Header Logo Start -->
             </div>
-        </header>
-        <!-- /Header -->
+          </div>
+        </div>
+      </header>
+      <!--Header section end-->
+      <!--Header Mobile section start-->
+      <header class="header-mobile d-block d-lg-none">
+        <div class="header-bottom menu-right">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="header-mobile-navigation d-block d-lg-none">
+                  <div class="row align-items-center">
+                    <div class="col-6 col-md-6">
+                      <div class="header-logo">
+                        <a href="./">
+                        <img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" class="img-fluid" alt="jha electricals logo">
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                      <div class="mobile-navigation text-end">
+                        <div class="header-icon-wrapper">
+                          <ul class="icon-list justify-content-end">
+                            <!-- <li>
+                              <div class="header-cart-icon">
+                                <a href="cart.html"><i
+                                  class="ion-bag"></i><span>2</span></a>
+                              </div>
+                              </li> -->
+                            <li>
+                              <a href="javascript:void(0)" class="mobile-menu-icon"
+                                id="mobile-menu-trigger"><i class="fa fa-bars"></i></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Mobile Menu start-->
+            <div class="row">
+              <div class="col-12 d-flex d-lg-none">
+                <div class="mobile-menu"></div>
+              </div>
+            </div>
+            <!--Mobile Menu end-->
+          </div>
+        </div>
+      </header>
+      <!--Header Mobile section end-->
+      <!-- Offcanvas Menu Start -->
+      <div class="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
+        <a href="javascript:void(0)" class="offcanvas-menu-close" id="offcanvas-menu-close-trigger">
+        <i class="fa fa-close"></i>
+        </a>
+        <div class="offcanvas-wrapper">
+          <div class="offcanvas-inner-content">
+            <div class="offcanvas-mobile-search-area">
+              <form action="#">
+                <input type="search" placeholder="Search ...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <nav class="offcanvas-navigation">
+              <ul>
+                <li class="menu-item-has-children"><a href="about-us.html">About Us</a>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="products.html">Products</a>
+                  <ul class="submenu2">
+                    <li class="menu-item-has-children">
+                      <a href="led-panel-lights.html">LED Panel Lights</a>
+                      <ul class="submenu2">
+                        <li><a href="led-panel-light-square-round-conceaded-type.html">LED Panel Light(Square/Round Conceaded Type)</a></li>
+                        <li><a href="#">LED Panel Light - Glow Model</a></li>
+                        <li><a href="#">LED Panel Light - Polyglow</a></li>
+                        <li><a href="#">LED Panel Light - Zenith</a></li>
+                        <li><a href="#">LED Panel Light (Square+Round Surface Type)</a></li>
+                        <li><a href="#">Twister Surface Light With Holder</a></li>
+                        <li><a href="#">LED Panel Light (Rectangle Concealed Type)</a></li>
+                        <li><a href="#">LED Down Light</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                      <a href="#">COB Spot Lights</a>
+                      <ul class="submenu2">
+                        <li><a href="#">COB Spot Lights - Flat Model(Ro./Sq. Movable Type)</a></li>
+                        <li><a href="#">Delta COB Spot Light (Round Conceaded Type)</a></li>
+                        <li><a href="#">Curve COB Spot Light (Round Conceaded Type)</a></li>
+                        <li><a href="#">COB Spot Lights</a></li>
+                        <li><a href="#">Silver Chrome/Rose Gold Delta COB Spot Light(Round Conceaded Type)</a></li>
+                        <li><a href="#">New COB Lens</a></li>
+                        <li><a href="#">COB Spot Light (Conceaded & Junction Box Fittigs)</a></li>
+                        <li><a href="#">COB Spot Light Surface Cylinder & Hanging Light</a></li>
+                        <li><a href="#">COB Spot Light (Spike & Wall Outdoor Light)</a></li>
+                        <li><a href="#">PC Lens COB Spot Light(Tiltable)</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="#">Outdoor Wall Light</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Bulb / Lamp Light</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Tube / T</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Track Light(ARM Type)</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Track Light(Cylinder Type)</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Track Light(Linear Type)</a></li>
+                    <li class="menu-item-has-children"><a href="#">LED Bulk Head Alfa</a></li>
+                    <li class="menu-item-has-children">
+                      <a href="#">LED Street Light</a>
+                      <ul class="submenu2">
+                        <li><a href="#">LED Street Light(Super Delux Model)</a></li>
+                        <li><a href="#">Super Lens LED Street Light</a></li>
+                        <li><a href="#">Lens LED Street Light (Back Side Driver System)</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                      <a href="#">LED Flood Light</a>
+                      <ul class="submenu2">
+                        <li><a href="#">Flood Light</a></li>
+                        <li><a href="#">Back Choke Flood Light</a></li>
+                        <li><a href="#">Down Choke Super Delux Flood Light</a></li>
+                        <li><a href="#">Down Choke Lens Flood Light</a></li>
+                      </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="#">High Bay Light</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">Service & Support</a>
+                  <ul class="submenu2">
+                    <li><a href="professional-installation.html">Professional Installation</a></li>
+                    <li><a href="pre-wiring-consultations.html">Pre-Wiring Consultations</a></li>
+                    <li><a href="post-installation-training.html">Post-Installation Training</a></li>
+                    <!--<li><a href="#">Online Knowledge Base</a></li>-->
+                  </ul>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">Application Area</a>
+                  <ul class="submenu2">
+                    <li><a href="residential-lighting.html">Residential Lighting</a></li>
+                    <li><a href="commercial-lighting.html">Commercial Lighting</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children"><a href="career-resources.html">Career Resources</a></li>
+                <li class="menu-item-has-children"><a href="photo-gallery.html">Photo Gallery</a></li>
+                <li class="menu-item-has-children"><a href="#">Blog</a></li>
+                <li class="menu-item-has-children"><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </nav>
+            <!-- <div class="offcanvas-settings">
+              <nav class="offcanvas-navigation">
+                <ul>
+                  <li class="menu-item-has-children">
+                    <a href="#">MY ACCOUNT </a>
+                    <ul class="submenu2">
+                      <li><a href="login-register.html">Register</a></li>
+                      <li><a href="login-register.html">Login</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item-has-children">
+                    <a href="#">CURRENCY: USD </a>
+                    <ul class="submenu2">
+                      <li><a href="javascript:void(0)">€ Euro</a></li>
+                      <li><a href="javascript:void(0)">$ US Dollar</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item-has-children">
+                    <a href="#">LANGUAGE: EN-GB </a>
+                    <ul class="submenu2">
+                      <li><a href="javascript:void(0)"><img src="./images/icons/en-gb.png"
+                        alt="English"> English</a></li>
+                      <li><a href="javascript:void(0)"><img src="./images/icons/de-de.png"
+                        alt="Germany"> Germany</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+              </div> -->
+            <div class="offcanvas-widget-area">
+              <div class="off-canvas-contact-widget">
+                <div class="header-contact-info">
+                  <ul class="header-contact-info-list">
+                    <li><i class="fa fa-phone"></i> <a href="tel:1800-202-8514">1800-202-8514</a>
+                    </li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:customercare@jhaelectricals.com">customercare@jhaelectricals.com</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!--Off Canvas Widget Social Start-->
+              <div class="off-canvas-widget-social">
+                <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa fa-instagram"></i></a>
+                <a href="#" title="Youtube"><i class="fa fa-linkedin"></i></a>
+                <a href="#" title="Vimeo"><i class="fa fa-youtube"></i></a>
+              </div>
+              <!--Off Canvas Widget Social End-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Offcanvas Menu End -->

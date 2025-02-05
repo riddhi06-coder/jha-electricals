@@ -1,67 +1,20 @@
-<script src="{{ asset('frontend/assets/js/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/swiper-bundle.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/carousel.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/bootstrap-select.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/lazysize.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/count-down.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/wow.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/multiple-modal.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/nouislider.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/shop.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/js/main.js') }}" defer></script>
-
-
-<!-- Include Notyf CSS & JS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.js"></script>
-
-<script>
-    // Initialize Notyf
-    var notyf = new Notyf({
-        duration: 5000, // Notification duration
-        ripple: true, // Adds a ripple effect
-        position: {
-            x: 'right',
-            y: 'top',
-        },
-        dismissible: true,
-        types: [
-            {
-                type: 'custom-success',
-                background: 'black',  // Black background
-                icon: {
-                    className: 'fa fa-check-circle', // FontAwesome success icon
-                    tagName: 'i',
-                    color: 'white'  // White icon color
-                }
-            }
-        ]
-    });
-
-    // Display notifications based on session messages
-    @if(Session::has('message'))
-        notyf.open({
-            type: 'custom-success',
-            message: " {{ session('message') }}",
-        });
-    @endif
-
-    @if(Session::has('error'))
-        notyf.error("{{ session('error') }}");
-    @endif
-
-    @if(Session::has('info'))
-        notyf.open({
-            type: 'info',
-            message: "<strong>ℹ Info:</strong> {{ session('info') }}"
-        });
-    @endif
-
-    @if(Session::has('warning'))
-        notyf.open({
-            type: 'warning',
-            message: " {{ session('warning') }}"
-        });
-    @endif
-</script>
+<!-- Placed js at the end of the document so the pages load faster -->
+<div class="progress-wrap cursor-pointer active-progress">
+    <!--  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 59.4119;"></path>
+    </svg> -->
+    <svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
+    <path d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+    </svg>
+</div>
+    <!-- All jquery file included here -->
+    <script src="{{ asset('frontend/assets/js/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery-migrate-3.3.2.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <script type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
