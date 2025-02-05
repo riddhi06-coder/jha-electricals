@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\HomeRangeDetailsController;
 use App\Http\Controllers\Backend\HomeQualityController;
 use App\Http\Controllers\Backend\HomeContactController;
 use App\Http\Controllers\Backend\HomeTestimonailController;
+use App\Http\Controllers\Backend\HomeBlogsController;
+use App\Http\Controllers\Backend\HomeFooterController;
 
 
 
@@ -51,3 +53,9 @@ Route::resource('home-contact', HomeContactController::class);
 
 // ==== Manage About Testimonails Details in Home
 Route::resource('home-testimonails', HomeTestimonailController::class);
+
+// ==== Manage About Blogs Details in Home
+Route::resource('home-blogs', HomeBlogsController::class);
+
+// ==== Manage About Company Details Details in Home
+Route::resource('home-footer', HomeFooterController::class);
