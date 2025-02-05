@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\HomeContactController;
 use App\Http\Controllers\Backend\HomeTestimonailController;
 use App\Http\Controllers\Backend\HomeBlogsController;
 use App\Http\Controllers\Backend\HomeFooterController;
+use App\Http\Controllers\Backend\SocialMediaController;
 
 
 
@@ -59,3 +60,6 @@ Route::resource('home-blogs', HomeBlogsController::class);
 
 // ==== Manage About Company Details Details in Home
 Route::resource('home-footer', HomeFooterController::class);
+
+// ==== Manage About Social Media Details in Home
+Route::resource('social-media', SocialMediaController::class);

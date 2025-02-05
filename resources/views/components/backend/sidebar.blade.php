@@ -55,7 +55,7 @@
                     <li><a href="{{ route('home-testimonails.index') }}">Testimonials</a></li>
                     <li><a href="{{ route('home-blogs.index') }}">Latest Blogs</a></li>
                     <li><a href="{{ route('home-footer.index') }}">Company Details</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Social Media</a></li>
+                    <li><a href="{{ route('social-media.index') }}">Social Media</a></li>
                   
                   </ul>
                 </li>
