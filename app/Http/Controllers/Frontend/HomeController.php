@@ -37,11 +37,4 @@ class HomeController extends Controller
         return view('frontend.home', compact('banners', 'homeAbout', 'homeFounder', 'homeRange', 'homeQualities', 'homeContact', 'homeTestimonials', 'homeBlogs'));
     }
     
-    
-    
-    
-
-    
-    
-
 }

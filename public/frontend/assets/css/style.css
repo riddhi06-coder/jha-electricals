@@ -9794,7 +9794,7 @@ only screen and (max-width: 767px) {
 /* =================== */
 
 .our-vision-sec {
-  background: url(../img/bg/our-vision-bg.webp);
+  /* background: url(../img/bg/our-vision-bg.webp); */
   background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;

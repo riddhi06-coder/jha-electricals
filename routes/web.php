@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\VisionControllerController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\AboutUsController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -76,4 +77,11 @@ Route::resource('product-vision', VisionControllerController::class);
 
 // ===================================================================Frontend================================================================
 
-Route::get('/', [HomeController::class, 'index'])->name('home.page');
+
+Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
+
+    Route::get('/', [HomeController::class, 'index'])->name('home.page');
+    Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
+
+
+});
