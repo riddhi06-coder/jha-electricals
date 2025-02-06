@@ -14,10 +14,11 @@ use App\Http\Controllers\Backend\HomeFooterController;
 use App\Http\Controllers\Backend\SocialMediaController;
 
 
+use App\Http\Controllers\Frontend\HomeController;
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+// Route::get('/', function () {
+//     return view('frontend.home');
+// });
   
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'login'])->name('admin.login');
@@ -63,3 +64,8 @@ Route::resource('home-footer', HomeFooterController::class);
 
 // ==== Manage About Social Media Details in Home
 Route::resource('social-media', SocialMediaController::class);
+
+
+// ===================================================================Frontend
+
+Route::get('/', [HomeController::class, 'index'])->name('home.page');

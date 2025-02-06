@@ -12,300 +12,148 @@
         @include('components.frontend.header')
 	 
      
-      <!--slider section start-->
-      <div class="hero-section section position-relative">
+    <!--slider section start-->
+    <div class="hero-section section position-relative">
         <div class="tf-element-carousel slider-nav" data-slick-options='{
-          "slidesToShow": 1,
-          "slidesToScroll": 1,
-          "infinite": true,
-          "arrows": false,
-          "dots": true,
-          "autoplay" : true
-          }' data-slick-responsive='[
-          {"breakpoint":768, "settings": {
-          "slidesToShow": 1
-          }},
-          {"breakpoint":575, "settings": {
-          "slidesToShow": 1
-          }}
-          ]'>
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/banner4.webp">
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "infinite": true,
+            "arrows": false,
+            "dots": true,
+            "autoplay": true
+        }' data-slick-responsive='[
+            {"breakpoint":768, "settings": {"slidesToShow": 1}},
+            {"breakpoint":575, "settings": {"slidesToShow": 1}}
+        ]'>
+
+        @foreach ($banners as $index => $banner)
+        <!-- Hero Item start -->
+        <div class="hero-item bg-image" data-bg="{{ asset('uploads/home/banner/' . $banner->banner_image) }}">
             <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 left pt-sm-0 pt-xs-0">
-                    <h3>Lighting Up</h3>
-                    <h1>The New <bR>Era</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-2.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 left pt-sm-0 pt-xs-0">
-                    <h3>LED Panel Light</h3>
-                    <h1>Effortless<br> Illumination</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-3.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 left pt-sm-0 pt-xs-0">
-                    <h3>COB Spot Light</h3>
-                    <h1>Subtle <br>Elegance</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/banner2.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 right pt-sm-0 pt-xs-0">
-                    <h3>LED Batten</h3>
-                    <h1>Energy Efficient <br>Radiance</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-6.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 left pt-sm-0 pt-xs-0">
-                    <h3>LED Bulb / Lamp Light</h3>
-                    <h1>Illuminate <br>Instantly</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-7.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 right pt-sm-0 pt-xs-0">
-                    <h3>LED Track Light</h3>
-                    <h1>Brighten Every <br>Display</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-8.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 right pt-sm-0 pt-xs-0">
-                    <h3>LED Street Light</h3>
-                    <h1>Brighten Every <br>Path</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-9.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 right pt-sm-0 pt-xs-0">
-                    <h3>LED Flood Light</h3>
-                    <h1>Toughest & <br>Elegant</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-          <!--Hero Item start-->
-          <div class="hero-item bg-image" data-bg="img/banner/hero-banner-10.webp">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
-                  <!--Hero Content start-->
-                  <div class="hero-content-2 right pt-sm-0 pt-xs-0">
-                    <h3>High Bay Light</h3>
-                    <h1>Superior Worksite<br> Brightness</h1>
-                    <a class="small-btn-style" href="#">shop now</a>
-                  </div>
-                  <!--Hero Content end-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Hero Item end-->
-        </div>
-      </div>
-      
-      <!--slider section end-->
-      <section class="about-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="about-img-wrap wow fadeInLeft animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                <div class="about-img-top">
-                  <img src="img/about1.webp" alt="About Us Image 1" width="442" height="347">
-                </div>
-                <div class="about-img-bottom">
-                  <img class="img-fluid" src="img/about2.webp" alt="About Us Image 2" width="330" height="313">
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="about-text wow fadeInRight animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                <h2>About Jha Electricals</h2>
-                <p>JHA ELECTRICALS is a new-age consumer electrical goods company. It's a part of the prestigious JHA GROUP, which has created a strong niche for itself in the Mumbai real estate space with its strong commitment to quality.</p>
-                <p>The changing landscape of consumer behaviour in India is driven by its youth who have an uncompromising attitude towards making choices. They are highly confident about voicing their opinion and take well informed decisions. Jha Electricals has identified this space in the electrical goods category and is positioning itself as a 21" century company poised to light up the space with its quality, design and performance like no other.</p>
                 <div class="row">
-                  <div class="col-sm-6">
-                    <div class="about-features">
-                      <!-- <i class="icon-medical"></i> -->
-                      <h3>Our Vision</h3>
-                      <p>To become the most-loved electrical goods company from India, serving the world.</p>
+                    <div class="col-12">
+                        <!-- Hero Content start -->
+                        @php
+                            // Define which banners should be left-aligned (1, 2, 3, and 5)
+                            $leftAlignedIndexes = [0, 1, 2, 4]; // Since index starts from 0
+                            $position = in_array($index, $leftAlignedIndexes) ? 'left' : 'right';
+
+                            // Formatting the title with line breaks
+                            $words = explode(' ', e($banner->banner_title));
+                            $formattedTitle = '';
+
+                            foreach ($words as $i => $word) {
+                                $formattedTitle .= $word . ' ';
+                                if (($i + 1) % 2 == 0 || count($words) == 2) {
+                                    $formattedTitle .= '<br>';
+                                }
+                            }
+                        @endphp
+
+                        <div class="hero-content-2 {{ $position }} pt-sm-0 pt-xs-0">
+                            <h3>{{ $banner->banner_heading }}</h3>
+                            <h1>{!! trim($formattedTitle) !!}</h1>
+                            <a class="small-btn-style" href="#">shop now</a>
+                        </div>
+                        <!-- Hero Content end -->
                     </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="about-features">
-                      <!-- <i class="icon-medicine"></i> -->
-                      <h3>Our Mission</h3>
-                      <p>To make a difference in consumer's life with innovation, technology and passion.</p>
-                    </div>
-                  </div>
                 </div>
-                <a href="about-us.html" class="small-btn-style">Read More</a>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
-      <section class="foundert_sec">
+        <!-- Hero Item end -->
+        @endforeach
+
+        </div>
+    </div>
+
+    <!--slider section end-->
+    <section class="about-section">
         <div class="container">
-          <div class="row">
-            <div class="col-md-9">
-              <div class="foundert_text">
-                <div class="section-title mb-30 pt-20 wow fadeInDown animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                  <h2>From the <span>Founder's Desk</span></h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-img-wrap wow fadeInLeft animated" data-wow-delay="400ms" data-wow-duration="400ms">
+                    <div class="about-img-top">
+                        @php
+                            $images = json_decode($homeAbout->images ?? '[]');
+                        @endphp
+                        @if(!empty($images) && isset($images[0]))
+                            <img src="{{ asset('uploads/home/about/' . $images[0]) }}" alt="About Us Image 1" width="442" height="347">
+                        @endif
+                    </div>
+
+                    <div class="about-img-bottom">
+                        @if(!empty($images) && isset($images[1]))
+                            <img class="img-fluid" src="{{ asset('uploads/home/about/' . $images[1]) }}" alt="About Us Image 2" width="330" height="313">
+                        @endif
+                    </div>
+
+                    </div>
                 </div>
-                <p>It gives me immense pleasure to introduce JHA ELECTRICALS to you. This latest initiative of JHA Group is all about lighting up a new era when it comes to electrical products for domestic and industrial use.</p>
-                <p>At Jha, we have always kept consumers' interest at the forefront of everything we do and create. You can be rest assured about it as we are now embarking on a journey to lighten up the four corners of India with our products that stand for quality, efficiency and consistency.</p>
-                <p>We also understand and believe in the power of playing as a team. We appreciate the value distributors, dealers, retailers bring to augment the entire supply chain and add smile on the faces of consumers. As a family, we can go a long way in achieving multiple milestones of business success, consumer satisfaction and environmental good.</p>
-                <p>I assure you the best of efforts and commitment to create a lasting legacy for JHA ELECTRICALS for mutual benefit of all its stakeholders.</p>
-                <h6>Warm regards</h6>
-                <h5>Shankar Jha</h5>
-                <h6>Chairman and Managing Director</h6>
-              </div>
+                <div class="col-lg-6">
+                    <div class="about-text wow fadeInRight animated" data-wow-delay="400ms" data-wow-duration="400ms">
+                        <h2>{{ $homeAbout->heading }}</h2>
+                        <p>{!! $homeAbout->description !!}</p>
+
+                        @php
+                            $values = json_decode($homeAbout->value);
+                            $descriptions = json_decode($homeAbout->value_description);
+                        @endphp
+
+                        <div class="row">
+                            @foreach($values as $index => $value)
+                            <div class="col-sm-6">
+                                <div class="about-features">
+                                    <h3>{{ $value }}</h3>
+                                    <p>{{ $descriptions[$index] }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <a href="about-us.html" class="small-btn-style">Read More</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-              <div class="foundert_img">
-                <img src="img/founder.webp" width="266" height="464" class="img-fluid" alt="Founder Image">
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
-      <!--Banner section start-->
-      <!-- <div class="banner-section">
-        <div
-          class="container-fluid">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="single-banner-item mb-30 wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                <div class="banner-image">
-                  <a href="#">
-                  <img src="img/small-banners/small-banner1.jpg" alt="LED Track Light">
-                  </a>
+    </section>
+
+    <section class="foundert_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="foundert_text">
+                        <div class="section-title mb-30 pt-20 wow fadeInDown animated" data-wow-delay="400ms" data-wow-duration="400ms">
+                        @php
+                            $titleParts = explode(' ', $homeFounder->title);
+                            $firstTwoWords = implode(' ', array_splice($titleParts, 0, 2));
+                            $remainingWords = implode(' ', $titleParts);
+                        @endphp
+
+                        <h2>{{ $firstTwoWords }} <span>{{ $remainingWords }}</span></h2>
+
+                        </div>
+
+                        @if($homeFounder)
+                            <p>{!! $homeFounder->description !!}</p>
+                        @endif
+                    </div>
                 </div>
-                <div class="banner-content">
-                  <h4 class="title-light">Best Selling!</h4>
-                  <h3 class="title">LED Track <span>Light</span></h3>
-                  <a href="#">Shop Now <i
-                    class="fa fa-arrow-circle-right"></i></a>
+                
+                <div class="col-md-3">
+                    <div class="foundert_img">
+                        @php
+                            $founderImage = $homeFounder->image ;
+                        @endphp
+                        <img src="{{ asset('uploads/home/founder/' . $founderImage) }}" 
+                            width="266" height="464" class="img-fluid" alt="Founder Image">
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="single-banner-item mb-30 wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                <div class="banner-image">
-                  <a href="#">
-                  <img src="img/small-banners/small-banner2.jpg" alt="LED Panel Light">
-                  </a>
-                </div>
-                <div class="banner-content">
-                  <h4 class="title-light">New Arrivals</h4>
-                  <h3 class="title">LED Panel <span>Light</span></h3>
-                  <a href="#">Shop Now <i
-                    class="fa fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="single-banner-item mb-30 wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                <div class="banner-image">
-                  <a href="#">
-                  <img src="img/small-banners/small-banner3.jpg" alt="Twister Surface Light">
-                  </a>
-                </div>
-                <div class="banner-content">
-                  <h4 class="title-light">Black Friday</h4>
-                  <h3 class="title">Twister Surface <br><span>Light</span></h3>
-                  <a href="#">Shop Now <i
-                    class="fa fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div> -->
-      <!--Banner section end-->
+    </section>
+
+
+
       <!--Product section start-->
       <div class="product-section">
         <div class="container">
