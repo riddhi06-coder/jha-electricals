@@ -60,7 +60,7 @@ class HomeTestimonailController extends Controller
                 $image->move($destinationPath, $imageName);
             }
         }
-    
+       
         HomeTestimonial::create([
             'title' => $request->title,
             'name' => $request->name,
@@ -115,7 +115,7 @@ class HomeTestimonailController extends Controller
                 $testimonial->image = $imageName;
             }
         }
-
+        // dd($request->message);
         $testimonial->update([
             'title' => $request->title,
             'name' => $request->name,
