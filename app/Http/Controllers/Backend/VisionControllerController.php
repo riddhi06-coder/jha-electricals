@@ -40,7 +40,40 @@ class VisionControllerController extends Controller
             'vision_title' => 'required|string|max:255',
             'vision_description' => 'required|string',
             'vision_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ], [
+            // Custom validation messages
+            'product_title.required' => 'The product title is required.',
+            'product_title.string' => 'The product title must be a string.',
+            'product_title.max' => 'The product title may not be greater than 255 characters.',
+            
+            'product_description.required' => 'The product description is required.',
+            'product_description.string' => 'The product description must be a string.',
+            
+            'product_images.*.nullable' => 'The product image is optional, but if provided, it must be an image.',
+            'product_images.*.image' => 'The product image must be an image.',
+            'product_images.*.mimes' => 'The product image must be a file of type: jpg, jpeg, png, or webp.',
+            'product_images.*.max' => 'The product image may not be greater than 2MB.',
+            
+            'product_titles.*.required' => 'The product title for each entry is required.',
+            'product_titles.*.string' => 'Each product title must be a string.',
+            'product_titles.*.max' => 'Each product title may not be greater than 255 characters.',
+            
+            'product_descriptions.*.required' => 'The product description for each entry is required.',
+            'product_descriptions.*.string' => 'Each product description must be a string.',
+            
+            'vision_title.required' => 'The vision title is required.',
+            'vision_title.string' => 'The vision title must be a string.',
+            'vision_title.max' => 'The vision title may not be greater than 255 characters.',
+            
+            'vision_description.required' => 'The vision description is required.',
+            'vision_description.string' => 'The vision description must be a string.',
+            
+            'vision_image.nullable' => 'The vision image is optional, but if provided, it must be an image.',
+            'vision_image.image' => 'The vision image must be an image.',
+            'vision_image.mimes' => 'The vision image must be a file of type: jpg, jpeg, png, or webp.',
+            'vision_image.max' => 'The vision image may not be greater than 2MB.',
         ]);
+        
     
         // Handle Product Images Upload
         $productImages = [];
@@ -113,10 +146,8 @@ class VisionControllerController extends Controller
     public function update(Request $request, $id)
     {
         dd($request);
-        // Find the existing ProductVisionRange by ID
-        $productVisionRange = ProductVisionRange::findOrFail($id);
-
-        // Validate the request data
+        $range = ProductVisionRange::findOrFail($id);
+        
         $validatedData = $request->validate([
             'product_title' => 'required|string|max:255',
             'product_description' => 'required|string',
@@ -128,96 +159,98 @@ class VisionControllerController extends Controller
             'vision_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ], [
             'product_title.required' => 'The product title is required.',
+            'product_title.string' => 'The product title must be a string.',
+            'product_title.max' => 'The product title may not be greater than 255 characters.',
+            
             'product_description.required' => 'The product description is required.',
-            'product_images.*.image' => 'Each product image must be a valid image file.',
-            'product_images.*.mimes' => 'Product images must be in JPG, JPEG, PNG, or WEBP format.',
-            'product_images.*.max' => 'Each product image must be less than 2MB.',
-            'product_titles.*.required' => 'Each product title is required.',
-            'product_descriptions.*.required' => 'Each product description is required.',
+            'product_description.string' => 'The product description must be a string.',
+            
+            'product_images.*.nullable' => 'The product image is optional, but if provided, it must be an image.',
+            'product_images.*.image' => 'The product image must be an image.',
+            'product_images.*.mimes' => 'The product image must be a file of type: jpg, jpeg, png, or webp.',
+            'product_images.*.max' => 'The product image may not be greater than 2MB.',
+            
+            'product_titles.*.required' => 'The product title for each entry is required.',
+            'product_titles.*.string' => 'Each product title must be a string.',
+            'product_titles.*.max' => 'Each product title may not be greater than 255 characters.',
+            
+            'product_descriptions.*.required' => 'The product description for each entry is required.',
+            'product_descriptions.*.string' => 'Each product description must be a string.',
+            
             'vision_title.required' => 'The vision title is required.',
+            'vision_title.string' => 'The vision title must be a string.',
+            'vision_title.max' => 'The vision title may not be greater than 255 characters.',
+            
             'vision_description.required' => 'The vision description is required.',
-            'vision_image.image' => 'The vision image must be a valid image file.',
-            'vision_image.mimes' => 'The vision image must be in JPG, JPEG, PNG, or WEBP format.',
-            'vision_image.max' => 'The vision image must be less than 2MB.',
+            'vision_description.string' => 'The vision description must be a string.',
+            
+            'vision_image.nullable' => 'The vision image is optional, but if provided, it must be an image.',
+            'vision_image.image' => 'The vision image must be an image.',
+            'vision_image.mimes' => 'The vision image must be a file of type: jpg, jpeg, png, or webp.',
+            'vision_image.max' => 'The vision image may not be greater than 2MB.',
         ]);
-
+    
         // Handle Product Images Upload
-        $productImages = json_decode($productVisionRange->product_image, true) ?? [];
+        $productImages = json_decode($range->product_images, true) ?? [];
         if ($request->hasFile('product_images')) {
-            foreach ($request->file('product_images') as $image) {
+            foreach ($request->file('product_images') as $index => $image) {
                 if ($image->isValid()) {
                     $extension = $image->getClientOriginalExtension();
                     $fileName = time() . rand(10, 999) . '.' . $extension;
                     $filePath = public_path('uploads/about/product-range/');
-
+                    
                     if (!file_exists($filePath)) {
                         mkdir($filePath, 0777, true);
                     }
-
+                    
                     $image->move($filePath, $fileName);
-                    $productImages[] = $fileName;
+                    $productImages[$index] = $fileName;
                 }
             }
         }
-
-        // Handle Vision Image Upload (if updated)
-        $visionImagePath = $productVisionRange->vision_image;
+    
+        // Handle Vision Image Upload
+        $visionImagePath = $range->vision_image;
         if ($request->hasFile('vision_image')) {
             $visionImage = $request->file('vision_image');
             if ($visionImage->isValid()) {
                 $extension = $visionImage->getClientOriginalExtension();
                 $fileName = time() . rand(10, 999) . '.' . $extension;
                 $filePath = public_path('uploads/about/product-vision/');
-
+                
                 if (!file_exists($filePath)) {
                     mkdir($filePath, 0777, true);
                 }
-
-                // Delete old vision image if exists
-                if ($visionImagePath && file_exists(public_path('uploads/about/product-vision/' . $visionImagePath))) {
-                    unlink(public_path('uploads/about/product-vision/' . $visionImagePath));
-                }
-
+                
                 $visionImage->move($filePath, $fileName);
                 $visionImagePath = $fileName;
             }
         }
-
-        // Prepare product data to store as JSON
-        $productData = [];
-        foreach ($productImages as $key => $imagePath) {
-            $productData[] = [
-                'product_image' => $imagePath,
-                'product_title_detail' => $request->product_titles[$key],
-                'product_description_detail' => $request->product_descriptions[$key],
-            ];
-        }
-
-        $combinedData = [
-            'vision_title' => $request->vision_title,
-            'vision_description' => $request->vision_description,
-            'vision_image' => $visionImagePath,
-            'product_title' => $request->product_title,
-            'product_description_detail' => $request->product_description,
-            'product_image' => json_encode($productData),
-            'product_title_detail' => json_encode(array_column($productData, 'product_title_detail')),
+    
+        $productData = [
+            'product_images' => $productImages,
+            'product_titles' => $request->product_titles,
+            'product_descriptions' => $request->product_descriptions,
         ];
-
-        // Update the ProductVisionRange with the new data
-        $productVisionRange->update([
-            'vision_title' => $combinedData['vision_title'],
-            'vision_description' => $combinedData['vision_description'],
-            'vision_image' => $combinedData['vision_image'],
-            'product_title' => $combinedData['product_title'],
-            'product_description_detail' => $combinedData['product_description_detail'],
-            'product_image' => $combinedData['product_image'],
-            'product_title_detail' => $combinedData['product_title_detail'],
-            'updated_at' => Carbon::now(),
-            'updated_by' => Auth::id(),
-        ]);
-
+    
+        $range->product_title = $request->product_title;
+        $range->product_description = $request->product_description;
+        $range->product_images = json_encode($productData['product_images']);
+        $range->product_titles = json_encode($productData['product_titles']);
+        $range->product_descriptions = json_encode($productData['product_descriptions']);
+        $range->vision_title = $request->vision_title;
+        $range->vision_description = $request->vision_description;
+        $range->vision_image = $visionImagePath;
+        $range->modified_at = Carbon::now();
+        $range->modified_by = Auth::id();
+        $range->save();
+    
         return redirect()->route('product-vision.index')->with('message', 'Data updated successfully.');
     }
+    
+
+
+    
 
 
 }
