@@ -89,86 +89,51 @@
     <!-- Our Product range section -->
 
     <section class="why-choose-us-sec">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-4 col-md-6">
-            <div class="why-choose-us-title-sec">
-              <h2>Why Choose Us?</h2>
-              <p>At JHA Electricals, we don't just sell products - we deliver trust. Every item undergoes rigorous
-                quality checks, ensuring that it meets global safety and performance standards. Our customer-first
-                approach is rooted in three core values:</p>
-            </div>
-          </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="why-choose-us-title-sec">
+                        <h2>Why Choose Us?</h2>
+                        <p>{{ $chooseUsData->product_description ?? 'At JHA Electricals, we don\'t just sell products - we deliver trust. Every item undergoes rigorous quality checks, ensuring that it meets global safety and performance standards. Our customer-first approach is rooted in three core values:' }}</p>
+                    </div>
+                </div>
 
-          <div class="col-lg-8 col-md-6">
-            <div class="blog-slider tf-element-carousel" data-slick-options='{
-              "slidesToShow": 2,
-              "slidesToScroll": 1,
-              "infinite": true,
-              "autoplay": true,
-              "autoplayTimeout": 2000,
-              "arrows": false,
-              "dots": false,
-              "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
-              "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
-              }' data-slick-responsive='[
-              {"breakpoint":1199, "settings": {
-              "slidesToShow": 1
-              }},
-              {"breakpoint":992, "settings": {
-              "slidesToShow": 1
-              }},
-              {"breakpoint":768, "settings": {
-              "slidesToShow": 1
-              }},
-              {"breakpoint":575, "settings": {
-              "slidesToShow": 1,
-              "arrows": false,
-              "autoplay": true
-              }}
-              ]'>
-              <!-- Single Blog Start -->
-              <div class="blog col">
-                <div class="blog-inner">
-                  <div class="media"><a href="#" class="image"><img
-                    src="img/banner/quality-img-3.webp" alt="Quality You Can Rely On"></a></div>
-                  <div class="content">
-                    <h3 class="title">Quality You Can Rely On:</h3>
-                    <p>Each product is engineered to deliver exceptional performance and longevity.</p>
-                  </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="blog-slider tf-element-carousel" data-slick-options='{
+                        "slidesToShow": 2,
+                        "slidesToScroll": 1,
+                        "infinite": true,
+                        "autoplay": true,
+                        "autoplayTimeout": 2000,
+                        "arrows": false,
+                        "dots": false,
+                        "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
+                        "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
+                    }' data-slick-responsive='[{"breakpoint":1199, "settings": {"slidesToShow": 1}}]'>
+                    
+                        @foreach($productTitles as $index => $title)
+                        <div class="blog col">
+                            <div class="blog-inner">
+                                <div class="media">
+                                    <!-- Assuming image names are stored in the product_images array -->
+                                    <a href="#" class="image">
+                                        <img src="{{ asset('uploads/choose-us/' . $productImages[$index]) }}" alt="{{ $title }}">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h3 class="title">{{ $title }}</h3>
+                                    <p>{{ $productDescriptions[$index] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
-              </div>
-              <!-- Single Blog End -->
-              <!-- Single Blog Start -->
-              <div class="blog col">
-                <div class="blog-inner">
-                  <div class="media"><a href="#" class="image"><img
-                    src="img/banner/safety-first-img.webp" alt="Safety First"></a></div>
-                  <div class="content">
-                    <h3 class="title">Safety First:</h3>
-                    <p>We prioritize safety, using only the highest-grade materials to safeguard your spaces.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single Blog End -->
-              <!-- Single Blog Start -->
-              <div class="blog col">
-                <div class="blog-inner">
-                  <div class="media"><a href="#" class="image"><img
-                    src="img/banner/innovation-at-every-step.webp" alt="Innovation at Every Step"></a></div>
-                  <div class="content">
-                    <h3 class="title">Innovation at Every Step:</h3>
-                    <p>By integrating modern technology, we ensure our solutions keep evolving.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single Blog End -->
-            </div>
-          </div>
 
+            </div>
         </div>
-      </div>
     </section>
+
 
     <div class="our-vision-sec" style="background-image: url('{{ asset('uploads/about/product-vision/' . $productVisionRange->vision_image) }}');">
       <div class="container">

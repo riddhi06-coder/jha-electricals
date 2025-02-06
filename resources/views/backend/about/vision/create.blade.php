@@ -166,6 +166,9 @@
         row.innerHTML = `
             <td>
                 <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_${rowCount}')" required>
+                 <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                <br>
+                <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
                 <div id="product_preview_${rowCount}" class="mt-2"></div>
             </td>
             <td><input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" required></td>

@@ -70,7 +70,7 @@
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('who-we-are.index') }}">Who We Are</a></li>
                     <li><a href="{{ route('product-vision.index') }}">Product & Vision </a></li>
-                    <li><a href="{{ route('who-we-are.index') }}">Why Choose Us?</a></li>
+                    <li><a href="{{ route('choose-us.index') }}">Why Choose Us?</a></li>
                   </ul>
                 </li>
 

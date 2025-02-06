@@ -87,43 +87,43 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-    @php
-        // Decode the JSON data into arrays
-        $productImages = json_decode($range->product_images, true) ?? [];
-        $productTitles = json_decode($range->product_titles, true) ?? [];
-        $productDescriptions = json_decode($range->product_descriptions, true) ?? [];
-    @endphp
+                                                @php
+                                                    // Decode the JSON data into arrays
+                                                    $productImages = json_decode($range->product_images, true) ?? [];
+                                                    $productTitles = json_decode($range->product_titles, true) ?? [];
+                                                    $productDescriptions = json_decode($range->product_descriptions, true) ?? [];
+                                                @endphp
 
-    @foreach($productImages as $index => $image)
-        <tr>
-            <td>
-                <!-- Input for product image -->
-                <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_{{ $index }}')">
-                <input type="hidden" name="existing_product_images[]" value="{{ $image }}">
-                <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
-                <br>
-                <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                <div id="product_preview_{{ $index }}" class="mt-2">
-                    @if(isset($image))
-                        <img src="{{ asset('uploads/about/product-range/' . $image) }}" style="max-width: 150px;">
-                    @endif
-                </div>
-            </td>
-            <td>
-                <!-- Input for product title -->
-                <input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" value="{{ old('product_titles.' . $index, $productTitles[$index] ?? '') }}" required>
-            </td>
-            <td>
-                <!-- Textarea for product description -->
-                <textarea class="form-control" name="product_descriptions[]" placeholder="Enter Description" required>{{ old('product_descriptions.' . $index, $productDescriptions[$index] ?? '') }}</textarea>
-            </td>
-            <td>
-                <!-- Button to remove the row -->
-                <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
-            </td>
-        </tr>
-    @endforeach
-</tbody>
+                                                @foreach($productImages as $index => $image)
+                                                    <tr>
+                                                        <td>
+                                                            <!-- Input for product image -->
+                                                            <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_{{ $index }}')">
+                                                            <input type="hidden" name="existing_product_images[]" value="{{ $image }}">
+                                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                                            <br>
+                                                            <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                                                            <div id="product_preview_{{ $index }}" class="mt-2">
+                                                                @if(isset($image))
+                                                                    <img src="{{ asset('uploads/about/product-range/' . $image) }}" style="max-width: 150px;">
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <!-- Input for product title -->
+                                                            <input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" value="{{ old('product_titles.' . $index, $productTitles[$index] ?? '') }}" required>
+                                                        </td>
+                                                        <td>
+                                                            <!-- Textarea for product description -->
+                                                            <textarea class="form-control" name="product_descriptions[]" placeholder="Enter Description" required>{{ old('product_descriptions.' . $index, $productDescriptions[$index] ?? '') }}</textarea>
+                                                        </td>
+                                                        <td>
+                                                            <!-- Button to remove the row -->
+                                                            <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
 
 
                                         </table>
@@ -199,6 +199,9 @@
         row.innerHTML = `
             <td>
                 <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_${rowCount}')" required>
+                 <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                <br>
+                <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
                 <div id="product_preview_${rowCount}" class="mt-2"></div>
             </td>
             <td><input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" required></td>

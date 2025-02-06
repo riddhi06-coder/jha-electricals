@@ -17,14 +17,14 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Add Why Choose Form</h4>
+                  <h4>Add Who we are Form</h4>
                 </div>
                 <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                     <a href="{{ route('who-we-are.index') }}">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Add Why Choose</li>
+                    <li class="breadcrumb-item active">Add Who we are</li>
                 </ol>
 
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <div class="card">
                     <div class="card-header">
-                        <h4>Why Choose Form</h4>
+                        <h4>Who we are Form</h4>
                         <p class="f-m-light mt-1">Fill up your true details and submit the form.</p>
                     </div>
                     <div class="card-body">
