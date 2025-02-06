@@ -68,12 +68,9 @@
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#user-visitor') }}"></use>
                     </svg><span>About Us</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="#">Banner Details</a></li>
-                    <li><a href="#">Who We Are</a></li>
-                    <li><a href="#">Our Product Range</a></li>
-                    <li><a href="#">Explore Our Range</a></li>
-                    <li><a href="#">Why Choose Us?</a></li>
-                    <li><a href="#">Our Vision</a></li>
+                    <li><a href="{{ route('who-we-are.index') }}">Who We Are</a></li>
+                    <li><a href="{{ route('product-vision.index') }}">Product & Vision </a></li>
+                    <li><a href="{{ route('who-we-are.index') }}">Why Choose Us?</a></li>
                   </ul>
                 </li>
 

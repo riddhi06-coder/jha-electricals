@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\HomeTestimonailController;
 use App\Http\Controllers\Backend\HomeBlogsController;
 use App\Http\Controllers\Backend\HomeFooterController;
 use App\Http\Controllers\Backend\SocialMediaController;
+use App\Http\Controllers\Backend\WhoUsController;
+use App\Http\Controllers\Backend\VisionControllerController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -66,6 +68,12 @@ Route::resource('home-footer', HomeFooterController::class);
 Route::resource('social-media', SocialMediaController::class);
 
 
-// ===================================================================Frontend
+// ==== Manage About Us Banner details
+Route::resource('who-we-are', WhoUsController::class);
+
+// ==== Manage About Us Vision details
+Route::resource('product-vision', VisionControllerController::class);
+
+// ===================================================================Frontend================================================================
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');

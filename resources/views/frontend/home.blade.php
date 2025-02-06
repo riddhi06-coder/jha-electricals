@@ -311,7 +311,7 @@
                                                     <img src="{{ asset('uploads/testimonials/' . $testimonial->image) }}" class="img-fluid" alt="{{ $testimonial->name }}" width="70" height="70" loading="lazy">
                                                 </div>
                                                 <div class="testimonial-content">
-                                                    {{ $testimonial->message }}
+                                                    {!! $testimonial->message !!}
                                                     <img src="{{ asset('frontend/assets/img/icon/quote-icon.webp') }}" alt="Quote Icon" width="29" height="20" loading="lazy">
                                                     <p class="testimonial-author">{{ $testimonial->name }}</p>
                                                     <span class="post">Customer</span>
