@@ -145,9 +145,8 @@ class VisionControllerController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request);
         $range = ProductVisionRange::findOrFail($id);
-        
+
         $validatedData = $request->validate([
             'product_title' => 'required|string|max:255',
             'product_description' => 'required|string',
@@ -165,10 +164,10 @@ class VisionControllerController extends Controller
             'product_description.required' => 'The product description is required.',
             'product_description.string' => 'The product description must be a string.',
             
-            'product_images.*.nullable' => 'The product image is optional, but if provided, it must be an image.',
-            'product_images.*.image' => 'The product image must be an image.',
-            'product_images.*.mimes' => 'The product image must be a file of type: jpg, jpeg, png, or webp.',
-            'product_images.*.max' => 'The product image may not be greater than 2MB.',
+            'product_images.*.nullable' => 'The product image is optional.',
+            'product_images.*.image' => 'The product image must be a valid image file.',
+            'product_images.*.mimes' => 'The product image must be in jpg, jpeg, png, or webp format.',
+            'product_images.*.max' => 'The product image may not be larger than 2MB.',
             
             'product_titles.*.required' => 'The product title for each entry is required.',
             'product_titles.*.string' => 'Each product title must be a string.',
@@ -184,14 +183,15 @@ class VisionControllerController extends Controller
             'vision_description.required' => 'The vision description is required.',
             'vision_description.string' => 'The vision description must be a string.',
             
-            'vision_image.nullable' => 'The vision image is optional, but if provided, it must be an image.',
-            'vision_image.image' => 'The vision image must be an image.',
-            'vision_image.mimes' => 'The vision image must be a file of type: jpg, jpeg, png, or webp.',
-            'vision_image.max' => 'The vision image may not be greater than 2MB.',
+            'vision_image.nullable' => 'The vision image is optional.',
+            'vision_image.image' => 'The vision image must be a valid image file.',
+            'vision_image.mimes' => 'The vision image must be in jpg, jpeg, png, or webp format.',
+            'vision_image.max' => 'The vision image may not be larger than 2MB.',
         ]);
-    
+        
+
         // Handle Product Images Upload
-        $productImages = json_decode($range->product_images, true) ?? [];
+        $productImages = $request->existing_product_images ?? []; 
         if ($request->hasFile('product_images')) {
             foreach ($request->file('product_images') as $index => $image) {
                 if ($image->isValid()) {
@@ -204,11 +204,11 @@ class VisionControllerController extends Controller
                     }
                     
                     $image->move($filePath, $fileName);
-                    $productImages[$index] = $fileName;
+                    $productImages[$index] = $fileName; 
                 }
             }
         }
-    
+
         // Handle Vision Image Upload
         $visionImagePath = $range->vision_image;
         if ($request->hasFile('vision_image')) {
@@ -226,13 +226,13 @@ class VisionControllerController extends Controller
                 $visionImagePath = $fileName;
             }
         }
-    
+
         $productData = [
             'product_images' => $productImages,
             'product_titles' => $request->product_titles,
             'product_descriptions' => $request->product_descriptions,
         ];
-    
+
         $range->product_title = $request->product_title;
         $range->product_description = $request->product_description;
         $range->product_images = json_encode($productData['product_images']);
@@ -244,10 +244,25 @@ class VisionControllerController extends Controller
         $range->modified_at = Carbon::now();
         $range->modified_by = Auth::id();
         $range->save();
-    
+
         return redirect()->route('product-vision.index')->with('message', 'Data updated successfully.');
     }
-    
+
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();
+        try {
+            $industries = ProductVisionRange::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('product-vision.index')->with('message', 'Details deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
+
+
 
 
     
