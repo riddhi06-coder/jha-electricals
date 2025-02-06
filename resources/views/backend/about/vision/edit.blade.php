@@ -66,7 +66,7 @@
                                     <!-- Product Range Description -->
                                     <div class="col-12">
                                         <label class="form-label" for="product_description">Description <span class="txt-danger">*</span></label>
-                                        <textarea class="form-control" id="product_description" name="product_description" placeholder="Enter Description" rows="3" required>{{ old('product_description_detail ', $range->product_description_detail ) }}</textarea>
+                                        <textarea class="form-control" id="product_description" name="product_description" placeholder="Enter Description" rows="3" required>{{ old('product_description', $range->product_description) }}</textarea>
                                         <div class="invalid-feedback">Please enter a description.</div>
                                     </div>
                                     
@@ -87,36 +87,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
-                                                    $productData = json_decode($range->product_image, true) ?? []; 
-                                                @endphp
+                                            @php
+                                                // Decode the JSON data into arrays
+                                                $productImages = json_decode($range->product_images, true) ?? [];
+                                                $productTitles = json_decode($range->product_titles, true) ?? [];
+                                                $productDescriptions = json_decode($range->product_descriptions, true) ?? [];
+                                            @endphp
 
-                                                @foreach($productData as $index => $data)
-                                                    <tr>
-                                                        <td>
-                                                            <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_{{ $index }}')">
-                                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
-                                                            <br>
-                                                            <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                                                            <div id="product_preview_{{ $index }}" class="mt-2">
-                                                                @if(isset($data['product_image']))
-                                                                    <img src="{{ asset('uploads/about/product-range/' . $data['product_image']) }}" style="max-width: 150px;">
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" value="{{ old('product_titles.' . $index, $data['product_title_detail'] ?? '') }}" required>
-                                                        </td>
-                                                        <td>
-                                                            <textarea class="form-control" name="product_descriptions[]" placeholder="Enter Description" required>{{ old('product_descriptions.' . $index, $data['product_description_detail'] ?? '') }}</textarea>
-                                                        </td>
-                                                        <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
+                                            @foreach($productImages as $index => $image)
+                                                <tr>
+                                                    <td>
+                                                        <!-- Input for product image -->
+                                                        <input type="file" class="form-control" name="product_images[]" accept="image/*" onchange="previewImage(this, 'product_preview_{{ $index }}')">
+                                                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                                        <br>
+                                                        <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                                                        <div id="product_preview_{{ $index }}" class="mt-2">
+                                                            @if(isset($image))
+                                                                <img src="{{ asset('uploads/about/product-range/' . $image) }}" style="max-width: 150px;">
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Input for product title -->
+                                                        <input type="text" class="form-control" name="product_titles[]" placeholder="Enter Title" value="{{ old('product_titles.' . $index, $productTitles[$index] ?? '') }}" required>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Textarea for product description -->
+                                                        <textarea class="form-control" name="product_descriptions[]" placeholder="Enter Description" required>{{ old('product_descriptions.' . $index, $productDescriptions[$index] ?? '') }}</textarea>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Button to remove the row -->
+                                                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+
+
                                         </table>
                                     </div>
-
 
                                     <!-- Our Vision Section -->
                                     <div class="col-12" style="margin-top: 7.5rem !important; margin-bottom: 1rem;">
@@ -179,7 +189,7 @@
        
        @include('components.backend.main-js')
 
-<script>
+       <script>
     function addRow() {
         let table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
         let rowCount = table.rows.length;
@@ -218,7 +228,6 @@
         }
     }
 </script>
-
 
 </body>
 

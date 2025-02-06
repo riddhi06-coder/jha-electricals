@@ -13,10 +13,11 @@ class ProductVisionRange extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'product_title_detail',
-        'product_image',
         'product_title',
-        'product_description_detail',
+        'product_description',
+        'product_images',
+        'product_titles',
+        'product_descriptions',
         'vision_title',
         'vision_description',
         'vision_image',
@@ -26,5 +27,11 @@ class ProductVisionRange extends Model
         'modified_by',
         'deleted_at',
         'deleted_by',
+    ];
+
+    protected $casts = [
+        'product_images' => 'array',
+        'product_titles' => 'array',
+        'product_descriptions' => 'array',
     ];
 }

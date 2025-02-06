@@ -40,19 +40,6 @@ class VisionControllerController extends Controller
             'vision_title' => 'required|string|max:255',
             'vision_description' => 'required|string',
             'vision_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ], [
-            'product_title.required' => 'The product title is required.',
-            'product_description.required' => 'The product description is required.',
-            'product_images.*.image' => 'Each product image must be a valid image file.',
-            'product_images.*.mimes' => 'Product images must be in JPG, JPEG, PNG, or WEBP format.',
-            'product_images.*.max' => 'Each product image must be less than 2MB.',
-            'product_titles.*.required' => 'Each product title is required.',
-            'product_descriptions.*.required' => 'Each product description is required.',
-            'vision_title.required' => 'The vision title is required.',
-            'vision_description.required' => 'The vision description is required.',
-            'vision_image.image' => 'The vision image must be a valid image file.',
-            'vision_image.mimes' => 'The vision image must be in JPG, JPEG, PNG, or WEBP format.',
-            'vision_image.max' => 'The vision image must be less than 2MB.',
         ]);
     
         // Handle Product Images Upload
@@ -92,40 +79,30 @@ class VisionControllerController extends Controller
             }
         }
     
-        // Prepare product data to store as JSON
-        $productData = [];
-        foreach ($productImages as $key => $imagePath) {
-            $productData[] = [
-                'product_image' => $imagePath,
-                'product_title_detail' => $request->product_titles[$key],
-                'product_description_detail' => $request->product_descriptions[$key],
-            ];
-        }
-    
-        $combinedData = [
-            'vision_title' => $request->vision_title,
-            'vision_description' => $request->vision_description,
-            'vision_image' => $visionImagePath,
-            'product_title' => $request->product_title,
-            'product_description_detail' => $request->product_description, 
-            'product_image' => json_encode($productData), 
-            'product_title_detail' => json_encode(array_column($productData, 'product_title_detail')), 
+        // Prepare product data to store in separate columns
+        $productData = [
+            'product_images' => $productImages,
+            'product_titles' => $request->product_titles,
+            'product_descriptions' => $request->product_descriptions,
         ];
     
+        // Save the data in separate columns
         $productVisionRange = new ProductVisionRange();
-        $productVisionRange->vision_title = $combinedData['vision_title'];
-        $productVisionRange->vision_description = $combinedData['vision_description'];
-        $productVisionRange->vision_image = $combinedData['vision_image'];
-        $productVisionRange->product_title = $combinedData['product_title'];
-        $productVisionRange->product_description_detail = $combinedData['product_description_detail'];
-        $productVisionRange->product_image = $combinedData['product_image'];
-        $productVisionRange->product_title_detail = $combinedData['product_title_detail'];
+        $productVisionRange->product_title = $request->product_title;
+        $productVisionRange->product_description = $request->product_description;
+        $productVisionRange->product_images = json_encode($productData['product_images']);
+        $productVisionRange->product_titles = json_encode($productData['product_titles']);
+        $productVisionRange->product_descriptions = json_encode($productData['product_descriptions']);
+        $productVisionRange->vision_title = $request->vision_title;
+        $productVisionRange->vision_description = $request->vision_description;
+        $productVisionRange->vision_image = $visionImagePath;
         $productVisionRange->inserted_at = Carbon::now();
         $productVisionRange->inserted_by = Auth::id();
         $productVisionRange->save();
     
         return redirect()->route('product-vision.index')->with('message', 'Data saved successfully.');
     }
+    
     
     public function edit($id)
     {
