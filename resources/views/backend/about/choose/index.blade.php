@@ -56,13 +56,28 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Banner Title</th>
-                            <th>Banner Image</th>
+                            <th>Title</th>
+                            <!-- <th>Description</th> -->
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                            
+                          @foreach($choose as $index => $item)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $item->product_title }}</td>
+                                <!-- <td>{{ $item->product_description }}</td> -->
+                                <td>
+                                    <a href="{{ route('choose-us.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('choose-us.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+
                         </tbody>
                       </table>
                     </div>

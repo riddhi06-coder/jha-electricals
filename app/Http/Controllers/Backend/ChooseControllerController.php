@@ -19,7 +19,8 @@ class ChooseControllerController extends Controller
 
     public function index()
     {
-        return view('backend.about.choose.index');
+        $choose = ChooseUs::orderBy('id', 'desc')->whereNull('deleted_by')->get();
+        return view('backend.about.choose.index', compact('choose'));
     }
     
 
@@ -81,6 +82,71 @@ class ChooseControllerController extends Controller
     
         return redirect()->route('choose-us.index')->with('message', 'Data saved successfully.');
     }
+
+    public function edit($id)
+    {
+        $choose = ChooseUs::findOrFail($id);
+        return view('backend.about.choose.edit', compact('choose'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'product_title' => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'product_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'product_titles.*' => 'required|string|max:255',
+            'product_descriptions.*' => 'required|string',
+        ]);
+
+        $chooseUs = ChooseUs::findOrFail($id);
+
+        // Handle product image uploads
+        $productImages = json_decode($chooseUs->product_images, true) ?? [];
+
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $index => $image) {
+                if ($image->isValid()) {
+                    $imageName = time() . rand(10, 999) . '.' . $image->getClientOriginalExtension();
+                    $imagePath = public_path('uploads/choose-us/');
+
+                    if (!file_exists($imagePath)) {
+                        mkdir($imagePath, 0777, true);
+                    }
+
+                    $image->move($imagePath, $imageName);
+                    $productImages[$index] = $imageName;
+                }
+            }
+        }
+
+        $chooseUs->product_title = $request->product_title;
+        $chooseUs->product_description = $request->product_description;
+        $chooseUs->product_images = json_encode($productImages);
+        $chooseUs->product_titles = json_encode($request->product_titles);
+        $chooseUs->product_descriptions = json_encode($request->product_descriptions);
+        $chooseUs->modified_at = now();
+        $chooseUs->modified_by = Auth::id();
+        $chooseUs->save();
+
+        return redirect()->route('choose-us.index')->with('message', 'Data updated successfully.');
+    }
+
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();   
+        try {
+            $industries = ChooseUs::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('choose-us.index')->with('message', 'Details deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
+        
     
 
 }
