@@ -63,7 +63,7 @@
                   </div>
                   <nav class="main-menu main-menu-two">
                     <ul>
-                      <li><a href="about-us.html">About Us</a></li>
+                      <li><a href="{{ route('about-us.page') }}">About Us</a></li>
                       <li>
                         <a href="products.html">Products</a>
                         <ul class="mega-menu four-column left-0">
@@ -223,7 +223,7 @@
             </div>
             <nav class="offcanvas-navigation">
               <ul>
-                <li class="menu-item-has-children"><a href="about-us.html">About Us</a>
+                <li class="menu-item-has-children"><a href="{{ route('about-us.page') }}">About Us</a>
                 </li>
                 <li class="menu-item-has-children">
                   <a href="products.html">Products</a>

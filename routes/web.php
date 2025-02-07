@@ -15,6 +15,9 @@ use App\Http\Controllers\Backend\SocialMediaController;
 use App\Http\Controllers\Backend\WhoUsController;
 use App\Http\Controllers\Backend\VisionControllerController;
 use App\Http\Controllers\Backend\ChooseControllerController;
+use App\Http\Controllers\Backend\ProfessionalInstallationController;
+use App\Http\Controllers\Backend\PreWiringController;
+use App\Http\Controllers\Backend\PostInstallController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -78,6 +81,17 @@ Route::resource('product-vision', VisionControllerController::class);
 
 // ==== Manage Why choose details
 Route::resource('choose-us', ChooseControllerController::class);
+
+
+// ==== Manage Profeesional Installation in Service & support
+Route::resource('professional-install', ProfessionalInstallationController::class);
+
+// ==== Manage Pre-Wiring Consultation in Service & support
+Route::resource('pre-wiring', PreWiringController::class);
+
+// ==== Manage Post Installation in Service & support
+Route::resource('post-install', PostInstallController::class);
+
 
 // ===================================================================Frontend================================================================
 

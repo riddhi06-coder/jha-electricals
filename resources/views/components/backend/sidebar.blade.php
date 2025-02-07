@@ -82,9 +82,9 @@
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-support-tickets') }}"></use>
                     </svg><span>Service & Support</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="#">Professional Installation</a></li>
-                    <li><a href="#">Pre-Wiring Consultation</a></li>
-                    <li><a href="#">Post-Installation Training</a></li>
+                    <li><a href="{{ route('professional-install.index') }}">Professional Installation</a></li>
+                    <li><a href="{{ route('pre-wiring.index') }}">Pre-Wiring Consultation</a></li>
+                    <li><a href="{{ route('post-install.index') }}">Post-Installation Training</a></li>
                   </ul>
                 </li>
 
