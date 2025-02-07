@@ -124,12 +124,22 @@
                                                         @endif
                                                         <div id="calculation_preview_{{ $index }}" class="mt-2"></div>
                                                     </td>
-                                                    <td><input type="text" class="form-control" name="calculation_titles[]" value="{{ $calculation_titles[$index] }}" required></td>
-                                                    <td><textarea class="form-control" name="calculation_descriptions[]" required>{{ $calculation_descriptions[$index] }}</textarea></td>
-                                                    <td><button type="button" class="btn btn-danger removeRow">Remove</button></td>
+                                                    <td>
+                                                        <input type="text" class="form-control" name="calculation_titles[]" 
+                                                            value="{{ isset($calculation_titles[$index]) ? $calculation_titles[$index] : '' }}" required>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" name="calculation_descriptions[]" required>
+                                                            {{ isset($calculation_descriptions[$index]) ? $calculation_descriptions[$index] : '' }}
+                                                        </textarea>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger removeRow">Remove</button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
+
                                     </table>
 
                                    

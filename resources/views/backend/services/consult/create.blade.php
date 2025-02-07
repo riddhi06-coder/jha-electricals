@@ -180,14 +180,16 @@
         let table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
         let rowCount = table.rows.length;
         let row = table.insertRow(rowCount);
+        let uniqueId = Date.now(); // Ensure unique ID for elements
 
         row.innerHTML = `
             <td>
-                <input type="file" class="form-control" name="calculation_images[]" accept="image/*" onchange="previewImage(this, 'calculation_preview_${rowCount}')" required>
-                 <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                <input type="file" class="form-control" name="calculation_images[]" accept="image/*" 
+                    onchange="previewImage(this, 'calculation_preview_${uniqueId}')" required>
+                <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                 <br>
                 <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                <div id="calculation_preview_${rowCount}" class="mt-2"></div>
+                <div id="calculation_preview_${uniqueId}" class="mt-2"></div>
             </td>
             <td><input type="text" class="form-control" name="calculation_titles[]" placeholder="Enter Title" required></td>
             <td><textarea class="form-control" name="calculation_descriptions[]" placeholder="Enter Description" required></textarea></td>
@@ -203,19 +205,20 @@
     function previewImage(input, previewId) {
         let previewContainer = document.getElementById(previewId);
         previewContainer.innerHTML = '';
-        
+
         if (input.files && input.files[0]) {
             let reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 let img = document.createElement('img');
                 img.src = e.target.result;
                 img.style.maxWidth = '150px';
                 img.style.marginTop = '5px';
                 previewContainer.appendChild(img);
-            }
+            };
             reader.readAsDataURL(input.files[0]);
         }
     }
+
 </script>
 
 
