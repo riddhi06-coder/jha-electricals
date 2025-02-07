@@ -83,8 +83,10 @@
                     </svg><span>Service & Support</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('professional-install.index') }}">Professional Installation</a></li>
-                    <li><a href="{{ route('pre-wiring.index') }}">Pre-Wiring Consultation</a></li>
-                    <li><a href="{{ route('post-install.index') }}">Post-Installation Training</a></li>
+                    <li><a href="{{ route('pre-wiring.index') }}">Pre-Wiring(A)</a></li>
+                    <li><a href="{{ route('pre-wiring-partB.index') }}">Pre-Wiring(B)</a></li>
+                    <li><a href="{{ route('post-install.index') }}">Post-Installation(A)</a></li>
+                    <li><a href="{{ route('post-install.index') }}">Post-Installation(B)</a></li>
                   </ul>
                 </li>
 
