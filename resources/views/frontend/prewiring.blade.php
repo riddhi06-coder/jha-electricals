@@ -106,139 +106,78 @@
         </div>
     </div>
 
-
     <div class="pwc-third-sec">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="pwc-third-content-sec wow fadeInLeft animated" data-wow-delay="800ms" data-wow-duration="800ms" style="visibility: visible; animation-duration: 800ms; animation-delay: 800ms; animation-name: fadeInLeft;">
-              <div class="pre-wiring-listing-sec">
-                <h3>Code Compliance:</h3>
-                <ul>
-                  <li><b>Indian Electrical Code:</b> Ensure that the wiring and installation comply with the Indian Electrical Code (IEC) and local regulations.</li>
-                  <li><b>Safety Standards:</b> Adhere to safety standards to prevent electrical hazards and accidents.</li>
-                </ul>
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="pwc-third-content-sec wow fadeInLeft animated" data-wow-delay="800ms" data-wow-duration="800ms">
+                      
+                      <div class="pre-wiring-listing-sec">
+                          {!! $prewiring_partB->detailed_description !!}
+                      </div>
+
+                  </div>
               </div>
 
-              <div class="pre-wiring-listing-sec mt-30">
-                <h3>Future Expansion:</h3>
-                <ul>
-                  <li><b>Anticipate Growth:</b> Consider future expansion plans and design the electrical system accordingly.</li>
-                  <li><b>Flexibility:</b> Incorporate features that allow for easy modification or addition of electrical components.</li>
-                </ul>
+              <div class="col-lg-6">
+                  <div class="pwc-third-img-sec wow fadeInRight animated" data-wow-delay="400ms" data-wow-duration="400ms">
+                      <img src="{{ asset('uploads/services/' . ($prewiring_partB->image )) }}" alt="Pre-Wiring Image">
+                      </div>
+                  </div>
               </div>
-
-              <div class="pre-wiring-listing-sec mt-30">
-                <h3>Energy Efficiency:</h3>
-                <ul>
-                  <li><b>Efficient Fixtures:</b> Recommend energy-efficient lighting fixtures and appliances.</li>
-                  <li><b>Solar Power Integration:</b> Explore the possibility of integrating solar power systems for sustainable energy.</li>
-                </ul>
-              </div>
-
-            </div>
           </div>
-
-          <div class="col-lg-6">
-            <div class="pwc-third-img-sec wow fadeInRight animated" data-wow-delay="400ms" data-wow-duration="400ms" style="visibility: visible; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInRight;">
-              <img src="img/banner/aura.webp" alt="">
-            </div>
-          </div>
-
-        </div>
-      </div>
     </div>
 
+      <section class="benefits-area">
+          <div class="container">
+              <div class="row">
 
-    <section class="benefits-area">
-      <div class="container">
-        <div class="row">
+                  <div class="col-lg-12">
+                      <div class="pwc-third-procss-title-sec">
+                          <h2>{{ $prewiring_partB->section_heading }}</h2>
+                      </div>
+                  </div>
 
-          <div class="col-lg-12">
-            <div class="pwc-third-procss-title-sec">
-              <h2>Benefits of Pre-Wiring Consultations</h2>
-            </div>
+                  <div class="col-lg-12">
+                      <div class="product-slider tf-element-carousel normal-nav" data-slick-options='{
+                          "slidesToShow": 4,
+                          "slidesToScroll": 1,
+                          "infinite": true,
+                          "rows": 1,
+                          "autoplay": true,
+                          "arrows": true,
+                          "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
+                          "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
+                      }' data-slick-responsive='[
+                          {"breakpoint":1199, "settings": {"slidesToShow": 3 }},
+                          {"breakpoint":992, "settings": {"slidesToShow": 2 }},
+                          {"breakpoint":768, "settings": {"slidesToShow": 2 }},
+                          {"breakpoint":576, "settings": {"slidesToShow": 1, "arrows": false, "autoplay": true }}
+                      ]'>
+
+                      @php
+                          $calculationImages = json_decode($prewiring_partB->calculation_images ?? '[]', true);
+                          $calculationTitles = json_decode($prewiring_partB->calculation_titles ?? '[]', true);
+                          $calculationDescriptions = json_decode($prewiring_partB->calculation_descriptions ?? '[]', true);
+                      @endphp
+
+                      @foreach($calculationTitles as $index => $title)
+                          <div class="col">
+                              <div class="single-process">
+                                  <img src="{{ asset('uploads/services/' . ($calculationImages[$index] ?? 'img/icon/default.png')) }}" alt="Image">
+                                  <h3>{{ $title }}</h3>
+                                  <p>{{ $calculationDescriptions[$index] ?? '' }}</p>
+                                  <span>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                              </div>
+                          </div>
+                      @endforeach
+
+                      </div>
+                  </div>
+
+              </div>
           </div>
-
-
-          <div class="col-lg-12">
-            <div class="product-slider tf-element-carousel normal-nav" data-slick-options='{
-              "slidesToShow": 4,
-              "slidesToScroll": 1,
-              "infinite": true,
-              "rows": 1,
-              "autoplay": true,
-              "arrows": true,
-              "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
-              "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
-              }' data-slick-responsive='[
-              {"breakpoint":1199, "settings": {
-              "slidesToShow": 3
-              }},
-              {"breakpoint":992, "settings": {
-              "slidesToShow": 2
-              }},
-              {"breakpoint":768, "settings": {
-              "slidesToShow": 2
-              }},
-              {"breakpoint":576, "settings": {
-              "slidesToShow": 1,
-              "arrows": false,
-              "autoplay": true
-              }}
-              ]'>
-              <div class="col">
-                <div class="single-process">
-                  <img src="img/icon/cost-effective.png" alt="Image">
-                  <h3>Cost-Effective:</h3>
-                  <p>Avoid costly mistakes and rework by planning the electrical system upfront.</p>
-                  <span>01</span>
-                </div>
-              </div>
-  
-              <div class="col">
-                <div class="single-process">
-                  <img src="img/icon/safety.png" alt="Image">
-                  <h3>Safety:</h3>
-                  <p>Ensure compliance with safety standards and minimize the risk of electrical hazards.</p>
-                  <span>02</span>
-                </div>
-              </div>
-  
-              <div class="col">
-                <div class="single-process">
-                  <img src="img/icon/efficiency.png" alt="Image">
-                  <h3>Efficiency: </h3>
-                  <p>Optimize the electrical system for energy efficiency and reduced costs.</p>
-                  <span>03</span>
-                </div>
-              </div>
-  
-              <div class="col">
-                <div class="single-process">
-                  <img src="img/icon/customization.png" alt="Image">
-                  <h3>Customization:</h3>
-                  <p>Tailor the electrical infrastructure to your specific needs and preferences.</p>
-                  <span>04</span>
-                </div>
-              </div>
-  
-              <div class="col">
-                <div class="single-process">
-                  <img src="img/icon/peace-of-mind.png" alt="Image">
-                  <h3>Peace of Mind:</h3>
-                  <p>Have confidence in the reliability and functionality of your electrical system.</p>
-                  <span>05</span>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-          
-
-        </div>
-      </div>
-    </section>
+      </section>
 
 
 

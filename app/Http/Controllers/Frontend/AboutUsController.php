@@ -14,6 +14,7 @@ use App\Models\ProductVisionRange;
 use App\Models\ChooseUs;
 use App\Models\PreWiring;
 use App\Models\ProfessionalInstall;
+use App\Models\PreWiringPartB;
 
 
 use Carbon\Carbon;
@@ -42,7 +43,9 @@ class AboutUsController extends Controller
     public function consultation()
     {
         $prewiring = PreWiring::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
-        return view('frontend.prewiring', compact('prewiring'));
+        $prewiring_partB = PreWiringPartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+
+        return view('frontend.prewiring', compact('prewiring','prewiring_partB'));
     }
     
 
