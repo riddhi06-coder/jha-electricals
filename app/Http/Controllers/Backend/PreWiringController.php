@@ -175,6 +175,19 @@ class PreWiringController extends Controller
         return redirect()->route('pre-wiring.index')->with('message', 'Details updated successfully.');
     }
 
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::id();
+        $data['deleted_at'] =  Carbon::now();
+        try {
+            $industries = PreWiring::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('pre-wiring.index')->with('message', 'Details deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
         
 
 }
