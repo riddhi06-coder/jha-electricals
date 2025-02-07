@@ -22,11 +22,11 @@
                 <div class="row">
                 <div class="col">
                     <div class="page-banner text-center">
-                    <h2>{!! $installationData->banner_heading !!}</h2>
+                    <h2>{{ $installationData->banner_heading }}</h2>
                     <ul class="page-breadcrumb">
                         <li><a href="{{ route('home.page') }}">Home</a></li>
                         <li><a href="#">Service & Support</a></li>
-                        <li>{!! $installationData->banner_heading !!}</li>
+                        <li>{{ $installationData->banner_heading }}</li>
                     </ul>
                     </div>
                 </div>

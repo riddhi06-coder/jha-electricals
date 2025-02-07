@@ -101,6 +101,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/', [HomeController::class, 'index'])->name('home.page');
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
-
+    Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
 
 });

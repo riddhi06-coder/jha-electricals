@@ -38,6 +38,12 @@ class AboutUsController extends Controller
         $installationData = ProfessionalInstall::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         return view('frontend.professional', compact('installationData'));
     }
+
+    public function consultation()
+    {
+        $prewiring = PreWiring::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        return view('frontend.prewiring', compact('prewiring'));
+    }
     
 
     
