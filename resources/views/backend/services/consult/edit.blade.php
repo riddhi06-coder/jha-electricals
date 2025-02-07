@@ -111,9 +111,9 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="productTableBody">
                                             @foreach ($calculation_images as $index => $image)
-                                                <tr>
+                                                <tr data-index="{{ $index }}">
                                                     <td>
                                                         <input type="file" class="form-control" name="calculation_images[]" accept="image/*" onchange="previewImage(this, 'calculation_preview_{{ $index }}')">
                                                         <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
@@ -121,24 +121,27 @@
                                                         <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
                                                         @if ($image)
                                                             <img src="{{ asset('uploads/services/' . $image) }}" width="100" class="mt-2" alt="Current Image">
+                                                            <input type="hidden" name="existing_images[]" value="{{ $image }}">
                                                         @endif
                                                         <div id="calculation_preview_{{ $index }}" class="mt-2"></div>
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" name="calculation_titles[]" 
-                                                            value="{{ isset($calculation_titles[$index]) ? $calculation_titles[$index] : '' }}" required>
+                                                            value="{{ $calculation_titles[$index] ?? '' }}" required>
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="calculation_descriptions[]" required>
-                                                            {{ isset($calculation_descriptions[$index]) ? $calculation_descriptions[$index] : '' }}
-                                                        </textarea>
+                                                        <textarea class="form-control" name="calculation_descriptions[]" required>{{ $calculation_descriptions[$index] ?? '' }}</textarea>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-danger removeRow">Remove</button>
+                                                        <button type="button" class="btn btn-danger removeRow" data-image="{{ $image }}">Remove</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
+
+                                        <!-- Hidden input to store deleted images -->
+                                        <input type="hidden" name="deleted_calculation_images" id="deleted_calculation_images">
+
 
                                     </table>
 
@@ -196,13 +199,21 @@
 </script>
 
 <script>
-    function addRow() {
+   $(document).ready(function () {
+    let deletedImages = [];
+
+    function updateDeletedImages() {
+        $("#deleted_calculation_images").val(JSON.stringify(deletedImages));
+    }
+
+    // Add new row dynamically
+    window.addRow = function () {
         let index = $("#productTable tbody tr").length;
         let newRow = `
-            <tr>
+            <tr data-index="${index}">
                 <td>
                     <input type="file" class="form-control" name="calculation_images[]" accept="image/*" onchange="previewImage(this, 'calculation_preview_${index}')">
-                     <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                    <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                     <br>
                     <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
                     <div id="calculation_preview_${index}" class="mt-2"></div>
@@ -213,11 +224,34 @@
             </tr>
         `;
         $("#productTable tbody").append(newRow);
+        updateRowIndices(); // Update row indexes for consistency
     }
 
+    // Remove row and update deleted images array
     $(document).on("click", ".removeRow", function () {
-        $(this).closest("tr").remove();
+        let row = $(this).closest("tr");
+        let imageName = row.find("input[name='existing_images[]']").val();
+
+        // If the image exists, mark it for deletion
+        if (imageName) {
+            deletedImages.push(imageName);
+            updateDeletedImages();
+        }
+
+        row.remove();
+        updateRowIndices(); // Update indexes after removal
     });
+
+    // Function to update row indices dynamically
+    function updateRowIndices() {
+        $("#productTable tbody tr").each(function (index) {
+            $(this).attr("data-index", index);
+            $(this).find("input[type='file']").attr("onchange", `previewImage(this, 'calculation_preview_${index}')`);
+            $(this).find("div[id^='calculation_preview_']").attr("id", `calculation_preview_${index}`);
+        });
+    }
+});
+
 </script>
 
 

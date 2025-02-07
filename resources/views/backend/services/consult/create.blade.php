@@ -180,7 +180,7 @@
         let table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
         let rowCount = table.rows.length;
         let row = table.insertRow(rowCount);
-        let uniqueId = Date.now(); // Ensure unique ID for elements
+        let uniqueId = Date.now(); 
 
         row.innerHTML = `
             <td>

@@ -105,6 +105,7 @@ class PreWiringController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $details = PreWiring::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -139,26 +140,49 @@ class PreWiringController extends Controller
         }
 
         $calculationImages = json_decode($details->calculation_images, true) ?? [];
+        $calculationTitles = json_decode($details->calculation_titles, true) ?? [];
+        $calculationDescriptions = json_decode($details->calculation_descriptions, true) ?? [];
+
+        $deletedImages = json_decode($request->deleted_calculation_images, true);
+        $deletedImages = is_array($deletedImages) ? $deletedImages : [];
+
+        foreach ($deletedImages as $deletedImage) {
+            if (($key = array_search($deletedImage, $calculationImages)) !== false) {
+                unset($calculationImages[$key]); 
+                unset($calculationTitles[$key]); 
+                unset($calculationDescriptions[$key]); 
+
+            }
+        }
+
+        $calculationImages = array_values($calculationImages);
+        $calculationTitles = array_values($calculationTitles);
+        $calculationDescriptions = array_values($calculationDescriptions);
+
+        $existingImages = $request->existing_images ?? [];
+        $calculationImages = $existingImages;
         $calculationTitles = $request->calculation_titles ?? [];
         $calculationDescriptions = $request->calculation_descriptions ?? [];
 
+
+        // **Handle New Image Uploads**
         if ($request->hasFile('calculation_images')) {
-            foreach ($request->file('calculation_images') as $index => $calculationImage) {
+            foreach ($request->file('calculation_images') as $calculationImage) {
                 if ($calculationImage->isValid()) {
                     $calculationImageName = time() . rand(10, 999) . '.' . $calculationImage->getClientOriginalExtension();
                     $calculationImage->move(public_path('uploads/services/'), $calculationImageName);
-                    $calculationImages[$index] = $calculationImageName; 
+                    $calculationImages[] = $calculationImageName; 
                 }
             }
         }
 
+        // Ensure consistency in array sizes
         $maxCount = max(count($calculationImages), count($calculationTitles), count($calculationDescriptions));
+        $calculationImages = array_slice(array_values($calculationImages), 0, $maxCount);
+        $calculationTitles = array_slice(array_values($calculationTitles), 0, $maxCount);
+        $calculationDescriptions = array_slice(array_values($calculationDescriptions), 0, $maxCount);
 
-        $calculationImages = array_pad($calculationImages, $maxCount, null);
-        $calculationTitles = array_pad($calculationTitles, $maxCount, '');
-        $calculationDescriptions = array_pad($calculationDescriptions, $maxCount, '');
-
-        // Update Data
+        // **Update Data**
         $details->update([
             'banner_heading' => $request->banner_heading,
             'banner_image' => $bannerImageName,
