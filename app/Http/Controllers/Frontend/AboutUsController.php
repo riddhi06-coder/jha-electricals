@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use App\Models\WhoWeAre;
 use App\Models\ProductVisionRange;
 use App\Models\ChooseUs;
+use App\Models\PreWiring;
+use App\Models\ProfessionalInstall;
 
 
 use Carbon\Carbon;
@@ -30,6 +32,13 @@ class AboutUsController extends Controller
 
         return view('frontend.about', compact('whoWeAre','productVisionRange','chooseUsData', 'productTitles', 'productDescriptions', 'productImages'));
     }
+
+    public function installation()
+    {
+        $installationData = ProfessionalInstall::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        return view('frontend.professional', compact('installationData'));
+    }
+    
 
     
 }

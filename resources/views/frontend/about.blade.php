@@ -14,7 +14,10 @@
 
     <!-- Page Banner Section Start -->
     <div class="page-banner-section section" 
-      style="background-image: url('{{ asset('/uploads/about/' . $whoWeAre->banner_image) }}');">
+      style="background-image: url('{{ asset('/uploads/about/' . $whoWeAre->banner_image) }}'); no-repeat center center;
+        background-size: contain; 
+            height: 300px;">
+
       <div class="container">
         <div class="row">
           <div class="col">

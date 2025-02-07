@@ -121,7 +121,7 @@
                       <li>
                         <span>Service & Support</span>
                         <ul class="sub-menu">
-                          <li><a href="professional-installation.html">Professional Installation</a></li>
+                          <li><a href="{{ route('professional.installation') }}">Professional Installation</a></li>
                           <li><a href="pre-wiring-consultations.html">Pre-Wiring Consultations</a></li>
                           <li><a href="post-installation-training.html">Post-Installation Training</a></li>
                           <!--<li><a href="#">Online Knowledge Base</a></li>-->
@@ -286,7 +286,7 @@
                 <li class="menu-item-has-children">
                   <a href="#">Service & Support</a>
                   <ul class="submenu2">
-                    <li><a href="professional-installation.html">Professional Installation</a></li>
+                    <li><a href="{{ route('professional.installation') }}">Professional Installation</a></li>
                     <li><a href="pre-wiring-consultations.html">Pre-Wiring Consultations</a></li>
                     <li><a href="post-installation-training.html">Post-Installation Training</a></li>
                     <!--<li><a href="#">Online Knowledge Base</a></li>-->
