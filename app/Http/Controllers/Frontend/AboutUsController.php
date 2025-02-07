@@ -15,6 +15,7 @@ use App\Models\ChooseUs;
 use App\Models\PreWiring;
 use App\Models\ProfessionalInstall;
 use App\Models\PreWiringPartB;
+use App\Models\PostInstallation;
 
 
 use Carbon\Carbon;
@@ -48,6 +49,13 @@ class AboutUsController extends Controller
         return view('frontend.prewiring', compact('prewiring','prewiring_partB'));
     }
     
+
+    public function training()
+    {
+        $postinstall = PostInstallation::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        return view('frontend.post-installation', compact('postinstall'));
+    }
+
 
     
 }

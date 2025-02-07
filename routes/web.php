@@ -90,11 +90,14 @@ Route::resource('professional-install', ProfessionalInstallationController::clas
 // ==== Manage Pre-Wiring Consultation in Service & support
 Route::resource('pre-wiring', PreWiringController::class);
 
-// ==== Manage Pre-Wiring Consultation in Service & support
+// ==== Manage Pre-Wiring Consultation Part B in Service & support
 Route::resource('pre-wiring-partB', PreWiringPartBController::class);
 
 // ==== Manage Post Installation in Service & support
 Route::resource('post-install', PostInstallController::class);
+
+// ==== Manage Post Installation Part B in Service & support
+Route::resource('post-install-partB', PostInstallController::class);
 
 
 // ===================================================================Frontend================================================================
@@ -106,5 +109,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
+    Route::get('/postinstallation-training', [AboutUsController::class, 'training'])->name('postinstallation.training');
 
 });
