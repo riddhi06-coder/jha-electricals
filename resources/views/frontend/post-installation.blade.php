@@ -140,86 +140,69 @@
 
 
     <div class="benefits-area post-install-foo-slider-sec">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="pit-foo-slider-title-sec">
-              <h2>Benefits of Post-Installation Training:</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pit-foo-slider-title-sec">
+                        <h2>{{ $postinstall_partB->section_heading }}</h2>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product-slider tf-element-carousel normal-nav" data-slick-options='{
+                        "slidesToShow": 4,
+                        "slidesToScroll": 1,
+                        "infinite": true,
+                        "rows": 1,
+                        "autoplay": true,
+                        "arrows": true,
+                        "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
+                        "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
+                        }' data-slick-responsive='[
+                        {"breakpoint":1199, "settings": {
+                        "slidesToShow": 3
+                        }},
+                        {"breakpoint":992, "settings": {
+                        "slidesToShow": 2
+                        }},
+                        {"breakpoint":768, "settings": {
+                        "slidesToShow": 2
+                        }},
+                        {"breakpoint":576, "settings": {
+                        "slidesToShow": 1,
+                        "arrows": false,
+                        "autoplay": true
+                        }}
+                    ]'>
+
+                        @if ($postinstall_partB)
+                            @php
+                                $titles = json_decode($postinstall_partB->calculation_titles ?? '[]', true);
+                                $descriptions = json_decode($postinstall_partB->calculation_descriptions ?? '[]', true);
+                                $images = json_decode($postinstall_partB->calculation_images ?? '[]', true);
+                            @endphp
+
+                            @foreach ($titles as $index => $title)
+                                <div class="col">
+                                    <div class="post-inst-train-single-pro-sec">
+                                        <img src="{{ asset('uploads/services/' . ($images[$index] ?? 'default.png')) }}" alt="Image">
+                                        <h3>{{ $title }}</h3>
+                                        <p>{{ $descriptions[$index] ?? '' }}</p>
+                                        <span>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No benefits data available.</p>
+                        @endif
+
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-12">
-            <div class="product-slider tf-element-carousel normal-nav" data-slick-options='{
-              "slidesToShow": 4,
-              "slidesToScroll": 1,
-              "infinite": true,
-              "rows": 1,
-              "autoplay": true,
-              "arrows": true,
-              "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-left" },
-              "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-right" }
-              }' data-slick-responsive='[
-              {"breakpoint":1199, "settings": {
-              "slidesToShow": 3
-              }},
-              {"breakpoint":992, "settings": {
-              "slidesToShow": 2
-              }},
-              {"breakpoint":768, "settings": {
-              "slidesToShow": 2
-              }},
-              {"breakpoint":576, "settings": {
-              "slidesToShow": 1,
-              "arrows": false,
-              "autoplay": true
-              }}
-              ]'>
-              <div class="col">
-                <div class="post-inst-train-single-pro-sec">
-                  <img src="img/icon/performance.png" alt="Image">
-                  <h3>Optimal Performance:</h3>
-                  <p>Ensure that users are able to fully utilize the features and benefits of their lighting products.
-                  </p>
-                  <span>01</span>
-                </div>
-              </div>
-              <div class="col">
-                <div class="post-inst-train-single-pro-sec">
-                  <img src="img/icon/hourglass-clock.png" alt="Image">
-                  <h3>Increased Lifespan:</h3>
-                  <p>Proper maintenance and troubleshooting can extend the lifespan of the lighting fixtures.</p>
-                  <span>02</span>
-                </div>
-              </div>
-              <div class="col">
-                <div class="post-inst-train-single-pro-sec">
-                  <img src="img/icon/energy-control.png" alt="Image">
-                  <h3>Energy Savings:</h3>
-                  <p>Educate users on energy-saving practices to reduce their electricity bills.</p>
-                  <span>03</span>
-                </div>
-              </div>
-              <div class="col">
-                <div class="post-inst-train-single-pro-sec">
-                  <img src="img/icon/problem-resolution-img.png" alt="Image">
-                  <h3>Problem Resolution:</h3>
-                  <p>Empower users to resolve minor issues independently, reducing the need for service calls.</p>
-                  <span>04</span>
-                </div>
-              </div>
-              <div class="col">
-                <div class="post-inst-train-single-pro-sec">
-                  <img src="img/icon/customer-satisfaction-img.png" alt="Image">
-                  <h3>Enhanced Customer Satisfaction:</h3>
-                  <p>Provide excellent customer service and support, leading to higher satisfaction and loyalty.</p>
-                  <span>05</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
+
+    
     <div class="post-ins-tra-offer-sec">
       <div class="container">
         <div class="row">
