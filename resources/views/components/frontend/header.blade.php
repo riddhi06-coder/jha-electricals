@@ -59,7 +59,7 @@
               <div class="col-lg-12">
                 <div class="header-nav d-flex justify-content-between align-items-center">
                   <div class="header-logo text-center">
-                    <a href="./"><img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" alt="jha electricals logo" width="170" height="39" class="img-fluid"></a>
+                    <a href="{{ route('home.page') }}"><img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" alt="jha electricals logo" width="170" height="39" class="img-fluid"></a>
                   </div>
                   <nav class="main-menu main-menu-two">
                     <ul>
@@ -170,7 +170,7 @@
                   <div class="row align-items-center">
                     <div class="col-6 col-md-6">
                       <div class="header-logo">
-                        <a href="./">
+                        <a href="{{ route('home.page') }}">
                         <img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" class="img-fluid" alt="jha electricals logo">
                         </a>
                       </div>
