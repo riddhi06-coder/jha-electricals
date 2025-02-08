@@ -8,7 +8,7 @@
     <p><strong>Email:</strong> {{ $email }}</p>
     <p><strong>Phone:</strong> {{ $phone }}</p>
     <p><strong>Subject:</strong> {{ $subject }}</p>
-    <p><strong>Position Applied For:</strong> {{ $position }}</p><br><br>
+    <p><strong>Position Applied For:</strong> {{ $position }}</p><br>
 
     <p>Thanks & Regards</p>
 </body>

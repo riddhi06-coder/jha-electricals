@@ -132,17 +132,13 @@
                   </ul>
                 </li>
 
-                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('contact.index') }}">
                     <svg class="stroke-icon"> 
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-contact') }}"></use>
                     </svg>
                     <svg class="fill-icon">
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#fill-contact') }}"></use>
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-contact') }}"></use>
                     </svg><span>Contact Us</span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="#">Banner Details</a></li>
-                    <li><a href="#">Contact Details</a></li>
-                  </ul>
                 </li>
 
 

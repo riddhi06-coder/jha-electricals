@@ -25,6 +25,7 @@ use App\Http\Controllers\Backend\ResideLightPartAController;
 use App\Http\Controllers\Backend\ResideLightPartBController;
 use App\Http\Controllers\Backend\ResideLightPartCController;
 use App\Http\Controllers\Backend\CareerController;
+use App\Http\Controllers\Backend\ContactController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -122,9 +123,11 @@ Route::resource('reside-light-partB', ResideLightPartBController::class);
 Route::resource('reside-light-partC', ResideLightPartCController::class);
 
 
-
 // ==== Manage Career Resources
 Route::resource('career', CareerController::class);
+
+// ==== Manage Contact
+Route::resource('contact', ContactController::class);
 
 
 
