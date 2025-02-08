@@ -131,5 +131,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
     Route::get('/postinstallation-training', [AboutUsController::class, 'training'])->name('postinstallation.training');
+    Route::get('/residential-lighting', [AboutUsController::class, 'residential'])->name('residential.lighting');
 
 });

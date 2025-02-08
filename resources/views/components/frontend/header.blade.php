@@ -130,7 +130,7 @@
                       <li>
                         <span>Application Area</span>
                         <ul class="sub-menu">
-                          <li><a href="residential-lighting.html">Residential Lighting</a></li>
+                          <li><a href="{{ route('residential.lighting') }}">Residential Lighting</a></li>
                           <li><a href="commercial-lighting.html">Commercial Lighting</a></li>
                         </ul>
                       </li>
@@ -295,7 +295,7 @@
                 <li class="menu-item-has-children">
                   <a href="#">Application Area</a>
                   <ul class="submenu2">
-                    <li><a href="residential-lighting.html">Residential Lighting</a></li>
+                    <li><a href="{{ route('residential.lighting') }}">Residential Lighting</a></li>
                     <li><a href="commercial-lighting.html">Commercial Lighting</a></li>
                   </ul>
                 </li>
