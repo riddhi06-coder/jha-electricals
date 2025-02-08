@@ -113,7 +113,6 @@ Route::resource('post-install-partC', PostInstallPartCController::class);
 
 
 
-
 // ==== Manage Residential Lighting Part A in Application Area
 Route::resource('reside-light-partA', ResideLightPartAController::class);
 
@@ -137,7 +136,7 @@ Route::resource('contact', ContactController::class);
 
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
-    Route::get('/', [HomeController::class, 'index'])->name('home.page');
+    Route::get('/home', [HomeController::class, 'index'])->name('home.page');
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
@@ -145,7 +144,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/residential-lighting', [AboutUsController::class, 'residential'])->name('residential.lighting');
     Route::get('/career-resources', [CareerResourceController::class, 'career'])->name('career.resources');
     Route::post('/career/apply', [CareerResourceController::class, 'store'])->name('career.apply');
-
     Route::get('/contact-us', [ContactUsController::class, 'contact'])->name('contact.us');
     Route::post('/contact-store', [ContactUsController::class, 'store'])->name('contact.store');
 
