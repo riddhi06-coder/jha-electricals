@@ -109,20 +109,15 @@
                 </li>
 
 
-                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('career.index') }}">
                     <svg class="stroke-icon"> 
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-layout') }}"></use>
                     </svg>
                     <svg class="fill-icon">
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-layout') }}"></use>
-                    </svg><span>Careers</span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="#">Banner Details</a></li>
-                    <li><a href="#">Process</a></li>
-                    <li><a href="#">Current Openings</a></li>
-                    <li><a href="#">How to Apply</a></li>
-                  </ul>
+                    </svg><span>Career</span></a>
                 </li>
+
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon"> 
