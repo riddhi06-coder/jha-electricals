@@ -137,7 +137,7 @@
                       <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
                         <li><a href="photo-gallery.html">Photo Gallery</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                     </ul>
                   </nav>
                   <div class="header-right_wrap d-flex">
@@ -302,7 +302,7 @@
                 <li class="menu-item-has-children"><a href="{{ route('career.resources') }}">Career Resources</a></li>
                 <li class="menu-item-has-children"><a href="photo-gallery.html">Photo Gallery</a></li>
                 <li class="menu-item-has-children"><a href="#">Blog</a></li>
-                <li class="menu-item-has-children"><a href="contact-us.html">Contact Us</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('contact.us') }}">Contact Us</a></li>
               </ul>
             </nav>
             <!-- <div class="offcanvas-settings">

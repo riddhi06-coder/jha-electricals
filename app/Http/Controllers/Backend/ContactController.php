@@ -80,6 +80,7 @@ class ContactController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $contact = Contact::findOrFail($id);
 
         $request->validate([

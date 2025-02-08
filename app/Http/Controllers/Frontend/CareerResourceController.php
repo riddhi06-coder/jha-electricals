@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Career;
 
-
-
-
 use Carbon\Carbon;
 
 class CareerResourceController extends Controller

@@ -31,6 +31,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\CareerResourceController;
+use App\Http\Controllers\Frontend\ContactUsController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -144,5 +145,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/residential-lighting', [AboutUsController::class, 'residential'])->name('residential.lighting');
     Route::get('/career-resources', [CareerResourceController::class, 'career'])->name('career.resources');
     Route::post('/career/apply', [CareerResourceController::class, 'store'])->name('career.apply');
+
+    Route::get('/contact-us', [ContactUsController::class, 'contact'])->name('contact.us');
 
 });
