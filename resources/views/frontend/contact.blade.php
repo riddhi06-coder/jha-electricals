@@ -69,13 +69,16 @@
 
                 <!-- Location -->
                 <div class="col-lg-12 col-md-6 col-sm-12 col-12">
-                    <div class="contact-card">
-                        <i class="fa fa-map-marker"></i>
-                        <h4>Our Location</h4>
-                        <p>
+                <div class="contact-card">
+                    <i class="fa fa-map-marker"></i>
+                    <h4>Our Location</h4>
+                    <p>
+                        <a href="https://maps.app.goo.gl/1n97eYHCXh4vM7QV7" target="_blank" rel="noopener noreferrer">
                             {!! $footer->address !!}
-                        </p>
-                    </div>
+                        </a>
+                    </p>
+                </div>
+
                 </div>
 
             </div>
