@@ -21,6 +21,9 @@ use App\Http\Controllers\Backend\PostInstallController;
 use App\Http\Controllers\Backend\PreWiringPartBController;
 use App\Http\Controllers\Backend\PostInstallPartBController;
 use App\Http\Controllers\Backend\PostInstallPartCController;
+use App\Http\Controllers\Backend\ResideLightPartAController;
+use App\Http\Controllers\Backend\ResideLightPartBController;
+use App\Http\Controllers\Backend\ResideLightPartCController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -103,6 +106,19 @@ Route::resource('post-install-partB', PostInstallPartBController::class);
 
 // ==== Manage Post Installation Part C in Service & support
 Route::resource('post-install-partC', PostInstallPartCController::class);
+
+
+
+
+// ==== Manage Residential Lighting Part A in Application Area
+Route::resource('reside-light-partA', ResideLightPartAController::class);
+
+// ==== Manage Residential Lighting Part B in Application Area
+Route::resource('reside-light-partB', ResideLightPartBController::class);
+
+// ==== Manage Residential Lighting Part C in Application Area
+Route::resource('reside-light-partC', ResideLightPartCController::class);
+
 
 
 // ===================================================================Frontend================================================================

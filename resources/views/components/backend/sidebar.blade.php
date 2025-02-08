@@ -99,8 +99,12 @@
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-ecommerce') }}"></use>
                     </svg><span>Application Area</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="#">Residential Lighting</a></li>
-                    <li><a href="#">Commercial Lighting</a></li>
+                  <li><a href="{{ route('reside-light-partA.index') }}">Residential(A)</a></li>
+                    <li><a href="{{ route('reside-light-partB.index') }}">Residential(B)</a></li>
+                    <li><a href="{{ route('reside-light-partC.index') }}">Residential(C)</a></li>
+                    <li><a href="{{ route('post-install-partB.index') }}">Commercial(A)</a></li>
+                    <li><a href="{{ route('post-install-partC.index') }}">Commercial(B)</a></li>
+                    <li><a href="{{ route('post-install-partC.index') }}">Commercial(C)</a></li>
                   </ul>
                 </li>
 
