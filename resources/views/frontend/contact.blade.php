@@ -84,69 +84,79 @@
 
 
 
-          <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
             <div class="contact-page-form-area">
-              <div class="contact-form bd-form details-text-area">
-                <div class="contact-form-title-sec">
-                  <h2>Get In Touch</h2>
+                <div class="contact-form bd-form details-text-area">
+                    <div class="contact-form-title-sec">
+                        <h2>Get In Touch</h2>
+                    </div>
+                    <form id="contactForm" method="POST" action="{{ route('contact.store') }}" novalidate>
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Your Name *" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <i class="ri-user-3-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Your Email *" required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <i class="ri-mail-send-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="phone_number" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" placeholder="Your Phone Number*" required pattern="\d{10}" maxlength="10">
+                                    @error('phone_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <i class="ri-phone-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="msg_subject" id="msg_subject" class="form-control @error('msg_subject') is-invalid @enderror" placeholder="Subject*" required>
+                                    @error('msg_subject')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <i class="ri-booklet-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea name="message" class="form-control @error('message') is-invalid @enderror" id="message" cols="30" rows="3" placeholder="Your Message*" required></textarea>
+                                    @error('message')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <i class="ri-pencil-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="contact-form-btn-sec">
+                                    <button type="submit" class="small-btn-style">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <form id="contactForm" novalidate="true">
-                  <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                      <div class="form-group">
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required
-                          data-error="Please enter your name">
-                        <div class="help-block with-errors"></div>
-                        <i class="ri-user-3-line"></i>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                      <div class="form-group">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"
-                          required data-error="Please enter your email">
-                        <div class="help-block with-errors"></div>
-                        <i class="ri-mail-send-line"></i>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                      <div class="form-group">
-                        <input type="text" name="phone_number" id="phone_number" class="form-control"
-                          placeholder="Your Phone Number" required data-error="Please enter your phone number">
-                        <div class="help-block with-errors"></div>
-                        <i class="ri-phone-line"></i>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                      <div class="form-group">
-                        <input type="text" name="msg_subject" id="msg_subject" class="form-control"
-                          placeholder="Subject" required data-error="Please enter a subject">
-                        <div class="help-block with-errors"></div>
-                        <i class="ri-booklet-line"></i>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <textarea name="message" class="form-control" id="message" cols="30" rows="3"
-                          placeholder="Your Message" required data-error="Please write your message"></textarea>
-                        <div class="help-block with-errors"></div>
-                        <i class="ri-pencil-line"></i>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                      <div class="contact-form-btn-sec">
-                        <a href="#" class="small-btn-style">Submit</a>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
             </div>
-          </div>
+        </div>
+
+
+
+
         </div>
       </div>
     </div>

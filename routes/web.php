@@ -147,5 +147,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::post('/career/apply', [CareerResourceController::class, 'store'])->name('career.apply');
 
     Route::get('/contact-us', [ContactUsController::class, 'contact'])->name('contact.us');
+    Route::post('/contact-store', [ContactUsController::class, 'store'])->name('contact.store');
 
 });
