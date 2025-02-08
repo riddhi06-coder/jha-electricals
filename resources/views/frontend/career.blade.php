@@ -179,7 +179,7 @@
                                     @endif
 
                                     <div class="career-resou-apply-now-btn">
-                                        <a href="#" class="small-btn-style" data-bs-toggle="modal" data-bs-target="#applyNowModal">Apply Now</a>
+                                        <a href="#" class="small-btn-style apply-now-btn" data-bs-toggle="modal" data-bs-target="#applyNowModal" data-role="{{ $job->role }}">Apply Now</a>
                                     </div>
                                 </div>
 
@@ -217,49 +217,78 @@
 
      <!-- Career Page Modal -->
     <div class="modal fade careers-apply-now-modal-sec" id="applyNowModal" tabindex="-1" aria-labelledby="applyNowModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="applyNowModalLabel">Apply Now</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applyNowModalLabel">Apply Now</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('career.apply') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="applicantName" class="form-label">Name <span class="txt-danger">*</span></label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="applicantName" value="{{ old('name') }}" required>
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="applicantEmail" class="form-label">Email <span class="txt-danger">*</span></label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="applicantEmail" value="{{ old('email') }}" required>
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="applicantPhone" class="form-label">Phone Number <span class="txt-danger">*</span></label>
+                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" id="applicantPhone" 
+                                pattern="[0-9]{10}" maxlength="10" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="applicationSubject" class="form-label">Subject <span class="txt-danger">*</span></label>
+                            <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" id="applicationSubject" value="{{ old('subject') }}" required>
+                            @error('subject')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="positionAppliedFor" class="form-label">Position Applied For <span class="txt-danger">*</span></label>
+                            <input type="text" class="form-control @error('position') is-invalid @enderror" name="position" id="positionAppliedFor" value="{{ old('position') }}" required readonly>
+                            @error('position')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="resumeUpload" class="form-label">Upload Resume <span class="txt-danger">*</span></label>
+                        <input type="file" class="form-control @error('resume') is-invalid @enderror" name="resume" id="resumeUpload" 
+                            accept=".pdf" required onchange="validateResume(this)">
+                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                        @error('resume')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="career-apply-now-form text-center">
+                        <button type="submit" class="small-btn-style">Submit Application</button>
+                    </div>
+                </form>
+
+            </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <form>
-            <div class="mb-3">
-                <label for="applicantName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="applicantName" placeholder="Your Name" required>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="applicantEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="applicantEmail" placeholder="Your Email" required>
-                </div>
-                <div class="col-md-6">
-                <label for="applicantPhone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="applicantPhone" placeholder="Your Phone Number" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                <label for="applicationSubject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="applicationSubject" placeholder="Subject" required>
-                </div>
-                <div class="col-md-6">
-                <label for="positionAppliedFor" class="form-label">Position Applied For</label>
-                <input type="text" class="form-control" id="positionAppliedFor" placeholder="Enter position applied for" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="resumeUpload" class="form-label">Upload Resume</label>
-                <input type="file" class="form-control" id="resumeUpload" required>
-            </div>
-            <div class="career-apply-now-form text-center">
-                <button type="submit" class="small-btn-style">Submit Application</button>
-            </div>
-            </form>
-        </div>
-        </div>
-    </div>
     </div>
 
 
@@ -267,6 +296,21 @@
         @include('components.frontend.footer')
         
         @include('components.frontend.main-js')
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".apply-now-btn").forEach(function (button) {
+            button.addEventListener("click", function () {
+                let jobRole = this.getAttribute("data-role"); 
+                document.getElementById("positionAppliedFor").value = jobRole; 
+            });
+        });
+    });
+
+
+</script>
+
 
 </body>
 </html>

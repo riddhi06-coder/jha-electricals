@@ -140,5 +140,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/postinstallation-training', [AboutUsController::class, 'training'])->name('postinstallation.training');
     Route::get('/residential-lighting', [AboutUsController::class, 'residential'])->name('residential.lighting');
     Route::get('/career-resources', [CareerResourceController::class, 'career'])->name('career.resources');
+    Route::post('/career/apply', [CareerResourceController::class, 'store'])->name('career.apply');
 
 });
