@@ -29,6 +29,7 @@ use App\Http\Controllers\Backend\CareerController;
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\AboutUsController;
+use App\Http\Controllers\Frontend\CareerResourceController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -138,5 +139,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
     Route::get('/postinstallation-training', [AboutUsController::class, 'training'])->name('postinstallation.training');
     Route::get('/residential-lighting', [AboutUsController::class, 'residential'])->name('residential.lighting');
+    Route::get('/career-resources', [CareerResourceController::class, 'career'])->name('career.resources');
 
 });
