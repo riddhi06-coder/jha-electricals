@@ -20,6 +20,7 @@ use App\Models\PostInstallPartB;
 use App\Models\PostInstallPartC;
 use App\Models\ResideLightPartA;
 use App\Models\ResideLightPartB;
+use App\Models\ResideLightPartC;
 
 
 use Carbon\Carbon;
@@ -68,8 +69,9 @@ class AboutUsController extends Controller
     {
         $residential = ResideLightPartA::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $residential_partB = ResideLightPartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        $residential_partC = ResideLightPartC::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
 
-        return view('frontend.residential-lighting', compact('residential', 'residential_partB'));
+        return view('frontend.residential-lighting', compact('residential', 'residential_partB','residential_partC'));
     }
     
     
