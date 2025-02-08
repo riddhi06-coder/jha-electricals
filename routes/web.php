@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\PreWiringController;
 use App\Http\Controllers\Backend\PostInstallController;
 use App\Http\Controllers\Backend\PreWiringPartBController;
 use App\Http\Controllers\Backend\PostInstallPartBController;
+use App\Http\Controllers\Backend\PostInstallPartCController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -99,6 +100,9 @@ Route::resource('post-install', PostInstallController::class);
 
 // ==== Manage Post Installation Part B in Service & support
 Route::resource('post-install-partB', PostInstallPartBController::class);
+
+// ==== Manage Post Installation Part C in Service & support
+Route::resource('post-install-partC', PostInstallPartCController::class);
 
 
 // ===================================================================Frontend================================================================

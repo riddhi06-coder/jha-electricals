@@ -87,6 +87,7 @@
                     <li><a href="{{ route('pre-wiring-partB.index') }}">Pre-Wiring(B)</a></li>
                     <li><a href="{{ route('post-install.index') }}">Post-Installation(A)</a></li>
                     <li><a href="{{ route('post-install-partB.index') }}">Post-Installation(B)</a></li>
+                    <li><a href="{{ route('post-install-partC.index') }}">Post-Installation(C)</a></li>
                   </ul>
                 </li>
 

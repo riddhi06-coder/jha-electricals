@@ -89,55 +89,36 @@
         </div>
     </div>
 
-
-
-
-
     <div class="post-inst-tra-third-sec">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="post-inst-tra-content-sec">
-              <div class="post-inst-tra-listing-sec">
-                <h3 class="mt-0">Energy Efficiency:</h3>
-                <ul>
-                  <li><b>Best Practices:</b> Educate users on energy-saving tips, such as turning off lights when not in
-                    use and using timers or motion sensors.</li>
-                  <li><b>Dimming:</b> Explain how to utilize dimming features to reduce energy consumption while
-                    maintaining adequate lighting levels.</li>
-                </ul>
-              </div>
-              <div class="post-inst-tra-listing-sec">
-                <h3>Warranty Information:</h3>
-                <ul>
-                  <li><b>Coverage:</b> Clarify the terms and conditions of the warranty, including what is covered and
-                    what is not.</li>
-                  <li><b>Claims Process:</b> Outline the steps involved in filing a warranty claim, including required
-                    documentation and contact information.</li>
-                </ul>
-              </div>
-              <div class="post-inst-tra-listing-sec">
-                <h3>Smart Home Integration (if applicable):</h3>
-                <ul>
-                  <li><b>App Usage:</b> Demonstrate how to use the smartphone app to control the lights, create
-                    schedules, and integrate with other smart home devices.</li>
-                  <li><b>Voice Control:</b> If applicable, explain how to use voice assistants to control the lights.
-                  </li>
-                </ul>
-              </div>
+              @if($postinstall_partB)
+                <div class="post-inst-tra-listing-sec">
+                  <ul>
+                    <li>{!! $postinstall_partB->detailed_description !!}</li>
+                  </ul>
+                </div>
+              @else
+                <p>No post-installation data available.</p>
+              @endif
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="post-inst-tra-third-img-sec">
-              <img src="img/side-img-2.jpg" alt="">
+              @if($postinstall_partB && $postinstall_partB->image)
+                <img src="{{ asset('uploads/services/' . $postinstall_partB->image) }}" alt="Post Installation Image">
+              @else
+                <img src="{{ asset('img/side-img-2.jpg') }}" alt="Default Image">
+              @endif
             </div>
           </div>
 
         </div>
       </div>
     </div>
-
 
     <div class="benefits-area post-install-foo-slider-sec">
         <div class="container">
@@ -208,47 +189,40 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="pit-offer-title-sec">
-              <h2>When to Offer Post-Installation Training:</h2>
+              <h2>{{ $postinstall_partC->section_heading }}</h2>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-4">
-            <div class="pit-offer-box">
-              <div class="pit-offer-thumb-sec">
-                <img src="img/new-installation-img.jpg" alt="New Installation image">
+          @if($postinstall_partC)
+            @php
+              $calculationImages = json_decode($postinstall_partC->calculation_images, true);
+              $calculationTitles = json_decode($postinstall_partC->calculation_titles, true);
+              $calculationDescriptions = json_decode($postinstall_partC->calculation_descriptions, true);
+            @endphp
+
+            @foreach($calculationTitles as $index => $title)
+              <div class="col-lg-4 col-md-4">
+                <div class="pit-offer-box">
+                  <div class="pit-offer-thumb-sec">
+                    <img src="{{ isset($calculationImages[$index]) && $calculationImages[$index] ? asset('uploads/services/' . $calculationImages[$index]) : asset('img/default-image.jpg') }}" alt="Offer Image">
+                  </div>
+                  <div class="pit-offer-content-sec">
+                    <h3>{{ $title }}</h3>
+                    <p>{{ $calculationDescriptions[$index] ?? '' }}</p>
+                  </div>
+                </div>
               </div>
-              <div class="pit-offer-content-sec">
-                <h3>New Installations:</h3>
-                <p>Immediately after installing new lighting fixtures.</p>
-              </div>
+            @endforeach
+          @else
+            <div class="col-lg-12 text-center">
+              <p>No post-installation training data available.</p>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="pit-offer-box">
-              <div class="pit-offer-thumb-sec">
-                <img src="img/upgrading.jpg" alt="Upgrades image">
-              </div>
-              <div class="pit-offer-content-sec">
-                <h3>Upgrades:</h3>
-                <p>When upgrading existing lighting systems.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="pit-offer-box">
-              <div class="pit-offer-thumb-sec">
-                <img src="img/complex-systems.jpg" alt="complex systems image">
-              </div>
-              <div class="pit-offer-content-sec">
-                <h3>Complex Systems:</h3>
-                <p>For systems with advanced features or smart home integration.</p>
-              </div>
-            </div>
-          </div>
+          @endif
 
         </div>
       </div>
     </div>
+
 
 
 

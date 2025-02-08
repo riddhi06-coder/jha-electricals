@@ -17,6 +17,7 @@ use App\Models\ProfessionalInstall;
 use App\Models\PreWiringPartB;
 use App\Models\PostInstallation;
 use App\Models\PostInstallPartB;
+use App\Models\PostInstallPartC;
 
 
 use Carbon\Carbon;
@@ -55,10 +56,11 @@ class AboutUsController extends Controller
     {
         $postinstall = PostInstallation::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $postinstall_partB = PostInstallPartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
-
-        return view('frontend.post-installation', compact('postinstall','postinstall_partB'));
+        $postinstall_partC = PostInstallPartC::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+    
+        return view('frontend.post-installation', compact('postinstall', 'postinstall_partB', 'postinstall_partC'));
     }
-
+    
 
     
 }
