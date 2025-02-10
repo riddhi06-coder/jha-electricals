@@ -102,7 +102,7 @@
                   <li><a href="{{ route('reside-light-partA.index') }}">Residential(A)</a></li>
                     <li><a href="{{ route('reside-light-partB.index') }}">Residential(B)</a></li>
                     <li><a href="{{ route('reside-light-partC.index') }}">Residential(C)</a></li>
-                    <li><a href="{{ route('post-install-partB.index') }}">Commercial(A)</a></li>
+                    <li><a href="{{ route('commercial-light-partA.index') }}">Commercial(A)</a></li>
                     <li><a href="{{ route('post-install-partC.index') }}">Commercial(B)</a></li>
                     <li><a href="{{ route('post-install-partC.index') }}">Commercial(C)</a></li>
                   </ul>
