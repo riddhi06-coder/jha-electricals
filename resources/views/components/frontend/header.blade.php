@@ -135,7 +135,7 @@
                         </ul>
                       </li>
                       <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
-                        <li><a href="photo-gallery.html">Photo Gallery</a></li>
+                        <li><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                     </ul>
@@ -300,7 +300,7 @@
                   </ul>
                 </li>
                 <li class="menu-item-has-children"><a href="{{ route('career.resources') }}">Career Resources</a></li>
-                <li class="menu-item-has-children"><a href="photo-gallery.html">Photo Gallery</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
                 <li class="menu-item-has-children"><a href="#">Blog</a></li>
                 <li class="menu-item-has-children"><a href="{{ route('contact.us') }}">Contact Us</a></li>
               </ul>

@@ -24,9 +24,10 @@ use App\Models\ResideLightPartC;
 use App\Models\CommercialLightPartA;
 use App\Models\CommercialLightPartB;
 use App\Models\CommercialLightPartC;
-
+use App\Models\Gallery;
 
 use Carbon\Carbon;
+
 
 class AboutUsController extends Controller
 {
@@ -87,6 +88,15 @@ class AboutUsController extends Controller
     }
     
     
+    public function gallery()
+{
+    $gallery = Gallery::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+    
+    $galleryImages = $gallery ? json_decode($gallery->gallery_images, true) : [];
 
+    return view('frontend.gallery', compact('gallery', 'galleryImages'));
+}
+
+    
     
 }
