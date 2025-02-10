@@ -24,11 +24,10 @@ use App\Http\Controllers\Backend\PostInstallPartCController;
 use App\Http\Controllers\Backend\ResideLightPartAController;
 use App\Http\Controllers\Backend\ResideLightPartBController;
 use App\Http\Controllers\Backend\ResideLightPartCController;
-
 use App\Http\Controllers\Backend\CommercialLightPartAController;
 use App\Http\Controllers\Backend\CommercialLightPartBController;
 use App\Http\Controllers\Backend\CommercialLightPartCController;
-
+use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\ContactController;
 
@@ -116,8 +115,6 @@ Route::resource('post-install-partB', PostInstallPartBController::class);
 // ==== Manage Post Installation Part C in Service & support
 Route::resource('post-install-partC', PostInstallPartCController::class);
 
-
-
 // ==== Manage Residential Lighting Part A in Application Area
 Route::resource('reside-light-partA', ResideLightPartAController::class);
 
@@ -126,8 +123,6 @@ Route::resource('reside-light-partB', ResideLightPartBController::class);
 
 // ==== Manage Residential Lighting Part C in Application Area
 Route::resource('reside-light-partC', ResideLightPartCController::class);
-
-
 
 // ==== Manage Commercial Lighting Part A in Application Area
 Route::resource('commercial-light-partA', CommercialLightPartAController::class);
@@ -138,7 +133,8 @@ Route::resource('commercial-light-partB', CommercialLightPartBController::class)
 // ==== Manage Commercial Lighting Part C in Application Area
 Route::resource('commercial-light-partC', CommercialLightPartCController::class);
 
-
+// ==== Manage Gallery
+Route::resource('gallery', GalleryController::class);
 
 // ==== Manage Career Resources
 Route::resource('career', CareerController::class);

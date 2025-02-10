@@ -119,17 +119,14 @@
                 </li>
 
 
-                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('gallery.index') }}">
                     <svg class="stroke-icon"> 
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
                     </svg>
                     <svg class="fill-icon">
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#fill-gallery') }}"></use>
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-gallery') }}"></use>
                     </svg><span>Photo Gallery</span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="#">Banner Details</a></li>
-                    <li><a href="#">Gallery</a></li>
-                  </ul>
                 </li>
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('contact.index') }}">
