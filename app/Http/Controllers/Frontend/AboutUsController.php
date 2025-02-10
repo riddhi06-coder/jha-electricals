@@ -21,6 +21,9 @@ use App\Models\PostInstallPartC;
 use App\Models\ResideLightPartA;
 use App\Models\ResideLightPartB;
 use App\Models\ResideLightPartC;
+use App\Models\CommercialLightPartA;
+use App\Models\CommercialLightPartB;
+use App\Models\CommercialLightPartC;
 
 
 use Carbon\Carbon;
@@ -72,6 +75,15 @@ class AboutUsController extends Controller
         $residential_partC = ResideLightPartC::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
 
         return view('frontend.residential-lighting', compact('residential', 'residential_partB','residential_partC'));
+    }
+    
+    public function commercial()
+    {
+        $commercial = CommercialLightPartA::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        $commercial_partB = CommercialLightPartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        $commercial_partC = CommercialLightPartC::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+
+        return view('frontend.commercial-lighting', compact('commercial', 'commercial_partB','commercial_partC'));
     }
     
     
