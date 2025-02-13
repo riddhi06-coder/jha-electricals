@@ -134,7 +134,18 @@
                     </svg><span>Career</span></a>
                 </li>
 
-
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-learning') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-learning') }}"></use>
+                    </svg><span>Shopping Guide</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('guide.index') }}">Guide(A)</a></li>
+                    <li><a href="{{ route('guide.index') }}">Guide(B)</a></li>
+                  </ul>
+                </li>
                 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('gallery.index') }}">
                     <svg class="stroke-icon"> 
