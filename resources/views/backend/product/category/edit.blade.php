@@ -49,30 +49,36 @@
                                 <div class="tab-pane fade show active" id="wizard-contact" role="tabpanel" aria-labelledby="wizard-contact-tab">
                                 <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('product-category.update', $details->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT') <!-- Required for updating -->
+                                    @method('PUT') 
 
                                     <!-- Heading -->
                                     <div class="col-12">
-                                        <label class="form-label" for="heading">Heading </label>
-                                        <input type="text" class="form-control" id="heading" name="heading" value="{{ old('heading', $details->heading) }}" placeholder="Enter Heading">
-                                        <div class="invalid-feedback">Please enter a Heading.</div>
+                                        <label class="form-label" for="heading">Heading</label>
+                                        <input type="text" class="form-control @error('heading') is-invalid @enderror" id="heading" name="heading" value="{{ old('heading', $details->heading) }}" placeholder="Enter Heading">
+                                        @error('heading')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Category Name -->
                                     <div class="col-12">
                                         <label class="form-label" for="category_name">Category Name <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ old('category_name', $details->category_name) }}" placeholder="Enter Category Name" required>
-                                        <div class="invalid-feedback">Please enter a Category Name.</div>
+                                        <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" value="{{ old('category_name', $details->category_name) }}" placeholder="Enter Category Name" required>
+                                        @error('category_name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Image Upload -->
                                     <div class="col-12">
                                         <label class="form-label" for="image">Category Image <span class="txt-danger">*</span></label>
-                                        <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*" onchange="previewImage(event)">
                                         <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                         <br>
                                         <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                                        <div class="invalid-feedback">Please upload a valid image.</div>
+                                        @error('image')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Image Preview -->
@@ -85,6 +91,7 @@
                                         <a href="{{ route('product-category.index') }}" class="btn btn-danger px-4">Cancel</a>
                                         <button class="btn btn-primary" type="submit">Update</button>
                                     </div>
+
                                 </form>
 
 

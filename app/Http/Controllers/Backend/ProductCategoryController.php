@@ -34,7 +34,7 @@ class ProductCategoryController extends Controller
     {
         $request->validate([
             'heading' => 'nullable|string|max:255',
-            'category_name' => 'required|string|max:255|unique:product_categories,category_name',
+            'category_name' => 'required|string|max:255|unique:product_category,category_name',
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
             'category_name.required' => 'The category name is required.',
