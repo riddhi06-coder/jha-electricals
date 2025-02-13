@@ -65,7 +65,7 @@
                     <ul>
                       <li><a href="{{ route('about-us.page') }}">About Us</a></li>
                       <li>
-                        <a href="products.html">Products</a>
+                        <a href="{{ route('products.category') }}">Products</a>
                         <ul class="mega-menu four-column left-0">
                           <li>
                             <a href="led-panel-lights.html" class="item-link">LED Panel Lights</a>
@@ -226,7 +226,7 @@
                 <li class="menu-item-has-children"><a href="{{ route('about-us.page') }}">About Us</a>
                 </li>
                 <li class="menu-item-has-children">
-                  <a href="products.html">Products</a>
+                  <a href="{{ route('products.category') }}">Products</a>
                   <ul class="submenu2">
                     <li class="menu-item-has-children">
                       <a href="led-panel-lights.html">LED Panel Lights</a>

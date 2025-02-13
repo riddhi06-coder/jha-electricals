@@ -25,6 +25,8 @@ use App\Models\CommercialLightPartA;
 use App\Models\CommercialLightPartB;
 use App\Models\CommercialLightPartC;
 use App\Models\Gallery;
+use App\Models\ProductCategory;
+use App\Models\Product;
 
 use Carbon\Carbon;
 
@@ -89,13 +91,22 @@ class AboutUsController extends Controller
     
     
     public function gallery()
-{
-    $gallery = Gallery::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
-    
-    $galleryImages = $gallery ? json_decode($gallery->gallery_images, true) : [];
+    {
+        $gallery = Gallery::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        
+        $galleryImages = $gallery ? json_decode($gallery->gallery_images, true) : [];
 
-    return view('frontend.gallery', compact('gallery', 'galleryImages'));
-}
+        return view('frontend.gallery', compact('gallery', 'galleryImages'));
+    }
+
+
+
+    public function product_category()
+    {
+        $heading = ProductCategory::whereNull('deleted_by')->first();
+        $categories = ProductCategory::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+        return view('frontend.product-category', compact('categories','heading'));
+    }
 
     
     
