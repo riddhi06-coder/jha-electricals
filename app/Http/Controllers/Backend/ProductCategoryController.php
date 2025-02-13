@@ -20,7 +20,7 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $categories = ProductCategory::all(); 
+        $categories = ProductCategory::whereNull('deleted_by')->all(); 
         return view('backend.product.category.index', compact('categories'));
     }
 

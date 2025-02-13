@@ -31,6 +31,7 @@ use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ProductCategoryController;
+use App\Http\Controllers\Backend\ProductsController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -147,6 +148,9 @@ Route::resource('contact', ContactController::class);
 
 // ==== Manage Product Category in Products Section
 Route::resource('product-category', ProductCategoryController::class);
+
+// ==== Manage Product Category in Products Section
+Route::resource('add-products',ProductsController::class);
 
 // ===================================================================Frontend================================================================
 
