@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ProductCategoryController;
 use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\ShoppingGuideController;
+use App\Http\Controllers\Backend\ShoppingGuidePartBController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -145,8 +146,12 @@ Route::resource('career', CareerController::class);
 // ==== Manage Contact
 Route::resource('contact', ContactController::class);
 
+
 // ==== Shopping Guide
 Route::resource('guide', ShoppingGuideController::class);
+
+// ==== Shopping Guide
+Route::resource('guide-partB', ShoppingGuidePartBController::class);
 
 
 

@@ -143,7 +143,7 @@
                     </svg><span>Shopping Guide</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('guide.index') }}">Guide(A)</a></li>
-                    <li><a href="{{ route('guide.index') }}">Guide(B)</a></li>
+                    <li><a href="{{ route('guide-partB.index') }}">Guide(B)</a></li>
                   </ul>
                 </li>
                 

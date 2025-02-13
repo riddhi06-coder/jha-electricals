@@ -154,6 +154,12 @@
 
                                     </table>
 
+                                    <!-- Section Description with Summernote -->
+                                    <div class="col-12 mb-5">
+                                        <label class="form-label" for="section_description">Section Description <span class="txt-danger">*</span></label>
+                                        <textarea class="form-control" id="section_description" name="section_description" placeholder="Enter Section Description" required>{{ $details->section_description }}</textarea>
+                                        <div class="invalid-feedback">Please enter a Section description.</div>
+                                    </div>
                                    
                                     <!-- Form Actions -->
                                     <div class="col-12 text-end">
@@ -261,6 +267,30 @@
     }
 });
 
+</script>
+
+
+
+{{-- Summernote Editor --}}
+<script>
+    $(document).ready(function() {
+        $('#short_description').summernote({
+            placeholder: 'Enter your description here...',
+            tabsize: 2,
+            height: 100,
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#section_description').summernote({
+            placeholder: 'Enter your description here...',
+            tabsize: 2,
+            height: 100,
+        });
+    });
 </script>
 
 

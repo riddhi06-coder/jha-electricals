@@ -18,6 +18,7 @@ class ShoppingPartA extends Model
         'image',
         'short_description',
         'detailed_description',
+        'section_description',
         'section_heading',
         'calculation_images',
         'calculation_titles',
