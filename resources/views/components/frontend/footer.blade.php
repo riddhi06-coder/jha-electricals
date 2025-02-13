@@ -27,14 +27,14 @@
                             <h3>Quick Links</h3>
                         </div>
                         <ul>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="products.html">Products</a></li>
-                            <li><a href="photo-gallery.html">Photo Gallery</a></li>
-                            <li><a href="career-resources.html">Career Resources</a></li>
+                            <li><a href="{{ route('about-us.page') }}">About Us</a></li>
+                            <li><a href="{{ route('products.category') }}">Products</a></li>
+                            <li><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
+                            <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
                             <li><a href="#">Blogs</a></li>
-                            <li><a href="shopping-guide.html">Shopping Guide</a></li>
+                            <li><a href="{{ route('product-category.index') }}">Shopping Guide</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
+                            <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>

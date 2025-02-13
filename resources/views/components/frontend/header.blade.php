@@ -77,7 +77,7 @@
                         <ul class="mega-menu four-column left-0">
                         @foreach($categories as $category)
                           <li class="menu-item-has-children">
-                              <a href="#">{{ $category->category_name }}</a>
+                              <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a>
                               @if($category->products->count() > 0)
                                   <ul class="submenu2">
                                       @foreach($category->products as $product)
@@ -204,7 +204,7 @@
                     <ul class="submenu2">
                         @foreach($categories as $category)
                             <li class="menu-item-has-children">
-                                <a href="#">{{ $category->category_name }}</a>
+                                <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a>
                                 @if($category->products->isNotEmpty())
                                     <ul class="submenu2">
                                         @foreach($category->products as $product)
