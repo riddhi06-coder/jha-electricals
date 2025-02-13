@@ -109,11 +109,14 @@ class AboutUsController extends Controller
     }
 
     
-
-    public function header()
+    
+    public function product_page($slug)
     {
-        $categories = ProductCategory::whereNull('deleted_at')->with('products')->get(); 
-        return view('components.frontend.header', compact('categories'));
+        $category = ProductCategory::where('slug', $slug)->whereNull('deleted_at')->firstOrFail();
+        $products = $category->products()->whereNull('deleted_at')->get();
+        return view('frontend.product-main', compact('category', 'products'));
     }
+    
+
         
 }

@@ -1,4 +1,11 @@
-  <!--Header section start-->
+@php
+    use App\Models\ProductCategory;
+
+    $categories = ProductCategory::whereNull('deleted_at')->with('products')->get();
+@endphp
+
+ 
+ <!--Header section start-->
   <section class="topbar desktop-topbar">
       <div class="container">
           <div class="row">

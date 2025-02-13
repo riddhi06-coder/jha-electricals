@@ -170,5 +170,5 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::post('/contact-store', [ContactUsController::class, 'store'])->name('contact.store');
     Route::get('/photo-gallery', [AboutUsController::class, 'gallery'])->name('photo.gallery');
     Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
-
+    Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
 });
