@@ -27,6 +27,8 @@ use App\Models\CommercialLightPartC;
 use App\Models\Gallery;
 use App\Models\ProductCategory;
 use App\Models\Product;
+use App\Models\ShoppingPartA;
+use App\Models\ShoppingGuidePartB;
 
 use Carbon\Carbon;
 
@@ -115,6 +117,16 @@ class AboutUsController extends Controller
         $category = ProductCategory::where('slug', $slug)->whereNull('deleted_at')->firstOrFail();
         $products = $category->products()->whereNull('deleted_at')->get();
         return view('frontend.product-main', compact('category', 'products'));
+    }
+
+
+    public function shopping_guide()
+    {
+
+        $guide = ShoppingPartA::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        $guide_partB = ShoppingGuidePartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+  
+        return view('frontend.shopping-guide', compact('guide','guide_partB'));
     }
     
 
