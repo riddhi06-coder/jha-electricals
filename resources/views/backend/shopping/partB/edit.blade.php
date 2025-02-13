@@ -128,6 +128,19 @@
        
        @include('components.backend.main-js')
 
+
+{{-- Summernote Editor --}}
+<script>
+    $(document).ready(function() {
+        $('#short_description').summernote({
+            placeholder: 'Enter your description here...',
+            tabsize: 2,
+            height: 100,
+        });
+    });
+</script>
+
+
 <script>
     function previewImage(input, previewId) {
         var preview = document.getElementById(previewId);

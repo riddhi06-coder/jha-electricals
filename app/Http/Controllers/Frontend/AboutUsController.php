@@ -124,7 +124,7 @@ class AboutUsController extends Controller
     {
 
         $guide = ShoppingPartA::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
-        $guide_partB = ShoppingGuidePartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
+        $guide_partB = ShoppingGuidePartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
   
         return view('frontend.shopping-guide', compact('guide','guide_partB'));
     }
