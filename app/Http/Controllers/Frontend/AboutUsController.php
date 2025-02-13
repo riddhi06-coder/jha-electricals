@@ -109,5 +109,11 @@ class AboutUsController extends Controller
     }
 
     
-    
+
+    public function header()
+    {
+        $categories = ProductCategory::whereNull('deleted_at')->with('products')->get(); 
+        return view('components.frontend.header', compact('categories'));
+    }
+        
 }

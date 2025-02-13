@@ -24,4 +24,13 @@ class ProductCategory extends Model
         'deleted_at',
         'deleted_by',
     ];
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id')
+                    ->whereNull('deleted_by')
+                    ->whereNull('deleted_at');
+    }
+    
 }

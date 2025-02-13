@@ -64,58 +64,24 @@
                   <nav class="main-menu main-menu-two">
                     <ul>
                       <li><a href="{{ route('about-us.page') }}">About Us</a></li>
+                      
                       <li>
                         <a href="{{ route('products.category') }}">Products</a>
                         <ul class="mega-menu four-column left-0">
-                          <li>
-                            <a href="led-panel-lights.html" class="item-link">LED Panel Lights</a>
-                            <ul>
-                              <li><a href="led-panel-light-square-round-conceaded-type.html">LED Panel Light(Square/Round Conceaded Type)</a></li>
-                              <li><a href="#">LED Panel Light - Glow Model</a></li>
-                              <li><a href="#">LED Panel Light - Polyglow</a></li>
-                              <li><a href="#">LED Panel Light - Zenith</a></li>
-                              <li><a href="#">LED Panel Light (Square+Round Surface Type)</a></li>
-                              <li><a href="#">Twister Surface Light With Holder</a></li>
-                              <li><a href="#">LED Panel Light (Rectangle Concealed Type)</a></li>
-                              <li><a href="#">LED Down Light</a></li>
-                              <li><a href="#" class="item-title">COB Spot Lights</a></li>
-                              <li><a href="#">COB Spot Lights - Flat Model(Ro./Sq. Movable Type)</a></li>
-                              <li><a href="#">Delta COB Spot Light (Round Conceaded Type)</a></li>
-                            </ul>
+                        @foreach($categories as $category)
+                          <li class="menu-item-has-children">
+                              <a href="#">{{ $category->category_name }}</a>
+                              @if($category->products->count() > 0)
+                                  <ul class="submenu2">
+                                      @foreach($category->products as $product)
+                                          <li>
+                                              <a href="#">{{ $product->product_name }}</a>
+                                          </li>
+                                      @endforeach
+                                  </ul>
+                              @endif
                           </li>
-                          <li>
-                            <ul>
-                              <li><a href="#">Curve COB Spot Light (Round Conceaded Type)</a></li>
-                              <li><a href="#">COB Spot Lights</a></li>
-                              <li><a href="#">Silver Chrome/Rose Gold Delta COB Spot Light(Round Conceaded Type)</a></li>
-                              <li><a href="#">New COB Lens</a></li>
-                              <li><a href="#">COB Spot Light (Conceaded & Junction Box Fittigs)</a></li>
-                              <li><a href="#">COB Spot Light Surface Cylinder & Hanging Light</a></li>
-                              <li><a href="#">COB Spot Light (Spike & Wall Outdoor Light)</a></li>
-                              <li><a href="#">PC Lens COB Spot Light(Tiltable)</a></li>
-                              <li><a href="#" class="item-title">Outdoor Wall Light</a></li>
-                              <li><a href="#" class="item-title">LED Bulb / Lamp Light</a></li>
-                              <li><a href="#" class="item-title">LED Tube / T</a></li>
-                              <li><a href="#" class="item-title">LED Track Light(ARM Type)</a></li>
-                              <li><a href="#" class="item-title">LED Track Light(Cylinder Type)</a></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <ul>
-                              <li><a href="#" class="item-title">LED Track Light(Linear Type)</a></li>
-                              <li><a href="#" class="item-title">LED Bulk Head Alfa</a></li>
-                              <li><a href="#" class="item-title">LED Street Light</a></li>
-                              <li><a href="#">LED Street Light(Super Delux Model)</a></li>
-                              <li><a href="#">Super Lens LED Street Light</a></li>
-                              <li><a href="#">Lens LED Street Light (Back Side Driver System)</a></li>
-                              <li><a href="#" class="item-title">LED Flood Light</a></li>
-                              <li><a href="#">Flood Light</a></li>
-                              <li><a href="#">Back Choke Flood Light</a></li>
-                              <li><a href="#">Down Choke Super Delux Flood Light</a></li>
-                              <li><a href="#">Down Choke Lens Flood Light</a></li>
-                              <li><a href="#" class="item-title">High Bay Light</a></li>
-                            </ul>
-                          </li>
+                      @endforeach
                         </ul>
                       </li>
                       <li>
@@ -225,64 +191,25 @@
               <ul>
                 <li class="menu-item-has-children"><a href="{{ route('about-us.page') }}">About Us</a>
                 </li>
+
                 <li class="menu-item-has-children">
-                  <a href="{{ route('products.category') }}">Products</a>
-                  <ul class="submenu2">
-                    <li class="menu-item-has-children">
-                      <a href="led-panel-lights.html">LED Panel Lights</a>
-                      <ul class="submenu2">
-                        <li><a href="led-panel-light-square-round-conceaded-type.html">LED Panel Light(Square/Round Conceaded Type)</a></li>
-                        <li><a href="#">LED Panel Light - Glow Model</a></li>
-                        <li><a href="#">LED Panel Light - Polyglow</a></li>
-                        <li><a href="#">LED Panel Light - Zenith</a></li>
-                        <li><a href="#">LED Panel Light (Square+Round Surface Type)</a></li>
-                        <li><a href="#">Twister Surface Light With Holder</a></li>
-                        <li><a href="#">LED Panel Light (Rectangle Concealed Type)</a></li>
-                        <li><a href="#">LED Down Light</a></li>
-                      </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                      <a href="#">COB Spot Lights</a>
-                      <ul class="submenu2">
-                        <li><a href="#">COB Spot Lights - Flat Model(Ro./Sq. Movable Type)</a></li>
-                        <li><a href="#">Delta COB Spot Light (Round Conceaded Type)</a></li>
-                        <li><a href="#">Curve COB Spot Light (Round Conceaded Type)</a></li>
-                        <li><a href="#">COB Spot Lights</a></li>
-                        <li><a href="#">Silver Chrome/Rose Gold Delta COB Spot Light(Round Conceaded Type)</a></li>
-                        <li><a href="#">New COB Lens</a></li>
-                        <li><a href="#">COB Spot Light (Conceaded & Junction Box Fittigs)</a></li>
-                        <li><a href="#">COB Spot Light Surface Cylinder & Hanging Light</a></li>
-                        <li><a href="#">COB Spot Light (Spike & Wall Outdoor Light)</a></li>
-                        <li><a href="#">PC Lens COB Spot Light(Tiltable)</a></li>
-                      </ul>
-                    </li>
-                    <li class="menu-item-has-children"><a href="#">Outdoor Wall Light</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Bulb / Lamp Light</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Tube / T</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Track Light(ARM Type)</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Track Light(Cylinder Type)</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Track Light(Linear Type)</a></li>
-                    <li class="menu-item-has-children"><a href="#">LED Bulk Head Alfa</a></li>
-                    <li class="menu-item-has-children">
-                      <a href="#">LED Street Light</a>
-                      <ul class="submenu2">
-                        <li><a href="#">LED Street Light(Super Delux Model)</a></li>
-                        <li><a href="#">Super Lens LED Street Light</a></li>
-                        <li><a href="#">Lens LED Street Light (Back Side Driver System)</a></li>
-                      </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                      <a href="#">LED Flood Light</a>
-                      <ul class="submenu2">
-                        <li><a href="#">Flood Light</a></li>
-                        <li><a href="#">Back Choke Flood Light</a></li>
-                        <li><a href="#">Down Choke Super Delux Flood Light</a></li>
-                        <li><a href="#">Down Choke Lens Flood Light</a></li>
-                      </ul>
-                    </li>
-                    <li class="menu-item-has-children"><a href="#">High Bay Light</a></li>
-                  </ul>
+                    <a href="{{ route('products.category') }}">Products</a>
+                    <ul class="submenu2">
+                        @foreach($categories as $category)
+                            <li class="menu-item-has-children">
+                                <a href="#">{{ $category->category_name }}</a>
+                                @if($category->products->isNotEmpty())
+                                    <ul class="submenu2">
+                                        @foreach($category->products as $product)
+                                            <li><a href="#">{{ $product->product_name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
+
                 <li class="menu-item-has-children">
                   <a href="#">Service & Support</a>
                   <ul class="submenu2">
@@ -305,35 +232,7 @@
                 <li class="menu-item-has-children"><a href="{{ route('contact.us') }}">Contact Us</a></li>
               </ul>
             </nav>
-            <!-- <div class="offcanvas-settings">
-              <nav class="offcanvas-navigation">
-                <ul>
-                  <li class="menu-item-has-children">
-                    <a href="#">MY ACCOUNT </a>
-                    <ul class="submenu2">
-                      <li><a href="login-register.html">Register</a></li>
-                      <li><a href="login-register.html">Login</a></li>
-                    </ul>
-                  </li>
-                  <li class="menu-item-has-children">
-                    <a href="#">CURRENCY: USD </a>
-                    <ul class="submenu2">
-                      <li><a href="javascript:void(0)">€ Euro</a></li>
-                      <li><a href="javascript:void(0)">$ US Dollar</a></li>
-                    </ul>
-                  </li>
-                  <li class="menu-item-has-children">
-                    <a href="#">LANGUAGE: EN-GB </a>
-                    <ul class="submenu2">
-                      <li><a href="javascript:void(0)"><img src="./images/icons/en-gb.png"
-                        alt="English"> English</a></li>
-                      <li><a href="javascript:void(0)"><img src="./images/icons/de-de.png"
-                        alt="Germany"> Germany</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
-              </div> -->
+          
             <div class="offcanvas-widget-area">
               <div class="off-canvas-contact-widget">
                 <div class="header-contact-info">
