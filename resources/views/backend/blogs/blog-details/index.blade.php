@@ -56,8 +56,8 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Banner Title</th>
-                            <th>Banner Image</th>
+                            <th>Blog Title</th>
+                            <th>Blog Image</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -65,12 +65,14 @@
                             @foreach ($details as $detail)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td> 
-                                    <td>{{ $detail->banner_heading }}</td>
+                                    <td>{{ $detail->blogType->blog_heading }}</td>
                                     <td>
-                                        @if ($detail->banner_image)
-                                            <img src="{{ asset('uploads/blogs/' . $detail->banner_image) }}" alt="Banner Image" width="100">
+                                        @if ($detail->image)
+                                            <img src="{{ asset('uploads/blogs/' . $detail->image) }}" alt="Banner Image" width="100">
+                                        @else
+                                            <p>No Image</p>
                                         @endif
-                                    </td> 
+                                    </td>
                                     <td>
                                         <a href="{{ route('blog-detail.edit', $detail->id) }}" class="btn btn-primary">Edit</a>
                                         <a href="{{ route('blog-detail.destroy', $detail->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>

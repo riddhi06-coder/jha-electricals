@@ -56,8 +56,8 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Banner Title</th>
-                            <th>Banner Image</th>
+                            <th>Blog Title</th>
+                            <th>Blog Image</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -65,10 +65,10 @@
                              @foreach($details as $key => $blog)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $blog->banner_heading }}</td>
+                                    <td>{{ $blog->blog_heading }}</td>
                                     <td>
-                                        @if($blog->banner_image)
-                                            <img src="{{ asset('uploads/blogs/' . $blog->banner_image) }}" alt="Banner Image" width="80">
+                                        @if($blog->thumbnail)
+                                            <img src="{{ asset('uploads/blogs/' . $blog->thumbnail) }}" alt="Banner Image" width="80">
                                         @else
                                             <span class="text-muted">No Image</span>
                                         @endif

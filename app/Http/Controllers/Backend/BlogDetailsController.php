@@ -19,10 +19,14 @@ class BlogDetailsController extends Controller
 
     public function index()
     {
-        $details = BlogDetails::orderBy('id', 'desc')->whereNull('deleted_by')->get();
+        $details = BlogDetails::with('blogType')
+            ->orderBy('id', 'desc')
+            ->whereNull('deleted_by')
+            ->get();
+            
         return view('backend.blogs.blog-details.index', compact('details'));
     }
-
+    
     public function create(Request $request)
     { 
         $blogs = BlogType::whereNull('deleted_by')->get();
