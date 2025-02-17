@@ -29,6 +29,8 @@ use App\Models\ProductCategory;
 use App\Models\Product;
 use App\Models\ShoppingPartA;
 use App\Models\ShoppingGuidePartB;
+use App\Models\BlogType;
+
 
 use Carbon\Carbon;
 
@@ -127,6 +129,14 @@ class AboutUsController extends Controller
         $guide_partB = ShoppingGuidePartB::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
   
         return view('frontend.shopping-guide', compact('guide','guide_partB'));
+    }
+    
+
+    public function blogs()
+    {
+
+        $blogs = BlogType::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+        return view('frontend.blogs', compact('blogs'));
     }
     
 

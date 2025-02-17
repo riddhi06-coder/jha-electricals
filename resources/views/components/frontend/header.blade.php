@@ -109,7 +109,7 @@
                       </li>
                       <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
                         <li><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ route('blogs') }}">Blog</a></li>
                         <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                     </ul>
                   </nav>
