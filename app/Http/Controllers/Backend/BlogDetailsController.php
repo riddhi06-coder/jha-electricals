@@ -82,6 +82,7 @@ class BlogDetailsController extends Controller
         $blogs = BlogType::whereNull('deleted_by')->get(); 
         return view('backend.blogs.blog-details.edit', compact('details', 'blogs'));
     }
+    
 
 
     public function update(Request $request, $id)

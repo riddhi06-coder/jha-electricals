@@ -83,13 +83,14 @@
                                         <select class="form-control" id="blog_title" name="blog_title" required>
                                             <option value="" disabled>Select Blog Title</option>
                                             @foreach ($blogs as $blog)
-                                                <option value="{{ $blog->id }}" {{ $blog->id == $details->blog_title ? 'selected' : '' }}>
+                                                <option value="{{ $blog->id }}" {{ $blog->id == $details->blog_title_id ? 'selected' : '' }}>
                                                     {{ $blog->blog_heading }}
                                                 </option>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">Please select a blog Title.</div>
                                     </div>
+
 
                                    <!-- Image -->
                                     <div class="col-12">
