@@ -156,6 +156,20 @@
                     </svg><span>Photo Gallery</span></a>
                 </li>
 
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
+                    </svg><span>Blogs</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('blog-types.index') }}">Blogs</a></li>
+                    <li><a href="{{ route('guide-partB.index') }}">Blog Details</a></li>
+                  </ul>
+                </li>
+
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('contact.index') }}">
                     <svg class="stroke-icon"> 
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-contact') }}"></use>
