@@ -184,6 +184,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/shopping-guide', [AboutUsController::class, 'shopping_guide'])->name('shopping.guide');
     Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/blogs', [AboutUsController::class, 'blogs'])->name('blogs');
+    Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
  
 });

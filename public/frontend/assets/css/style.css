@@ -984,7 +984,8 @@ textarea:-ms-input-placeholder {
 }
 
 .page-breadcrumb li a:hover {
-  color: #ee3333;
+  /*color: #ee3333;*/
+  color: #71001b;
 }
 
 /*-- 
@@ -9794,7 +9795,7 @@ only screen and (max-width: 767px) {
 /* =================== */
 
 .our-vision-sec {
-  /* background: url(../img/bg/our-vision-bg.webp); */
+  background: url(../img/bg/our-vision-bg.webp);
   background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9998,13 +9999,15 @@ only screen and (max-width: 767px) {
 .ledplsr-sec .ledplsr-product-image-two-sec {
   margin-bottom: 20px;
   padding: 20px;
-  background: #dbb23f;
+  /*background: #dbb23f;*/
+  background: #b7b6b6;
   text-align: center;
 }
 
 .ledplsr-sec .ledplsr-product-image-three-sec {
   padding: 20px;
-  background: #dbb23f;
+  /*background: #dbb23f;*/
+  background: #b7b6b6;
   text-align: center;
 }
 
@@ -11117,7 +11120,7 @@ only screen and (max-width: 767px) {
 .resi-light-third-img-sec img {
   border-radius: 50px;
   width: 100%;
-  height: 430px;
+  height: 500px;
   object-fit: cover;
 }
 
@@ -11454,7 +11457,7 @@ only screen and (max-width: 767px) {
 .commer-light-third-img-sec img {
   border-radius: 50px;
   width: 100%;
-  height: 460px;
+  height: 530px;
   object-fit: cover;
 }
 
@@ -11958,13 +11961,17 @@ only screen and (max-width: 767px) {
   line-height: 45px;
   text-transform: capitalize;
   color: #fff;
-  margin: 0 0 10px;
+  margin: 0 0 20px;
   text-align: center;
 }
 
 .cta-btn-sec {
   text-align: center;
   margin-top: 20px;
+}
+
+.cta-title-sec .sub-ml-para-sec {
+   font-size: 20px; 
 }
 
 .careers-apply-now-modal-sec .form-control {
@@ -12280,4 +12287,171 @@ ul.shop-guide-listing-sec li {
     left: 0;
     height: 100%;
   }
+}
+
+/*=========*/
+.bann-modal-sec .bann-modal-header-sec {
+    padding: 10px 20px;
+}
+
+.bann-modal-sec .form-control{
+    border-radius: 0;
+    font-size: 14px;
+}
+
+.bann-modal-sec .form-control:focus {
+    box-shadow: none;
+}
+
+.bann-modal-sec .modal-content {
+    border-radius: 0;
+}
+
+.bann-modal-header-sec .bann-modal-title-sec {
+    font-size: 24px;
+}
+
+.bann-modal-btn-sec {
+    text-align: center;
+}
+
+/* Blog Page */
+.blog-grid-area {
+  padding: 60px 0;
+}
+
+.single-blog-box {
+  margin-bottom: 20px;
+}
+
+.single-blog-thumb {
+  overflow: hidden;
+}
+
+.single-blog-thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.blog-content {
+  border: 1px solid rgba(0, 24, 25, 0.1);
+  padding: 10px 20px;
+}
+
+.blog-date-sec ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 24, 25, 0.10);
+  margin-bottom: 10px;
+}
+
+.blog-date-sec ul li {
+  font-size: 14px;
+  color: #001819;
+  display: flex;
+  align-items: center;
+}
+
+.blog-date-sec ul li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.blog-content a {
+  font-size: 24px;
+  font-weight: 600;
+  display: inline-block;
+  color: #001819;
+  line-height: 32px;
+  transition: 0.5s;
+}
+
+@media (min-width: 1300px) and (max-width: 1399px) {
+  .blog-content a {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.blog-content p {
+  margin: 10px 0;
+}
+
+.blog-service-button-sec {
+  border-top: 1px solid rgba(0, 24, 25, 0.10);
+  padding-top: 10px;
+}
+
+.blog-service-button-sec a {
+  font-size: 16px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  transition: 0.5s;
+}
+
+.blog-service-button-sec img {
+  display: inline-block;
+  border-radius: 50%;
+  color: #111111;
+  width: 35px;
+  height: 35px;
+  padding: 6px;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+  border: 1px solid rgba(0, 24, 25, 0.10);
+  transition: 0.5s;
+}
+
+.blog-content a:hover {
+  color: #71001b;
+}
+
+.blog-service-button-sec a:hover img {
+  background: #71001b;
+  content: url("../img/icon/up-right-arrow-2.png");
+}
+
+
+
+/* Blog Details Page */
+.blog-details-area {
+  padding: 60px 0;
+}
+
+.blog-details-thumb {
+  overflow: hidden;
+}
+
+.blog-details-thumb img {
+  width: 100%;
+  transition: 0.5s;
+}
+
+.blog-details-content {
+  padding: 20px;
+  border: 1px solid #2222;
+}
+
+h1.blog-details-title {
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+h5.blog-details-title {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
 }

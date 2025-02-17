@@ -39,134 +39,40 @@
         <!-- Page Banner Section End -->
 
         <div class="blog-grid-area">
-        <div class="container">
-
-            <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog-11.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog-22.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
+            <div class="container">
+                <div class="row">
+                    @foreach ($blogs as $blog)
+                        <div class="col-lg-4 col-md-4">
+                            <div class="single-blog-box">
+                                <div class="single-blog-thumb">
+                                    <img src="{{ asset('uploads/blogs/' . $blog->thumbnail) }}" alt="{{ $blog->blog_heading }}">
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-date-sec">
+                                        <ul>
+                                            <li>
+                                                <img src="{{ asset('frontend/assets/img/icon/calendar-icon.png') }}" alt="Date Icon">
+                                                {{ \Carbon\Carbon::parse($blog->date)->format('d M Y') }}
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('frontend/assets/img/icon/location-icon.png') }}" alt="Location Icon">
+                                                {{ $blog->location }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="{{ route('blog.details', $blog->slug) }}">{{ $blog->blog_heading }}</a>
+                                    <p>{{ $blog->short_description }}</p>
+                                    <div class="blog-service-button-sec">
+                                        <a href="{{ route('blog.details', $blog->slug) }}">Read More <img src="{{ asset('frontend/assets/img/icon/up-right-arrow.png') }}" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog-33.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog-44.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog-55.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="single-blog-box">
-                <div class="single-blog-thumb">
-                    <img src="img/blog/blog4.jpg" alt="">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-date-sec">
-                    <ul>
-                        <li><img src="img/icon/calendar-icon.png" alt="Date Icon">1 Jan 2025</li>
-                        <li><img src="img/icon/location-icon.png" alt="Location Icon">Mumbai</li>
-                    </ul>
-                    </div>
-                    <a href="blog-details.html">Lorem ipsum dolor sit, amet consectetur adipisicing</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Recusandae repellendus...</p>
-                    <div class="blog-service-button-sec">
-                    <a href="blog-details.html">Read More <img src="img/icon/up-right-arrow.png" alt=""></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            </div>
-
         </div>
-        </div>
+
 
         @include('components.frontend.footer')
         
