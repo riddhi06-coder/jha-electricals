@@ -31,7 +31,7 @@ class BlogTypesController extends Controller
     {
         $request->validate([
             'banner_heading' => 'nullable|string|max:255',
-            'product_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'product_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'thumbnail' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'date' => 'required|date',
             'location' => 'required|string|max:255',

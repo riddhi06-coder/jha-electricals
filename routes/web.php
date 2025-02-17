@@ -35,6 +35,7 @@ use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\ShoppingGuideController;
 use App\Http\Controllers\Backend\ShoppingGuidePartBController;
 use App\Http\Controllers\Backend\BlogTypesController;
+use App\Http\Controllers\Backend\BlogDetailsController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -161,8 +162,11 @@ Route::resource('product-category', ProductCategoryController::class);
 Route::resource('add-products',ProductsController::class);
 
 
-// ==== Manage Product Category in Products Section
+// ==== Manage Blogs Types in BLogs Section
 Route::resource('blog-types',BlogTypesController::class);
+
+// ==== Manage BLog Details in BLogs Section
+Route::resource('blog-detail',BlogDetailsController::class);
 
 // ===================================================================Frontend================================================================
 

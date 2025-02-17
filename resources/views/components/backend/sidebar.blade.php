@@ -165,8 +165,8 @@
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-blog') }}"></use>
                     </svg><span>Blogs</span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="{{ route('blog-types.index') }}">Blogs</a></li>
-                    <li><a href="{{ route('guide-partB.index') }}">Blog Details</a></li>
+                    <li><a href="{{ route('blog-types.index') }}">Blogs Section</a></li>
+                    <li><a href="{{ route('blog-detail.index') }}">Blog Details</a></li>
                   </ul>
                 </li>
 

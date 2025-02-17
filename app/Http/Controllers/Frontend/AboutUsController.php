@@ -30,6 +30,7 @@ use App\Models\Product;
 use App\Models\ShoppingPartA;
 use App\Models\ShoppingGuidePartB;
 use App\Models\BlogType;
+use App\Models\BlogDetails;
 
 
 use Carbon\Carbon;
@@ -134,10 +135,28 @@ class AboutUsController extends Controller
 
     public function blogs()
     {
-
         $blogs = BlogType::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
         return view('frontend.blogs', compact('blogs'));
     }
+
+
+    public function blog_details($slug)
+    {
+
+        $blogType = BlogType::where('slug', $slug)->firstOrFail();
+
+        $blogs = BlogDetails::with('blogType')  
+            ->where('blog_title_id', $blogType->id) 
+            ->whereNull('deleted_by') 
+            ->orderBy('inserted_at', 'asc') 
+            ->get();
+
+        $blog_head = BlogDetails::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+    
+        return view('frontend.blog-details', compact('blogs','blog_head'));
+    }
+    
+    
     
 
         
