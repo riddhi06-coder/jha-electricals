@@ -61,7 +61,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                          
+                            @foreach($products as $key => $product)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $product->product->product_name ?? 'N/A' }}</td> 
+                                    <td>
+                                        <a href="{{ route('product-detail.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('product-detail.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                       </table>
                     </div>

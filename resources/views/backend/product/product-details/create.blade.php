@@ -72,16 +72,13 @@
                                         <label class="form-label" for="product_name">Product Name <span class="txt-danger">*</span></label>
                                         <select class="form-control @error('product_name') is-invalid @enderror" id="product_name" name="product_name" required>
                                             <option value="">Select Product</option>
-                                            @foreach ($products as $product)
-                                                <option value="{{ $product->id }}" {{ old('product_name') == $product->id ? 'selected' : '' }}>
-                                                    {{ $product->product_name }}
-                                                </option>
-                                            @endforeach
+
                                         </select>
                                         @error('product_name')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+
 
                                     <div class="mb-4"></div>
 
@@ -176,6 +173,31 @@
 
        
        @include('components.backend.main-js')
+
+
+
+<script>
+    var productsByCategory = @json($groupedProducts);
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let categoryDropdown = document.getElementById("category_id");
+        let productDropdown = document.getElementById("product_name");
+
+        categoryDropdown.addEventListener("change", function () {
+            let selectedCategory = this.value;
+            productDropdown.innerHTML = '<option value="">Select Product</option>';
+
+            if (productsByCategory[selectedCategory]) {
+                productsByCategory[selectedCategory].forEach(function (product) {
+                    let option = document.createElement("option");
+                    option.value = product.id;
+                    option.textContent = product.name; 
+                    productDropdown.appendChild(option);
+                });
+            }
+        });
+    });
+</script>
 
 
 
