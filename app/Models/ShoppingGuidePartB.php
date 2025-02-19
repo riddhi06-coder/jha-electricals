@@ -9,7 +9,7 @@ class ShoppingGuidePartB extends Model
 {
     use HasFactory;
 
-    protected $table = 'shopping_partB';
+    protected $table = 'shopping_partb';
     public $timestamps = false;
 
     protected $fillable = [

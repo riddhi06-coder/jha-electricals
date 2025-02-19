@@ -9,7 +9,7 @@ class ResideLightPartA extends Model
 {
     use HasFactory;
 
-    protected $table = 'residential_partA';
+    protected $table = 'residential_parta';
     public $timestamps = false;
 
     protected $fillable = [

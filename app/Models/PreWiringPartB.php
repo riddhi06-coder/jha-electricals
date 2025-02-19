@@ -9,7 +9,7 @@ class PreWiringPartB extends Model
 {
     use HasFactory;
 
-    protected $table = 'pre_wiring_partB';
+    protected $table = 'pre_wiring_partb';
     public $timestamps = false;
 
     protected $fillable = [
