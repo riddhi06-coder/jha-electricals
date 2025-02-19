@@ -115,7 +115,7 @@ class ProductDetailController extends Controller
     {
         $categories = ProductCategory::whereNull('deleted_by')->get();
         $products = Product::whereNull('deleted_by')->get();
-    
+
         $groupedProducts = [];
         foreach ($products as $product) {
             $groupedProducts[$product->category_id][] = [
@@ -124,11 +124,17 @@ class ProductDetailController extends Controller
             ];
         }
 
-        $details = ProductDetail::whereNull('deleted_by')->get();
+        $details = ProductDetail::findOrFail($id);
 
-        return view('backend.product.product-details.edit', compact('details', 'categories','groupedProducts'));
+        $details->product_images = json_decode($details->product_images, true);
+        $details->product_codes = json_decode($details->product_codes, true);
+        $details->product_wattages = json_decode($details->product_wattages, true);
+        $details->product_sizes = json_decode($details->product_sizes, true);
+        $details->product_mrps = json_decode($details->product_mrps, true);
+
+        return view('backend.product.product-details.edit', compact('details', 'categories', 'groupedProducts', 'products'));
     }
-    
+
 
     
 }
