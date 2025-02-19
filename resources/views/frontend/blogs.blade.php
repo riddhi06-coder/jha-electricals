@@ -26,7 +26,7 @@
                         <div class="page-banner text-center">
                             <h2>{{ $firstblog->banner_heading }}</h2>
                             <ul class="page-breadcrumb">
-                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="{{ route('home.page') }}">Home</a></li>
                                 <li>{{ $firstblog->banner_heading }}</li>
                             </ul>
                         </div>

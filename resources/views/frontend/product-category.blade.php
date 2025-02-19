@@ -22,7 +22,7 @@
             <div class="page-banner text-center">
               <h2>{{ $heading->heading }}</h2>
               <ul class="page-breadcrumb">
-                <li><a href="./">Home</a></li>
+                <li><a href="{{ route('home.page') }}">Home</a></li>
                 <li>{{ $heading->heading }}</li>
               </ul>
             </div>

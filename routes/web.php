@@ -44,6 +44,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\CareerResourceController;
 use App\Http\Controllers\Frontend\ContactUsController;
+use App\Http\Controllers\Frontend\ProductDetailsController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -195,5 +196,5 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/blogs', [AboutUsController::class, 'blogs'])->name('blogs');
     Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
- 
+    Route::get('/product-details/{slug}', [ProductDetailsController::class, 'details'])->name('product-details');
 });

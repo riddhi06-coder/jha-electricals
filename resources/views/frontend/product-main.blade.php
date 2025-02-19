@@ -20,7 +20,7 @@
                         <div class="page-banner text-center">
                             <h2>{{ $category->category_name }}</h2>
                             <ul class="page-breadcrumb">
-                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="{{ route('home.page') }}">Home</a></li>
                                 <li><a href="{{ route('products.category') }}">Products</a></li>
                                 <li>{{ $category->category_name }}</li>
                             </ul>

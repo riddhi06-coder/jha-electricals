@@ -25,7 +25,7 @@
             <div class="page-banner text-center">
               <h2>{{ $whoWeAre->banner_title }}</h2>
               <ul class="page-breadcrumb">
-                <li><a href="./">Home</a></li>
+              <li><a href="{{ route('home.page') }}">Home</a></li>
                 <li>{{ $whoWeAre->banner_title }}</li>
               </ul>
             </div>
