@@ -10,7 +10,12 @@
 <div id="main-wrapper">
 
         @include('components.frontend.header')
-	 
+	       
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif 
      
     <!--slider section start-->
     <div class="hero-section section position-relative">
@@ -416,16 +421,20 @@
                   collections, the latest lookbooks and exclusive offers.
                 </p>
                 <div class="newsletter-form">
-                  <form id="mc-form" class="mc-form">
-                    <input type="email" placeholder="Enter Your Email Address Here..." required>
-                    <button type="submit" value="submit">SUBSCRIBE!</button>
-                  </form>
+                <form id="mc-form" class="mc-form" action="{{ route('subscribe') }}" method="POST">
+                    @csrf
+                    <input type="email" name="email" placeholder="Enter Your Email Address Here..." required value="{{ old('email') }}">
+                    <button type="submit">SUBSCRIBE!</button>
+                    
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </form>
+
+
+
                 </div>
-                <div class="mailchimp-alerts">
-                  <div class="mailchimp-submitting"></div>
-                  <div class="mailchimp-success"></div>
-                  <div class="mailchimp-error"></div>
-                </div>
+
               </div>
             </div>
           </div>
