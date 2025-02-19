@@ -38,135 +38,105 @@
       </div>
     </div>
     <!-- Page Banner Section End -->
+
+
     <div class="ledplsr-sec">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <div class="ledplsr-title-sec">
-              <h2>LED Panel Light <span>(Square/Round Conceaded Type)</span></h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="ledplsr-title-sec">
+                        <h2>{{ $product->product_name }}</h2>
+                    </div>
+                </div>
+
+                @php
+                    $images = json_decode($product->product_images, true) ?? [];
+                @endphp
+
+                <div class="col-lg-8 col-md-8">
+                    <div class="ledplsr-product-image-sec">
+                        @if (!empty($images[0]))
+                            <img src="{{ asset('/uploads/products/' . $images[0]) }}" class="img-fluid" alt="{{ $product->product_name }}">
+                        @else
+                            <img src="{{ asset('img/banner/102-img.jpg') }}" class="img-fluid" alt="Default Image">
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    @if (!empty($images[1]))
+                        <div class="ledplsr-product-image-two-sec">
+                            <img src="{{ asset('/uploads/products/' . $images[1]) }}" class="img-fluid" alt="{{ $product->product_name }}">
+                        </div>
+                    @endif
+                    
+                    @if (!empty($images[2]))
+                        <div class="ledplsr-product-image-three-sec">
+                            <img src="{{ asset('/uploads/products/' . $images[2]) }}" class="img-fluid" alt="{{ $product->product_name }}">
+                        </div>
+                    @endif
+                </div>
             </div>
-          </div>
-          <div class="col-lg-8 col-md-8">
-            <div class="ledplsr-product-image-sec">
-                <img src="img/banner/102-img.jpg" class="img-fluid" alt="Banner images">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="ledplsr-product-image-two-sec">
-                <img src="img/products/dlite-2.webp" class="img-fluid" alt="Banner images">
-            </div>
-            <div class="ledplsr-product-image-three-sec">
-                <img src="img/products/dlite-1.webp" class="img-fluid" alt="Banner images">
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+
+
+
     <div class="led-panel-light-sq-ron-con-sec">
-      <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            <div class="lplsrc-title-sec">
-              <h2>Specifications</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="lplsrc-title-sec">
+                        <h2>{{ $product->section_heading }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Code</th>
+                                        <th>Wattage</th>
+                                        <th>Outer Size (mm)</th>
+                                        <th>MRP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $codes = json_decode($product->product_codes, true) ?? [];
+                                        $wattages = json_decode($product->product_wattages, true) ?? [];
+                                        $sizes = json_decode($product->product_sizes, true) ?? [];
+                                        $mrps = json_decode($product->product_mrps, true) ?? [];
+                                    @endphp
+
+                                    @foreach ($codes as $index => $code)
+                                        <tr>
+                                            <td>{{ $code }}</td>
+                                            <td>{{ $wattages[$index] ?? '-' }}</td>
+                                            <td>{{ $sizes[$index] ?? '-' }}</td>
+                                            <td>₹{{ $mrps[$index] ?? 0 }}/-</td>
+                                        </tr>
+                                    @endforeach
+                                    
+                                    @if(empty($codes))
+                                        <tr>
+                                            <td colspan="4" class="text-center">No specifications available.</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md-12">
-            <div class="panel">
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr class="active">
-                      <th>Code</th>
-                      <th>Wattage</th>
-                      <th>Outer Size (mm)</th>
-                      <th>MRP</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>JL-1001</td>
-                      <td>4W</td>
-                      <td>82 x 82 x 6</td>
-                      <td>₹355/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1002</td>
-                      <td>6W</td>
-                      <td>110 x 110 x 6</td>
-                      <td>₹515/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1003</td>
-                      <td>9W</td>
-                      <td>120 x 120 x 6</td>
-                      <td>₹535/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1004</td>
-                      <td>12W</td>
-                      <td>150 x 150 x 6</td>
-                      <td>₹690/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1005</td>
-                      <td>15W</td>
-                      <td>172 x 172 x 6</td>
-                      <td>₹710/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1006</td>
-                      <td>18W</td>
-                      <td>190 x 190 x 6</td>
-                      <td>₹935/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1007</td>
-                      <td>22W</td>
-                      <td>220 x 220 x 6</td>
-                      <td>₹1,000/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1008</td>
-                      <td>24W</td>
-                      <td>300 x 300 x 35</td>
-                      <td>₹2,265/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1009</td>
-                      <td>30W</td>
-                      <td>300 x 300 x 35</td>
-                      <td>₹2,510/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1010</td>
-                      <td>40W</td>
-                      <td>595 x 595 x 35</td>
-                      <td>₹2,775/-</td>
-                    </tr>
-
-                    <tr>
-                      <td>JL-1011</td>
-                      <td>50W</td>
-                      <td>595 x 595 x 35</td>
-                      <td>₹3,265/-</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+
+
+
+
+
     <div class="call-to-action-wrap led-cta-sec">
       <div class="container">
         <div class="row">
