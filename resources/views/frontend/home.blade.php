@@ -259,7 +259,7 @@
                         <div class="cta-banner-text">
                             <h3>{{ $homeContact->title }}</h3>
                             <h5>{{ $homeContact->heading }}</h5>
-                            <a href="#" class="small-btn-style">Contact Us</a>
+                            <a href="{{ route('contact.us') }}" class="small-btn-style">Contact Us</a>
                         </div>
                     </div>
                 </div>
