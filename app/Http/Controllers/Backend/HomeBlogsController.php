@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\HomeBlog;
+use App\Models\BlogType;
 
 use Carbon\Carbon;
 
@@ -18,27 +19,32 @@ class HomeBlogsController extends Controller
 
     public function index()
     {
-        $blogs = HomeBlog::orderBy('id', 'desc')->whereNull('deleted_by')->get();
+        $blogs = HomeBlog::select('home_blog.*', 'blog_types.blog_heading')
+            ->join('blog_types', 'home_blog.blog_title', '=', 'blog_types.id')
+            ->whereNull('home_blog.deleted_by')
+            ->orderBy('home_blog.id', 'desc')
+            ->get();
+    
         return view('backend.home.blogs.index', compact('blogs'));
     }
+    
 
-    public function create(Request $request)
-    { 
-        return view('backend.home.blogs.create');
+    public function create()
+    {
+        $blogTypes = BlogType::whereNull('deleted_by')->pluck('blog_heading', 'id'); 
+        return view('backend.home.blogs.create', compact('blogTypes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'nullable|string|max:255',
-            'blog_title' => 'required|string|max:255',
+            'blog_title' => 'required|exists:blog_types,id',
             'blog_author' => 'required|string|max:255',
             'blog_date' => 'required|date',
-            'banner_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', // Max 2MB
+            'banner_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
-            'title.max' => 'The title must not exceed 255 characters.',
-            'blog_title.required' => 'Please enter a Blog Title.',
-            'blog_title.max' => 'The Blog Title must not exceed 255 characters.',
+            'blog_title.required' => 'Please select a Blog Title.',
+            'blog_title.exists' => 'The selected Blog Title is invalid.',
             'blog_author.required' => 'Please enter a Blog Author.',
             'blog_author.max' => 'The Blog Author name must not exceed 255 characters.',
             'blog_date.required' => 'Please enter a Blog Date.',
@@ -65,7 +71,6 @@ class HomeBlogsController extends Controller
             }
         }
         HomeBlog::create([
-            'title' => $request->title,
             'blog_title' => $request->blog_title,
             'blog_author' => $request->blog_author,
             'blog_date' => $request->blog_date,
@@ -80,21 +85,21 @@ class HomeBlogsController extends Controller
     public function edit($id)
     {
         $blogs = HomeBlog::findOrFail($id);
-        return view('backend.home.blogs.edit', compact('blogs'));
+        $blogTypes = BlogType::whereNull('deleted_by')->pluck('blog_heading', 'id'); 
+    
+        return view('backend.home.blogs.edit', compact('blogs', 'blogTypes'));
     }
-
+    
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'nullable|string|max:255',
-            'blog_title' => 'required|string|max:255',
+            'blog_title' => 'required|exists:blog_types,id',
             'blog_author' => 'required|string|max:255',
             'blog_date' => 'required|date',
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
-            'title.max' => 'The title must not exceed 255 characters.',
-            'blog_title.required' => 'Please enter a Blog Title.',
-            'blog_title.max' => 'The Blog Title must not exceed 255 characters.',
+            'blog_title.required' => 'Please select a Blog Title.',
+            'blog_title.exists' => 'The selected Blog Title is invalid.',
             'blog_author.required' => 'Please enter a Blog Author.',
             'blog_author.max' => 'The Blog Author name must not exceed 255 characters.',
             'blog_date.required' => 'Please enter a Blog Date.',
@@ -123,7 +128,6 @@ class HomeBlogsController extends Controller
         }
 
         $blog->update([
-            'title' => $request->title,
             'blog_title' => $request->blog_title,
             'blog_author' => $request->blog_author,
             'blog_date' => $request->blog_date,

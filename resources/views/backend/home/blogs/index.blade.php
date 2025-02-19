@@ -67,7 +67,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td> 
                                     <td>{{ $blog->blog_author }}</td>
-                                    <td>{{ $blog->blog_title }}</td>
+                                    <td>{{ $blog->blog_heading }}</td>
                                     <td>
                                         @if($blog->image)
                                             <img src="{{ asset('uploads/home/blogs/' . $blog->image) }}" alt="Blog Image" width="80" height="60" style="border-radius: 5px;">

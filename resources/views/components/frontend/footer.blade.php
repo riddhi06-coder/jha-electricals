@@ -10,9 +10,14 @@
                                 @php
                                     $footer = \App\Models\HomeFooter::first();
                                 @endphp
-                                <li><i class="fa fa-envelope"></i> Email: {{ $footer->email }}</li>
-                                <li><i class="fa fa-phone"></i> Call: {{ $footer->contact_number }}</li>
-                                <li><i class="fa fa-map-marker"></i> {!! $footer->address !!}</li>
+                                <li><i class="fa fa-envelope"></i>Email: <a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
+                                <li><i class="fa fa-phone"></i>  Call: <a href="tel:{{ $footer->contact_number }}">{{ $footer->contact_number }}</a></li>
+                                <li>
+                                    <i class="fa fa-map-marker"></i> 
+                                    <a href="https://maps.app.goo.gl/1n97eYHCXh4vM7QV7" target="_blank" rel="noopener noreferrer">
+                                        {!! $footer->address !!}
+                                    </a>
+                                </li>
                                 <li><i class="fa fa-clock-o"></i> {{ $footer->time }}</li>
                             </ul>
                         </div>

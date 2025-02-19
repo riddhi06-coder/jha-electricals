@@ -53,20 +53,16 @@
                                     @csrf
                                     @method('PUT')
 
-                                    <!-- Title -->
-                                    <div class="col-xxl-4 col-sm-6">
-                                        <label class="form-label" for="title">Title</label>
-                                        <input class="form-control" id="title" type="text" name="title" 
-                                            placeholder="Enter Title" value="{{ old('title', $blogs->title) }}">
-                                        <div class="invalid-feedback">Please enter a title.</div>
-                                    </div>
-
                                     <!-- Blog Title -->
                                     <div class="col-xxl-4 col-sm-6">
                                         <label class="form-label" for="blog_title">Blog Title <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="blog_title" type="text" name="blog_title" 
-                                            placeholder="Enter Blog Title" value="{{ old('blog_title', $blogs->blog_title) }}" required>
-                                        <div class="invalid-feedback">Please enter a Blog Title.</div>
+                                        <select class="form-control" id="blog_title" name="blog_title" required>
+                                            <option value="">Select Blog Title</option>
+                                            @foreach($blogTypes as $id => $heading)
+                                                <option value="{{ $id }}" {{ $blogs->blog_type_id == $id ? 'selected' : '' }}>{{ $heading }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">Please select a Blog Title.</div>
                                     </div>
 
                                     <!-- Blog Author -->

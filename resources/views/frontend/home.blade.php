@@ -382,25 +382,29 @@
             ]'>
                 <!-- Loop through blogs -->
                 @foreach ($homeBlogs as $blog)
-                <div class="blog col">
-                    <div class="blog-inner">
-                        <div class="media">
-                            <a href="#" class="image">
-                                <!-- Use the dynamic image path -->
-                                <img src="{{ asset('uploads/home/blogs/' . $blog->image) }}" alt="Blog Image" width="364" height="265" class="img-fluid" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h3 class="title"><a href="#">{{ $blog->blog_title }}</a></h3>
-                            <ul class="meta">
-                                <li>By <a href="#" tabindex="0">{{ $blog->blog_author }}</a></li>
-                                <li>{{ \Carbon\Carbon::parse($blog->blog_date)->format('d M Y') }}</li>
-                            </ul>
-                            <a class="small-btn-style" href="#">Read more</a>
+                    <div class="blog col">
+                        <div class="blog-inner">
+                            <div class="media">
+                                <a href="#" class="image">
+                                    <!-- Use the dynamic image path -->
+                                    <img src="{{ asset('uploads/home/blogs/' . $blog->image) }}" alt="Blog Image" width="364" height="265" class="img-fluid" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="{{ route('blog.details', ['slug' => $blog->slug]) }}">{{ $blog->blog_heading }}</a>
+                                </h3>
+                                <ul class="meta">
+                                    <li>By <a href="{{ route('blog.details', ['slug' => $blog->slug]) }}" tabindex="0">{{ $blog->blog_author }}</a></li>
+                                    <li>{{ \Carbon\Carbon::parse($blog->blog_date)->format('d M Y') }}</li>
+                                </ul>
+                                <a class="small-btn-style" href="{{ route('blog.details', ['slug' => $blog->slug]) }}">Read more</a>
+                            </div>
+
                         </div>
                     </div>
-                </div>
                 @endforeach
+
                 <!-- End Loop -->
             </div>
         </div>

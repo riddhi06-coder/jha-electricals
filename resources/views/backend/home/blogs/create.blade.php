@@ -50,19 +50,18 @@
                                 <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('home-blogs.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
-                                    <!-- Title -->
-                                    <div class="col-xxl-4 col-sm-6">
-                                        <label class="form-label" for="title">Title</label>
-                                        <input class="form-control" id="title" type="text" name="title" placeholder="Enter Title" >
-                                        <div class="invalid-feedback">Please enter a title.</div>
-                                    </div>
-
                                     <!-- Blog Title -->
                                     <div class="col-xxl-4 col-sm-6">
                                         <label class="form-label" for="blog_title">Blog Title <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="blog_title" type="text" name="blog_title" placeholder="Enter Blog Title" required>
-                                        <div class="invalid-feedback">Please enter a Blog Title.</div>
+                                        <select class="form-control" id="blog_title" name="blog_title" required>
+                                            <option value="">Select Blog Title</option>
+                                            @foreach($blogTypes as $id => $heading)
+                                                <option value="{{ $id }}">{{ $heading }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback">Please select a Blog Title.</div>
                                     </div>
+
 
                                      <!-- Blog Author -->
                                     <div class="col-xxl-4 col-sm-6">

@@ -32,8 +32,13 @@ class HomeController extends Controller
         $homeQualities = HomeQuality::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
         $homeContact = HomeContact::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $homeTestimonials = HomeTestimonial::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
-        $homeBlogs = HomeBlog::orderBy('inserted_at', 'desc')->whereNull('deleted_by')->get();
-    
+
+        $homeBlogs = HomeBlog::select('home_blog.*', 'blog_types.blog_heading', 'blog_types.slug')
+                            ->join('blog_types', 'home_blog.blog_title', '=', 'blog_types.id')
+                            ->whereNull('home_blog.deleted_by')
+                            ->orderBy('home_blog.inserted_at', 'desc')
+                            ->get();
+
         return view('frontend.home', compact('banners', 'homeAbout', 'homeFounder', 'homeRange', 'homeQualities', 'homeContact', 'homeTestimonials', 'homeBlogs'));
     }
     
