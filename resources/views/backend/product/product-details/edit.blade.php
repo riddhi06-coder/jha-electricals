@@ -90,33 +90,38 @@
                                         <button type="button" class="btn btn-success" onclick="addRow()">Add More</button>
                                     </div>
                                     <table class="table table-bordered p-3" id="productTable" style="border: 2px solid #dee2e6;">
-                                        <thead>
-                                            <tr>
-                                                <th>Image <span class="txt-danger">*</span></th>
-                                                <th>Image Preview</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($details->product_images as $index => $image)
-                                                <tr>
-                                                    <td>
-                                                        <input type="file" class="form-control" name="product_images[]" accept="image/*"
-                                                            onchange="previewImage(this, 'imagePreview_{{ $index }}')" required>
-                                                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
-                                                        <br>
-                                                        <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('/uploads/products/' . $image) }}" alt="Image Preview" id="imagePreview_{{ $index }}" class="img-thumbnail" width="100">
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+    <thead>
+        <tr>
+            <th>Image <span class="txt-danger">*</span></th>
+            <th>Image Preview</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($details->product_images as $index => $image)
+            <tr>
+                <td>
+                    <input type="file" class="form-control" name="product_images[]" accept="image/*"
+                        onchange="previewImage(this, 'imagePreview_{{ $index }}')">
+                    <input type="hidden" name="existing_images[]" value="{{ $image }}" class="existing-image">
+                    <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                    <br>
+                    <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                </td>
+                <td class="text-center">
+                    <img src="{{ asset('/uploads/products/' . $image) }}" alt="Image Preview" id="imagePreview_{{ $index }}" class="img-thumbnail" width="100">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="removeRow(this, '{{ $image }}')">Remove</button>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<!-- Hidden input to track removed images -->
+<input type="hidden" name="removed_images" id="removed_images">
+
                                  
 
                                     <div class="mb-4"></div>
@@ -189,7 +194,7 @@
 
 
 
-       <script>
+<script>
     var productsByCategory = @json($groupedProducts);
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -240,10 +245,24 @@
         `;
     }
 
-    function removeRow(button) {
-        let row = button.closest('tr');
-        row.remove();
+    let removedImages = [];
+
+function removeRow(button, imageName = null) {
+    let row = button.closest("tr");
+
+    if (imageName) {
+        removedImages.push(imageName);
+        document.getElementById("removed_images").value = JSON.stringify(removedImages);
+
+        // Remove the associated hidden input for existing image
+        let hiddenInput = row.querySelector(".existing-image");
+        if (hiddenInput) {
+            hiddenInput.remove();
+        }
     }
+
+    row.remove();
+}
 
     function previewImage(input, imgId) {
         let imgElement = document.getElementById(imgId);
