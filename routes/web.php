@@ -32,10 +32,12 @@ use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ProductCategoryController;
 use App\Http\Controllers\Backend\ProductsController;
+use App\Http\Controllers\Backend\ProductDetailController;
 use App\Http\Controllers\Backend\ShoppingGuideController;
 use App\Http\Controllers\Backend\ShoppingGuidePartBController;
 use App\Http\Controllers\Backend\BlogTypesController;
 use App\Http\Controllers\Backend\BlogDetailsController;
+
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -160,6 +162,9 @@ Route::resource('product-category', ProductCategoryController::class);
 
 // ==== Manage Product Category in Products Section
 Route::resource('add-products',ProductsController::class);
+
+// ==== Manage Product Category in Products Section
+Route::resource('product-detail',ProductDetailController::class);
 
 
 // ==== Manage Blogs Types in BLogs Section

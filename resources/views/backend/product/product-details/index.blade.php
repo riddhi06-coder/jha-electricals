@@ -41,13 +41,13 @@
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb mb-0">
 										<li class="breadcrumb-item">
-											<a href="{{ route('add-products.index') }}">Home</a>
+											<a href="{{ route('product-detail.index') }}">Home</a>
 										</li>
-										<li class="breadcrumb-item active" aria-current="page">Product List</li>
+										<li class="breadcrumb-item active" aria-current="page">Product Details List</li>
 									</ol>
 								</nav>
 
-								<a href="{{ route('add-products.create') }}" class="btn btn-primary px-5 radius-30">+ Add Product</a>
+								<a href="{{ route('product-detail.create') }}" class="btn btn-primary px-5 radius-30">+ Add Product Details</a>
 							</div>
 
 
@@ -56,32 +56,12 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <!-- <th>Category Name</th> -->
                             <th>Product Name</th>
-                            <th>Product Thumbnail Image</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $key => $product)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <!-- <td>{{ $product->category_name ?? 'N/A' }}</td>  -->
-                                    <td>{{ $product->product_name }}</td>
-                                    
-                                    <td>
-                                        <img src="{{ asset('/uploads/products/' . $product->image) }}" alt="Product Image" width="50" height="50">
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('add-products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                        <form action="{{ route('add-products.destroy', $product->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                          
                         </tbody>
                       </table>
                     </div>
