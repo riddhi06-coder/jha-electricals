@@ -25,6 +25,10 @@ class ProductDetailController extends Controller
 
     public function create()
     { 
-        return view('backend.product.product-details.create');
+        $categories = ProductCategory::whereNull('deleted_by')->get();
+        $products = Product::whereNull('deleted_by')->get(); 
+    
+        return view('backend.product.product-details.create', compact('categories', 'products'));
     }
+    
 }

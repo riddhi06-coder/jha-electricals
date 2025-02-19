@@ -38,17 +38,17 @@
                   <div class="card-body">
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
-								<nav aria-label="breadcrumb" role="navigation">
-									<ol class="breadcrumb mb-0">
-										<li class="breadcrumb-item">
-											<a href="{{ route('product-detail.index') }}">Home</a>
-										</li>
-										<li class="breadcrumb-item active" aria-current="page">Product Details List</li>
-									</ol>
-								</nav>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('product-detail.index') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Product Details List</li>
+                            </ol>
+                        </nav>
 
-								<a href="{{ route('product-detail.create') }}" class="btn btn-primary px-5 radius-30">+ Add Product Details</a>
-							</div>
+                        <a href="{{ route('product-detail.create') }}" class="btn btn-primary px-5 radius-30">+ Add Product Details</a>
+                    </div>
 
 
                     <div class="table-responsive custom-scrollbar">
