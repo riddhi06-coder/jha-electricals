@@ -80,8 +80,6 @@
         </div>
     </div>
 
-
-
     <div class="led-panel-light-sq-ron-con-sec">
         <div class="container">
             <div class="row">

@@ -39,16 +39,16 @@
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-list-single-grid-sec mb-30">
                                 <div class="product-image">
-                                    <a href="#">
+                                    <a href="{{ route('product-details', $product->slug) }}">
                                         <img src="{{ asset('uploads/products/' . $product->image) }}" class="img-fluid" alt="{{ $product->product_name }}">
                                     </a>
                                     <div class="product-action d-flex justify-content-between">
-                                        <a class="product-btn" href="#">Know More</a>
+                                        <a class="product-btn" href="{{ route('product-details', $product->slug) }}">Know More</a>
                                     </div>
                                 </div>
                                 <div class="product-list-content-sec">
                                     <h3 class="title">
-                                        <a href="#">{{ $product->product_name }}</a>
+                                        <a href="{{ route('product-details', $product->slug) }}">{{ $product->product_name }}</a>
                                     </h3>
                                 </div>
                             </div>
