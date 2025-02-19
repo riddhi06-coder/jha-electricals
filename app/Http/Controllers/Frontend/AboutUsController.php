@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\WhoWeAre;
 use App\Models\ProductVisionRange;
@@ -154,6 +155,27 @@ class AboutUsController extends Controller
         $blog_head = BlogDetails::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
     
         return view('frontend.blog-details', compact('blogs','blog_head'));
+    }
+    
+
+    public function subscribe(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+        ]);
+    
+        $emailData = [
+            'email' => $validatedData['email'],
+        ];
+    
+        Mail::send('frontend.subscription', $emailData, function ($message) use ($validatedData) {
+            $message->to('riddhi@matrixbricks.com')
+                    ->cc('shweta@matrixbricks.com')
+                    ->subject('New Subscription')
+                    ->replyTo($validatedData['email']);
+        });
+    
+        return redirect()->back()->with('success', 'Thank you for subscribing!');
     }
     
     

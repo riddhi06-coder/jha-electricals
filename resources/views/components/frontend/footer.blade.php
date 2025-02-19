@@ -45,12 +45,17 @@
                             <h3>Newsletter</h3>
                         </div>
                         <p>Subscribe to our newsletters now and stay up to date with new collections, the latest lookbooks and exclusive offers.</p>
-                        <form action="#">
+                        <form action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="form-field">
-                                <input type="email" placeholder="Enter Your Email Address" required>
+                                <input type="email" name="email" placeholder="Enter Your Email Address" required>
                                 <button type="submit" class="small-btn-style">SUBSCRIBE!</button>
                             </div>
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </form>
+
                     </div>
                 </div>
             </div>
