@@ -195,6 +195,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/blogs', [AboutUsController::class, 'blogs'])->name('blogs');
     Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
+    Route::post('/submit-enquiry', [ProductDetailsController::class, 'submitEnquiry'])->name('enquiry.submit');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
     Route::get('/product-details/{slug}', [ProductDetailsController::class, 'details'])->name('product-details');
 });

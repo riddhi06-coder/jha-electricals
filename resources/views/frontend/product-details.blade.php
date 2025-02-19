@@ -10,7 +10,13 @@
 <div id="main-wrapper">
 
         @include('components.frontend.header')
-	 
+
+        
+	      @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
     <!-- Page Banner Section Start -->
     <div class="page-banner-section section bg-image" data-bg="{{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }}"
@@ -154,49 +160,90 @@
 
 
 
-      <!-- Modal -->
-      <div class="modal fade bann-modal-sec" id="contactModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bann-modal-header-sec">
-                <h5 class="modal-title bann-modal-title-sec" id="modalLabel">Enquiry Form</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" id="name" placeholder="Name">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" id="product" placeholder="Product Name">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="number" class="form-control" id="quantity" placeholder="Quantity">
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" id="location" placeholder="Location">
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <textarea class="form-control" id="message" rows="3" placeholder="Message"></textarea>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="bann-modal-btn-sec">
-                                <a href="contact-us.html" class="small-btn-style">Submit</a>
-                            </div>
-                        </div>
-                    </div>
+     <!-- Modal -->
+    <div class="modal fade bann-modal-sec" id="contactModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bann-modal-header-sec">
+                    <h5 class="modal-title bann-modal-title-sec" id="modalLabel">Enquiry Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+           
+
+                <form action="{{ route('enquiry.submit') }}" method="POST">
+                  @csrf
+                  <div class="row">
+                      <!-- Name -->
+                      <div class="col-md-12 mb-3">
+                          <input type="text" class="form-control" name="name" placeholder="Name *" required value="{{ old('name') }}" pattern="^[a-zA-Z\s]+$" title="Only letters and spaces are allowed.">
+                          @error('name')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Phone -->
+                      <div class="col-md-6 mb-3">
+                          <input type="tel" class="form-control" name="phone" placeholder="Phone Number *" required minlength="10" maxlength="12" value="{{ old('phone') }}">
+                          @error('phone')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Email -->
+                      <div class="col-md-6 mb-3">
+                          <input type="email" class="form-control" name="email" placeholder="Email *" required value="{{ old('email') }}">
+                          @error('email')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Product -->
+                      <div class="col-md-6 mb-3">
+                          <input type="text" class="form-control" name="product" placeholder="Product Name *" required value="{{ old('product') }}">
+                          @error('product')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Quantity -->
+                      <div class="col-md-6 mb-3">
+                          <input type="number" class="form-control" name="quantity" placeholder="Quantity *" required min="1" value="{{ old('quantity') }}">
+                          @error('quantity')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Location -->
+                      <div class="col-md-12 mb-3">
+                          <input type="text" class="form-control" name="location" placeholder="Location *" required value="{{ old('location') }}">
+                          @error('location')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Message -->
+                      <div class="col-md-12 mb-3">
+                          <textarea class="form-control" name="message" rows="3" placeholder="Message *">{{ old('message') }}</textarea>
+                          @error('message')
+                              <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
+                      <!-- Submit Button -->
+                      <div class="col-md-12">
+                          <button type="submit" class="small-btn-style">Submit</button>
+                      </div>
+                  </div>
                 </form>
+
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 
         @include('components.frontend.footer')
         
