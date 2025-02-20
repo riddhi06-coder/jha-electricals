@@ -16,6 +16,7 @@
             width: 50%;
             max-width: 150px;
             height: auto;
+            align: center;
         }
 
         .footer {
