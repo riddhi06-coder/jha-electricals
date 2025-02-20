@@ -185,6 +185,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
 
     Route::get('/home', [HomeController::class, 'index'])->name('home.page');
     Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy.policy');
+    Route::get('/thank-you', [HomeController::class, 'thankyou'])->name('thank.you');
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
@@ -200,8 +201,8 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/shopping-guide', [AboutUsController::class, 'shopping_guide'])->name('shopping.guide');
     Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/blogs', [AboutUsController::class, 'blogs'])->name('blogs');
-    Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
     Route::post('/submit-enquiry', [ProductDetailsController::class, 'submitEnquiry'])->name('enquiry.submit');
+    Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
     Route::get('/product-details/{slug}', [ProductDetailsController::class, 'details'])->name('product-details');
 });

@@ -49,5 +49,10 @@ class HomeController extends Controller
         $privacy = PrivacyPolicy::whereNull('deleted_by')->orderBy('inserted_at', 'desc')->first();
         return view('frontend.privacy', compact('privacy'));
     }
+
+    public function thankyou()
+    {
+        return view('frontend.thankyou');
+    }
     
 }
