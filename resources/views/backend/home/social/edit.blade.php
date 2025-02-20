@@ -70,7 +70,9 @@
                                                                 <option value="Twitter" @if($item->platform == 'Twitter') selected @endif>Twitter</option>
                                                                 <option value="Instagram" @if($item->platform == 'Instagram') selected @endif>Instagram</option>
                                                                 <option value="LinkedIn" @if($item->platform == 'LinkedIn') selected @endif>LinkedIn</option>
-                                                                <option value="YouTube" @if($item->platform == 'YouTube') selected @endif>YouTube</option>
+                                                                <option value="YouTube" @if($item->platform == 'Youtube') selected @endif>YouTube</option>
+                                                                <option value="Watsapp" @if($item->platform == 'Watsapp') selected @endif>Watsapp</option>
+                                                                <option value="Pinterest" @if($item->platform == 'Pinterest') selected @endif>Pinterest</option>
                                                             </select>
                                                         </td>
                                                         <td>

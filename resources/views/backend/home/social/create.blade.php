@@ -70,6 +70,8 @@
                                                             <option value="Instagram">Instagram</option>
                                                             <option value="LinkedIn">LinkedIn</option>
                                                             <option value="Youtube">YouTube</option>
+                                                            <option value="Watsapp">Watsapp</option>
+                                                            <option value="Pinterest">Pinterest</option>
                                                         </select>
                                                     </td>
                                                     <td>
