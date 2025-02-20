@@ -47,7 +47,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard')->with('message', 'You are logged-in Successfully.');
         }
         else{
-            return redirect()->route('admin.login')->with(['Input' => $request->only('email','password'), 'error' => 'Your Email id and Password do not match our records!']);
+            return redirect()->route('admin.login')->with(['Input' => $request->only('email','password'), 'message' => 'Credentials do not match our records!']);
         }
 
     }
