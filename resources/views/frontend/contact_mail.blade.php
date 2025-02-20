@@ -11,8 +11,8 @@
         }
 
         .logo {
-            width: 80%;
-            max-width: 150px;
+            width: 50%;
+            max-width: 200px;
             height: auto;
             display: block;
             margin: 0 auto; /* Centers the image */
