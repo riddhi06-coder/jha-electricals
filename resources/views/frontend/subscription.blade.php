@@ -8,15 +8,40 @@
         h2 { color: #333; }
         p { font-size: 16px; color: #555; }
         .footer { margin-top: 20px; font-size: 14px; color: #777; }
+
+        .header {
+            text-align: center; /* Centers inline elements like img */
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 50%;
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Centers the image */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #000;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>New Subscription</h2>
         <p>A new user has subscribed to your newsletter.</p>
-        <p><strong>Email:</strong> {{ $email }}</p>
+        <p><strong>Email:</strong> {{ $email }}</p><br>
         
-        <p class="footer">This is an automated email. Please do not reply.</p>
+        
+    <hr>
+    <!-- Footer Section -->
+    <div class="footer">
+        <div class="copyright">© {{ date('Y') }} Jha Electricals. All rights reserved.</div>
+    </div>
     </div>
 </body>
 </html>
