@@ -33,7 +33,7 @@
 <body>
     <div class="header">
         <img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" alt="Jha Electricals" class="logo">
-    </div><br>
+    </div>
 
 
     <div class="container">
