@@ -38,7 +38,7 @@
                             <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
                             <li><a href="{{ route('blogs') }}">Blogs</a></li>
                             <li><a href="{{ route('shopping.guide') }}">Shopping Guide</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
                             <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                         </ul>
                     </div>

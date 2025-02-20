@@ -17,6 +17,7 @@ use App\Models\HomeQuality;
 use App\Models\HomeContact;
 use App\Models\HomeTestimonial;
 use App\Models\HomeBlog;
+use App\Models\PrivacyPolicy;
 
 use Carbon\Carbon;
 
@@ -40,6 +41,13 @@ class HomeController extends Controller
                             ->get();
 
         return view('frontend.home', compact('banners', 'homeAbout', 'homeFounder', 'homeRange', 'homeQualities', 'homeContact', 'homeTestimonials', 'homeBlogs'));
+    }
+
+
+    public function privacy_policy()
+    {
+        $privacy = PrivacyPolicy::whereNull('deleted_by')->orderBy('inserted_at', 'desc')->first();
+        return view('frontend.privacy', compact('privacy'));
     }
     
 }

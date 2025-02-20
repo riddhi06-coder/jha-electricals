@@ -12455,3 +12455,56 @@ h5.blog-details-title {
   font-weight: 900;
   text-transform: uppercase;
 }
+
+/*======================*/
+.thank-you-sec {
+    padding: 60px 0;
+}
+
+.thank-you-sec .thank-you-content-sec {
+    text-align: center;
+}
+
+.thank-you-sec .thank-you-content-sec img {
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+.thank-you-sec .thank-you-content-sec h2 {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    margin: 0;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.thank-you-sec .thank-you-content-sec p {
+    text-align: center;
+}
+
+/*==========*/
+.privacy-policy-sec {
+  padding: 60px 0;
+}
+
+.privacy-policy-sec .privacy-policy-content-sec h4 {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 17px;
+    margin-top: 0;
+    font-family: 'jost-extrabold';
+    margin-bottom: 16px;
+}
+
+.privacy-policy-list-sec {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+
+
+
+
+

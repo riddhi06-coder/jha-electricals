@@ -184,6 +184,7 @@ Route::resource('privacy',PrivacyController::class);
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
     Route::get('/home', [HomeController::class, 'index'])->name('home.page');
+    Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy.policy');
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.page');
     Route::get('/professional-installation', [AboutUsController::class, 'installation'])->name('professional.installation');
     Route::get('/prewiring-consultation', [AboutUsController::class, 'consultation'])->name('prewiring.consultation');
