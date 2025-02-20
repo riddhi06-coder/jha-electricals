@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form Details</title>
     <style>
-         .footer {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 14px;
-            color: #000;
+        .header {
+            text-align: center; /* Centers inline elements like img */
+            margin-bottom: 20px;
         }
 
         .logo {
             width: 50%;
             max-width: 150px;
             height: auto;
-            align: center;
+            display: block;
+            margin: 0 auto; /* Centers the image */
         }
 
         .footer {
@@ -26,6 +25,7 @@
             color: #000;
         }
     </style>
+
 </head>
 <body>
     <div class="header">
