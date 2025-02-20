@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ asset('assets/frontend/img/logo/jha-electricals-logo.png') }}" alt="Jha Electricals" class="logo">
+        <img src="{{ asset('frontend/assets/img/logo/jha-electricals-logo.png') }}" alt="Jha Electricals" class="logo">
     </div>
 
     <h3>New Contact Form Details</h3>

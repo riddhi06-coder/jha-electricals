@@ -66,7 +66,7 @@ class ProductDetailsController extends Controller
         });
         
 
-        return redirect()->back()->with('success', 'Your enquiry has been submitted successfully!');
+        return redirect()->route('thank.you');
     }
     
     

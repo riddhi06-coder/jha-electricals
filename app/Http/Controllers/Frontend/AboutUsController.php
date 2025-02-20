@@ -175,7 +175,7 @@ class AboutUsController extends Controller
                     ->replyTo($validatedData['email']);
         });
     
-        return redirect()->back()->with('success', 'Thank you for subscribing!');
+        return redirect()->route('thank.you');
     }
     
 

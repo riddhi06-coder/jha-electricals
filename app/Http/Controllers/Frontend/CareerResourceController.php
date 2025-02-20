@@ -80,6 +80,6 @@ class CareerResourceController extends Controller
                 ->attach($resumeFullPath);
         });
 
-        return back()->with('success', 'Your application has been submitted successfully.');
+        return redirect()->route('thank.you');
     }
 }
