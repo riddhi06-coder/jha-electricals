@@ -47,39 +47,49 @@
                             <div class="col-12">
                             <div class="tab-content" id="wizard-tabContent">
                                 <div class="tab-pane fade show active" id="wizard-contact" role="tabpanel" aria-labelledby="wizard-contact-tab">
-                                <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('privacy.store') }}" method="POST" enctype="multipart/form-data">
+                                <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('privacy.update', $privacy->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
 
                                     <!-- Banner Heading -->
                                     <div class="col-12">
                                         <label class="form-label" for="banner_heading">Banner Heading <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="banner_heading" name="banner_heading" placeholder="Enter Banner Heading" required>
+                                        <input type="text" class="form-control" id="banner_heading" name="banner_heading" value="{{ old('banner_heading', $privacy->banner_heading) }}" placeholder="Enter Banner Heading" required>
                                         <div class="invalid-feedback">Please enter a Banner heading.</div>
                                     </div>
 
                                     <!-- Banner Image Upload -->
                                     <div class="col-12">
                                         <label class="form-label" for="product_image"> Banner Image <span class="txt-danger">*</span></label>
-                                        <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*" onchange="previewImage(this, 'image_preview')" required>
+                                        <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*" onchange="previewImage(this, 'image_preview')">
                                         <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                         <br>
                                         <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
-                                        <div id="image_preview" class="mt-2"></div>
-                                        <div class="invalid-feedback">Please upload an Banner image.</div>
+
+                                        <!-- Show existing image if available -->
+                                        <div id="image_preview" class="mt-2">
+                                            @if ($privacy->banner_image)
+                                                <img src="{{ asset('/uploads/privacy/' . $privacy->banner_image) }}" alt="Banner Image" width="100">
+                                            @endif
+                                        </div>
+                                        
+                                        <div class="invalid-feedback">Please upload a Banner image.</div>
                                     </div>
 
                                     <!-- Privacy Policy -->
                                     <div class="col-12 mt-3">
                                         <label class="form-label" for="privacy_policy">Privacy Policy <span class="txt-danger">*</span></label>
-                                        <textarea class="form-control" id="summernote" name="privacy_policy" rows="8" placeholder="Enter privacy policy" required></textarea>
+                                        <textarea class="form-control" id="summernote" name="privacy_policy" rows="8" placeholder="Enter privacy policy" required>{{ old('privacy_policy', $privacy->privacy_policy) }}</textarea>
                                         <div class="invalid-feedback">Please enter a privacy policy.</div>
                                     </div>
+
                                     <!-- Form Actions -->
                                     <div class="col-12 text-end">
                                         <a href="{{ route('privacy.index') }}" class="btn btn-danger px-4">Cancel</a>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit">Update</button>
                                     </div>
                                 </form>
+
 
 
                                 </div>

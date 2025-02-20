@@ -77,4 +77,62 @@ class PrivacyController extends Controller
         return view('backend.privacy.edit', compact('privacy'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'banner_heading' => 'required|string|max:255',
+            'product_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'privacy_policy' => 'required|string',
+        ], [
+            'banner_heading.required' => 'The Banner Heading is required.',
+            'product_image.image' => 'The uploaded file must be an image.',
+            'product_image.mimes' => 'Only JPG, JPEG, PNG, and WEBP formats are allowed.',
+            'product_image.max' => 'The image must be less than 2MB.',
+            'privacy_policy.required' => 'The privacy policy is required.',
+        ]);
+
+        $privacy = PrivacyPolicy::findOrFail($id);
+        $privacy->banner_heading = $request->banner_heading;
+        $privacy->privacy_policy = $request->privacy_policy;
+        $privacy->modified_at = Carbon::now();
+        $privacy->modified_by = Auth::id();
+
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+
+            if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $imageName = time() . rand(10, 999) . '.' . $extension;
+
+                $destinationPath = public_path('/uploads/privacy');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+
+                $image->move($destinationPath, $imageName);
+                $privacy->banner_image = $imageName;
+            }
+        }
+
+        $privacy->save();
+
+        return redirect()->route('privacy.index')->with('message', 'Privacy policy updated successfully!');
+    }
+
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();
+        try {
+            $industries = PrivacyPolicy::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('privacy.index')->with('message', 'Privacy Policy deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
+
+
+
 }
