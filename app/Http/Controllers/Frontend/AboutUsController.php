@@ -144,7 +144,7 @@ class AboutUsController extends Controller
     public function blog_details($slug)
     {
 
-        $blogType = BlogType::where('slug', $slug)->firstOrFail();
+        $blogType = BlogType::where('slug', $slug)->whereNull('deleted_by')->firstOrFail();
 
         $blogs = BlogDetails::with('blogType')  
             ->where('blog_title_id', $blogType->id) 

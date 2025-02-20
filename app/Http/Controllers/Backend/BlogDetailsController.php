@@ -150,7 +150,7 @@ class BlogDetailsController extends Controller
             $industries = BlogDetails::findOrFail($id);
             $industries->update($data);
 
-            return redirect()->route('blog-detai.index')->with('message', 'Details deleted successfully!');
+            return redirect()->route('blog-detail.index')->with('message', 'Details deleted successfully!');
         } catch (Exception $ex) {
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
         }

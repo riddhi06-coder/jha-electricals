@@ -75,7 +75,13 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('blog-detail.edit', $detail->id) }}" class="btn btn-primary">Edit</a>
-                                        <a href="{{ route('blog-detail.destroy', $detail->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>
+                                        <form action="{{ route('blog-detail.destroy', $detail->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td> 
                                 </tr>
                             @endforeach
