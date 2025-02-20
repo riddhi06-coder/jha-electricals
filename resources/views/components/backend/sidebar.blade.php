@@ -179,6 +179,14 @@
                     </svg><span>Contact Us</span></a>
                 </li>
 
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('privacy.index') }}">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#activity') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#activity') }}"></use>
+                    </svg><span>Privacy Policy</span></a>
+                </li>
 
 
               </ul>

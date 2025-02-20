@@ -37,6 +37,7 @@ use App\Http\Controllers\Backend\ShoppingGuideController;
 use App\Http\Controllers\Backend\ShoppingGuidePartBController;
 use App\Http\Controllers\Backend\BlogTypesController;
 use App\Http\Controllers\Backend\BlogDetailsController;
+use App\Http\Controllers\Backend\PrivacyController;
 
 
 
@@ -173,6 +174,9 @@ Route::resource('blog-types',BlogTypesController::class);
 
 // ==== Manage BLog Details in BLogs Section
 Route::resource('blog-detail',BlogDetailsController::class);
+
+// ==== Manage Privacy Policy Page
+Route::resource('privacy',PrivacyController::class);
 
 // ===================================================================Frontend================================================================
 
