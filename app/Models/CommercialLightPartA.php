@@ -9,7 +9,7 @@ class CommercialLightPartA extends Model
 {
     use HasFactory;
 
-    protected $table = 'commercial_partA';
+    protected $table = 'commercial_parta';
     public $timestamps = false;
 
     protected $fillable = [
