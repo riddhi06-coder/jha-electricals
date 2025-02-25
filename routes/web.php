@@ -38,6 +38,10 @@ use App\Http\Controllers\Backend\ShoppingGuidePartBController;
 use App\Http\Controllers\Backend\BlogTypesController;
 use App\Http\Controllers\Backend\BlogDetailsController;
 use App\Http\Controllers\Backend\PrivacyController;
+use App\Http\Controllers\Backend\SwitchCategoryController;
+use App\Http\Controllers\Backend\SwitchController;
+use App\Http\Controllers\Backend\SwitchDetailController;
+
 
 
 
@@ -46,6 +50,7 @@ use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\CareerResourceController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\ProductDetailsController;
+
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -159,6 +164,8 @@ Route::resource('guide', ShoppingGuideController::class);
 // ==== Shopping Guide
 Route::resource('guide-partB', ShoppingGuidePartBController::class);
 
+
+
 // ==== Manage Product Category in Products Section
 Route::resource('product-category', ProductCategoryController::class);
 
@@ -167,6 +174,18 @@ Route::resource('add-products',ProductsController::class);
 
 // ==== Manage Product Category in Products Section
 Route::resource('product-detail',ProductDetailController::class);
+
+
+
+// ==== Manage Switch Category in Products Section
+Route::resource('switch-product-category', SwitchCategoryController::class);
+
+// ==== Manage Switch Category in Products Section
+Route::resource('switch-add-products',SwitchController::class);
+
+// ==== Manage Switch Category in Products Section
+Route::resource('switch-product-detail',SwitchDetailController::class);
+
 
 
 // ==== Manage Blogs Types in BLogs Section

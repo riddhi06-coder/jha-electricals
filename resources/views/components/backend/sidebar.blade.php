@@ -39,19 +39,41 @@
                 </li>
 
 
-                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
-                    <svg class="stroke-icon"> 
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
-                    </svg><span>Products </span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="{{ route('product-category.index') }}">Product Category</a></li>
-                    <li><a href="{{ route('add-products.index') }}">Add Products </a></li>
-                    <li><a href="{{ route('product-detail.index') }}">Product Details</a></li>
-                  </ul>
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"></i> <a class="sidebar-link sidebar-title" href="#">
+                        <svg class="stroke-icon">
+                            <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
+                        </svg>
+                        <svg class="fill-icon">
+                            <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
+                        </svg>
+                        <span>Products</span>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a class="submenu-title" href="#">Lights 
+                                <span class="sub-arrow"><i class="fa fa-angle-right"></i></span>
+                            </a>
+                            <ul class="nav-sub-childmenu submenu-content">
+                                <li><a href="{{ route('product-category.index') }}">Product Category</a></li>
+                                <li><a href="{{ route('add-products.index') }}">Add Products</a></li>
+                                <li><a href="{{ route('product-detail.index') }}">Product Details</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="submenu-title" href="#">Switch 
+                                <span class="sub-arrow"><i class="fa fa-angle-right"></i></span>
+                            </a>
+                            <ul class="nav-sub-childmenu submenu-content">
+                                <li><a href="{{ route('switch-product-category.index') }}">Switch Category</a></li>
+                                <li><a href="{{ route('add-products.index') }}">Add Switches</a></li>
+                                <li><a href="{{ route('product-detail.index') }}">Switches Details</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
                 </li>
+
 
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
