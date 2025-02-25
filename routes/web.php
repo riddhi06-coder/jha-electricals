@@ -41,8 +41,9 @@ use App\Http\Controllers\Backend\PrivacyController;
 use App\Http\Controllers\Backend\SwitchCategoryController;
 use App\Http\Controllers\Backend\SwitchController;
 use App\Http\Controllers\Backend\SwitchDetailController;
-
-
+use App\Http\Controllers\Backend\AccesoriesCategoryController;
+use App\Http\Controllers\Backend\AccesoriesController;
+use App\Http\Controllers\Backend\AccesoriesDetailController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -185,6 +186,17 @@ Route::resource('switch-add-products',SwitchController::class);
 
 // ==== Manage Switch Category in Products Section
 Route::resource('switch-product-detail',SwitchDetailController::class);
+
+
+
+// ==== Manage Accesories Category in Products Section
+Route::resource('accessories-product-category', AccesoriesCategoryController::class);
+
+// ==== Manage Accesories Category in Products Section
+Route::resource('accessories-switch-add-products',AccesoriesController::class);
+
+// ==== Manage Accesories Category in Products Section
+Route::resource('accessories-switch-product-detail',AccesoriesDetailController::class);
 
 
 

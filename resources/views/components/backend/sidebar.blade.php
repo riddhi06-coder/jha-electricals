@@ -71,6 +71,30 @@
                             </ul>
                         </li>
 
+                        <li>
+                            <a class="submenu-title" href="#">Accessories 
+                                <span class="sub-arrow"><i class="fa fa-angle-right"></i></span>
+                            </a>
+                            <ul class="nav-sub-childmenu submenu-content">
+                                <li><a href="{{ route('accessories-product-category.index') }}">Accessories Category</a></li>
+                                <li><a href="{{ route('accessories-switch-add-products.index') }}">Add Accessories</a></li>
+                                <li><a href="{{ route('accessories-switch-product-detail.index') }}">Accessory Details</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a class="submenu-title" href="#">Wires 
+                                <span class="sub-arrow"><i class="fa fa-angle-right"></i></span>
+                            </a>
+                            <ul class="nav-sub-childmenu submenu-content">
+                                <li><a href="{{ route('switch-product-category.index') }}">Wire Category</a></li>
+                                <li><a href="{{ route('switch-add-products.index') }}">Add Wires</a></li>
+                                <li><a href="{{ route('switch-product-detail.index') }}">Wire Details</a></li>
+                            </ul>
+                        </li>
+
+
                     </ul>
                 </li>
 
