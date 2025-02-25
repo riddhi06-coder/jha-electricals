@@ -8,13 +8,13 @@
     </svg>
 </div>
     <!-- All jquery file included here -->
-    <script src="{{ asset('frontend/assets/js/modernizr-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery-migrate-3.3.2.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/modernizr-3.6.0.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/jquery-3.6.0.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/jquery-migrate-3.3.2.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/popper.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/wow.min.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/plugins.js') }}" defer></script>
+    <script src="{{ asset('frontend/assets/js/main.js') }}" defer></script>
     <script type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
