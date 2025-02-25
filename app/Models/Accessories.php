@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AccessoriesCategory extends Model
+class Accessories extends Model
 {
     use HasFactory;
 
-    protected $table = 'accessories_category';
+    protected $table = 'accessories';
     public $timestamps = false;
 
     protected $fillable = [
-        'heading',
+        'category_id',
         'image',
-        'category_name',
+        'product_name',
         'slug',
         'inserted_at',
         'inserted_by',
@@ -25,10 +25,9 @@ class AccessoriesCategory extends Model
         'deleted_by',
     ];
 
-    public function products()
+    public function category()
     {
-        return $this->hasMany(Accesories::class, 'category_id')
-                    ->whereNull('deleted_by')
-                    ->whereNull('deleted_at');
+        return $this->belongsTo(AccessoriesCategory::class, 'category_id')->whereNull('deleted_at');
     }
+
 }

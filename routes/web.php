@@ -193,10 +193,10 @@ Route::resource('switch-product-detail',SwitchDetailController::class);
 Route::resource('accessories-product-category', AccesoriesCategoryController::class);
 
 // ==== Manage Accesories Category in Products Section
-Route::resource('accessories-switch-add-products',AccesoriesController::class);
+Route::resource('accessories-add-products',AccesoriesController::class);
 
 // ==== Manage Accesories Category in Products Section
-Route::resource('accessories-switch-product-detail',AccesoriesDetailController::class);
+Route::resource('accessories-product-detail',AccesoriesDetailController::class);
 
 
 

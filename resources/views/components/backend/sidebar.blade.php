@@ -77,8 +77,8 @@
                             </a>
                             <ul class="nav-sub-childmenu submenu-content">
                                 <li><a href="{{ route('accessories-product-category.index') }}">Accessories Category</a></li>
-                                <li><a href="{{ route('accessories-switch-add-products.index') }}">Add Accessories</a></li>
-                                <li><a href="{{ route('accessories-switch-product-detail.index') }}">Accessory Details</a></li>
+                                <li><a href="{{ route('accessories-add-products.index') }}">Add Accessories</a></li>
+                                <li><a href="{{ route('accessories-product-detail.index') }}">Accessory Details</a></li>
                             </ul>
                         </li>
 
