@@ -66,7 +66,7 @@
                             </a>
                             <ul class="nav-sub-childmenu submenu-content">
                                 <li><a href="{{ route('switch-product-category.index') }}">Switch Category</a></li>
-                                <li><a href="{{ route('add-products.index') }}">Add Switches</a></li>
+                                <li><a href="{{ route('switch-add-products.index') }}">Add Switches</a></li>
                                 <li><a href="{{ route('product-detail.index') }}">Switches Details</a></li>
                             </ul>
                         </li>

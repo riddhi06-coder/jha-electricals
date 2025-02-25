@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SwitchCategory extends Model
+class Switches extends Model
 {
     use HasFactory;
 
-    protected $table = 'switch_category';
+    protected $table = 'switches';
     public $timestamps = false;
 
     protected $fillable = [
-        'heading',
+        'category_id',
         'image',
-        'category_name',
+        'product_name',
         'slug',
         'inserted_at',
         'inserted_by',
@@ -25,11 +25,8 @@ class SwitchCategory extends Model
         'deleted_by',
     ];
 
-    public function products()
+    public function category()
     {
-        return $this->hasMany(Switches::class, 'category_id')
-                    ->whereNull('deleted_by')
-                    ->whereNull('deleted_at');
+        return $this->belongsTo(SwitchCategory::class, 'category_id')->whereNull('deleted_at');
     }
-
 }
