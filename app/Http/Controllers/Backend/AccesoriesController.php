@@ -37,8 +37,8 @@ class AccesoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => 'required|exists:product_category,id',
-            'product_name' => 'required|string|max:255|unique:products,product_name',
+            'category_id' => 'required|exists:accessories_category,id',
+            'product_name' => 'required|string|max:255|unique:accessories,product_name',
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
             'category_id.required' => 'Please select a product category.',
@@ -100,8 +100,8 @@ class AccesoriesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'category_id' => 'required|exists:product_category,id',
-            'product_name' => 'required|string|max:255|unique:products,product_name,' . $id,
+            'category_id' => 'required|exists:accessories_category,id',
+            'product_name' => 'required|string|max:255|unique:accessories,product_name,' . $id,
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ], [
             'category_id.required' => 'Please select a product category.',

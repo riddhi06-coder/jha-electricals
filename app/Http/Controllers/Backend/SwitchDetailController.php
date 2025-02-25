@@ -197,7 +197,7 @@ class SwitchDetailController extends Controller
             'modified_by'      => Auth::id(),
         ]);
 
-        return redirect()->route('switch-product-detail.index')->with('message', 'Product details updated successfully!');
+        return redirect()->route('switch-product-detail.index')->with('message', 'Switch details updated successfully!');
     }
 
     public function destroy(string $id)
