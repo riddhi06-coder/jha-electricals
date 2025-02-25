@@ -199,6 +199,17 @@ Route::resource('accessories-add-products',AccesoriesController::class);
 Route::resource('accessories-product-detail',AccesoriesDetailController::class);
 
 
+// ==== Manage Wires Category in Products Section
+Route::resource('wires-product-category', WiresCategoryController::class);
+
+// ==== Manage Wires Category in Products Section
+Route::resource('wires-add-products',WiresController::class);
+
+// ==== Manage Wires Category in Products Section
+Route::resource('wires-product-detail',WiresDetailController::class);
+
+
+
 
 // ==== Manage Blogs Types in BLogs Section
 Route::resource('blog-types',BlogTypesController::class);
