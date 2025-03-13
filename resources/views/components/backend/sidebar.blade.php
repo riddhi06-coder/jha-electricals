@@ -99,6 +99,22 @@
                 </li>
 
 
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#product-category') }}"></use>
+                    </svg><span>Products</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('category.index') }}">Category</a></li>
+                    <li><a href="{{ route('product-vision.index') }}">Sub Category</a></li>
+                    <li><a href="{{ route('choose-us.index') }}">Products</a></li>
+                    <li><a href="{{ route('choose-us.index') }}">Product Details</a></li>
+                  </ul>
+                </li>
+
+
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon"> 
