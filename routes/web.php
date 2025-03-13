@@ -45,6 +45,7 @@ use App\Http\Controllers\Backend\AccesoriesCategoryController;
 use App\Http\Controllers\Backend\AccesoriesController;
 use App\Http\Controllers\Backend\AccesoriesDetailController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -213,6 +214,9 @@ Route::resource('wires-product-detail',WiresDetailController::class);
 
 // ==== Manage Category in Products Section
 Route::resource('category', CategoryController::class);
+
+// ==== Manage Category in Products Section
+Route::resource('sub-category', SubCategoryController::class);
 
 
 

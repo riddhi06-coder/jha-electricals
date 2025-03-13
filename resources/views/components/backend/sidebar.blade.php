@@ -108,7 +108,7 @@
                     </svg><span>Products</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('category.index') }}">Category</a></li>
-                    <li><a href="{{ route('product-vision.index') }}">Sub Category</a></li>
+                    <li><a href="{{ route('sub-category.index') }}">Sub Category</a></li>
                     <li><a href="{{ route('choose-us.index') }}">Products</a></li>
                     <li><a href="{{ route('choose-us.index') }}">Product Details</a></li>
                   </ul>
