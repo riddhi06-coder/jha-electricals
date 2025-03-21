@@ -111,7 +111,7 @@
                     <li><a href="{{ route('sub-category.index') }}">Sub Category</a></li>
                     <li><a href="{{ route('master-products.index') }}">Add Products</a></li>
                     <li><a href="{{ route('master-product-details.index') }}">Product Details</a></li>
-                    <li><a href="{{ route('choose-us.index') }}">Wires Details</a></li>
+                    <li><a href="{{ route('wire-details.index') }}">Wires Details</a></li>
                   </ul>
                 </li>
 

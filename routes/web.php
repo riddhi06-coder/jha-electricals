@@ -47,6 +47,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\MasterProductController;
 use App\Http\Controllers\Backend\MasterProductDetailsController;
+use App\Http\Controllers\Backend\MasterWireDetailsController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -228,6 +229,10 @@ Route::resource('master-product-details', MasterProductDetailsController::class)
 Route::get('/get-subcategories', [MasterProductDetailsController::class, 'getSubcategories'])->name('get.subcategories');
 Route::get('/get-products', [MasterProductDetailsController::class, 'getProducts'])->name('get.products');
 
+// ==== Manage Wires Details in Products Section
+Route::resource('wire-details', MasterWireDetailsController::class);
+Route::get('/get-subcategories', [MasterWireDetailsController::class, 'getSubcategories'])->name('get.subcategories');
+Route::get('/get-products', [MasterWireDetailsController::class, 'getProducts'])->name('get.products');
 
 
 // ==== Manage Blogs Types in BLogs Section
