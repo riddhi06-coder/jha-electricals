@@ -62,31 +62,33 @@
                           </tr>
                         </thead>
                         <tbody>
-                              @foreach ($sub_categories as $category_name => $grouped_sub_categories)
-                                  @foreach ($grouped_sub_categories as $key => $sub_category)
-                                      <tr data-category="{{ $category_name }}">
-                                          <td>{{ $loop->iteration }}</td> 
-                                          <td>{{ $category_name }}</td> 
-                                          <td>{{ $sub_category->sub_category_name }}</td>
-                                          <td>
-                                              @if ($sub_category->image)
-                                                  <img src="{{ asset('/uploads/sub-category/' . $sub_category->image) }}" alt="Sub Category Image" width="50" height="50">
-                                              @else
-                                                  No Image
-                                              @endif
-                                          </td>
-                                          <td>
-                                              <a href="{{ route('sub-category.edit', $sub_category->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                              <form action="{{ route('sub-category.destroy', $sub_category->id) }}" method="POST" style="display:inline;">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                              </form>
-                                          </td>
-                                      </tr>
-                                  @endforeach
-                              @endforeach
-                        </tbody> 
+                            @php $index = 1; @endphp 
+                            @foreach ($sub_categories as $category_name => $grouped_sub_categories)
+                                @foreach ($grouped_sub_categories as $sub_category)
+                                    <tr data-category="{{ $category_name }}">
+                                        <td>{{ $index++ }}</td> <!-- Increment globally for each record -->
+                                        <td>{{ $category_name }}</td>
+                                        <td>{{ $sub_category->sub_category_name }}</td>
+                                        <td>
+                                            @if ($sub_category->image)
+                                                <img src="{{ asset('/uploads/sub-category/' . $sub_category->image) }}" alt="Sub Category Image" width="50" height="50">
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('sub-category.edit', $sub_category->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <form action="{{ route('sub-category.destroy', $sub_category->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+
                       </table>
                     </div>
                   </div>
