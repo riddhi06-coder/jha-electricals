@@ -31,7 +31,6 @@ use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\CareerController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ProductCategoryController;
-use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\ProductDetailController;
 use App\Http\Controllers\Backend\ShoppingGuideController;
 use App\Http\Controllers\Backend\ShoppingGuidePartBController;
@@ -46,6 +45,7 @@ use App\Http\Controllers\Backend\AccesoriesController;
 use App\Http\Controllers\Backend\AccesoriesDetailController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\MasterProductController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -218,6 +218,10 @@ Route::resource('category', CategoryController::class);
 // ==== Manage Category in Products Section
 Route::resource('sub-category', SubCategoryController::class);
 
+// ==== Manage Add Products in Products Section
+Route::resource('master-products', MasterProductController::class);
+Route::get('/get-subcategories', [MasterProductController::class, 'getSubcategories'])->name('get.subcategories');
+
 
 
 // ==== Manage Blogs Types in BLogs Section
@@ -246,7 +250,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/career-resources', [CareerResourceController::class, 'career'])->name('career.resources');
     Route::post('/career/apply', [CareerResourceController::class, 'store'])->name('career.apply');
     Route::get('/contact-us', [ContactUsController::class, 'contact'])->name('contact.us');
-    Route::post('/contact-store', [ContactUsController::class, 'store'])->name('contact.store');
+    Route::post('/contact-store', [ContactUsController::class, 'store'])->name('contact.us.store');
     Route::post('/subscribe', [AboutUsController::class, 'subscribe'])->name('subscribe');
     Route::get('/photo-gallery', [AboutUsController::class, 'gallery'])->name('photo.gallery');
     Route::get('/shopping-guide', [AboutUsController::class, 'shopping_guide'])->name('shopping.guide');

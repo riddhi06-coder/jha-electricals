@@ -93,7 +93,7 @@
                     <div class="contact-form-title-sec">
                         <h2>Get In Touch</h2>
                     </div>
-                    <form id="contactForm" method="POST" action="{{ route('contact.store') }}" novalidate>
+                    <form id="contactForm" method="POST" action="{{ route('contact.us.store') }}" novalidate>
                         @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6">

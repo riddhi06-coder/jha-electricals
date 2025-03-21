@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\MasterProduct;
+
+use Carbon\Carbon;
+
+
+class MasterProductController extends Controller
+{
+
+    public function index()
+    {
+        $products = MasterProduct::with(['category', 'subcategory'])->get();
+        return view('backend.products.index', compact('products'));
+    }
+    public function getSubcategories(Request $request)
+    {
+        $subcategories = SubCategory::where('category_id', $request->category_id)
+                        ->whereNull('deleted_by')
+                        ->get();
+        return response()->json(['subcategories' => $subcategories]);
+    }
+
+
+    public function create()
+    { 
+        $categories = Category::whereNull('deleted_by')->get();
+        return view('backend.products.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category_id' => 'required|exists:master_category,id',
+            'sub_category_id' => 'required|exists:master_sub_category,id',
+            'product_name' => 'required|string|max:255|unique:master_products,product_name',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
+        ], [
+            'category_id.required' => 'Please select a product category.',
+            'category_id.exists' => 'The selected category does not exist.',
+
+            'sub_category_id.required' => 'Please select a product subcategory.',
+            'sub_category_id.exists' => 'The selected subcategory does not exist.',
+
+            'product_name.required' => 'The product name is required.',
+            'product_name.string' => 'The product name must be a valid string.',
+            'product_name.max' => 'The product name must not exceed 255 characters.',
+            'product_name.unique' => 'This product name is already taken. Please choose another.',
+
+            'image.required' => 'Please upload an image for the product.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Only JPG, JPEG, PNG, and WEBP formats are allowed.',
+            'image.max' => 'The image size must not exceed 2MB.',
+        ]);
+
+        $slug = Str::slug($request->product_name, '-');
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image'); 
+
+            if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $new_name = time() . rand(10, 999) . '.' . $extension;
+
+                $destinationPath = public_path('/uploads/products/');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+
+                $image->move($destinationPath, $new_name);
+
+                $imagePath = $new_name; 
+            }
+        }
+
+        MasterProduct::create([
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'product_name' => $request->product_name,
+            'slug' => $slug,
+            'image' => $imagePath, 
+            'inserted_at' => Carbon::now(),
+            'inserted_by' => Auth::id(), 
+        ]);
+
+        return redirect()->route('master-products.index')->with('message', 'Product added successfully.');
+    }
+
+}
