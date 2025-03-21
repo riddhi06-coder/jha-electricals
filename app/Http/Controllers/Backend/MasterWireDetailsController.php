@@ -199,11 +199,32 @@ class MasterWireDetailsController extends Controller
     {
         $details = WireDetail::findOrFail($id);
         // Fetch all categories, subcategories, and products
-        $categories = Category::where('category_name', 'Wires') 
-                                ->whereNull('deleted_by')
-                                ->get();
-        $subcategories = SubCategory::whereNull('deleted_by')->get();
-        $products = MasterProduct::whereNull('deleted_by')->get();
+        // $categories = Category::where('category_name', 'Wires') 
+        //                         ->whereNull('deleted_by')
+        //                         ->get();
+        // $subcategories = SubCategory::whereNull('deleted_by')->get();
+        // $products = MasterProduct::whereNull('deleted_by')->get();
+
+
+        // Fetch categories (assuming 'Wires' is the main category)
+        $categories = Category::where('category_name', 'Wires')
+        ->whereNull('deleted_by')
+        ->get();
+
+        // Fetch only subcategories related to 'Wires' category
+        $subcategories = SubCategory::where('category_id', 4) 
+        ->whereNull('deleted_by')
+        ->get();
+
+        // Fetch products based on selected sub-category
+        $products = MasterProduct::whereIn('sub_category_id', function ($query) {
+        $query->select('id')
+            ->from('master_sub_category')
+            ->where('category_id', 4) 
+            ->whereNull('deleted_by');
+        })
+        ->whereNull('deleted_by')
+        ->get();
     
         // Group subcategories by category_id
         $groupedSubcategories = [];
