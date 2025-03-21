@@ -156,28 +156,29 @@
 <!-- jQuery for AJAX for fetching sub categories -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#category_id').change(function () {
-            var category_id = $(this).val();
-            $('#sub_category_id').html('<option value="">Loading...</option>');
+ $(document).ready(function () {
+    $('#category_id').change(function () {
+        var category_id = $(this).val();
+        $('#sub_category_id').html('<option value="">Loading...</option>');
 
-            if (category_id) {
-                $.ajax({
-                    url: "{{ route('get.subcategories') }}",
-                    type: "GET",
-                    data: { category_id: category_id },
-                    success: function (response) {
-                        $('#sub_category_id').html('<option value="">Select Product Sub Category</option>');
-                        $.each(response.subcategories, function (key, value) {
-                            $('#sub_category_id').append('<option value="' + value.id + '">' + value.sub_category_name + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('#sub_category_id').html('<option value="">Select Product Sub Category</option>');
-            }
-        });
+        if (category_id) {
+            $.ajax({
+                url: "{{ route('get.subcategories') }}",
+                type: "GET",
+                data: { category_id: category_id },
+                success: function (response) {
+                    $('#sub_category_id').html('<option value="">Select Product Sub Category</option>');
+                    $.each(response.subcategories, function (key, value) {
+                        $('#sub_category_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#sub_category_id').html('<option value="">Select Product Sub Category</option>');
+        }
     });
+});
+
 </script>
 
 </body>

@@ -56,15 +56,31 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Cateory Name</th>
-                            <th>Sub Cateory Name</th>
+                            <th>Category Name</th>
+                            <th>Sub Category Name</th>
                             <th>Product Name</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                         
+                            @foreach ($wireDetails as $wire)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $wire->category_name ?? 'NA' }}</td>
+                                    <td>{{ $wire->sub_category_name ?? 'NA' }}</td>
+                                    <td>{{ $wire->product_name ?? 'NA' }}</td>
+                                    <td>
+                                        <a href="{{ route('wire-details.edit', $wire->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                        <form action="{{ route('wire-details.destroy', $wire->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
+
                       </table>
                     </div>
                   </div>
