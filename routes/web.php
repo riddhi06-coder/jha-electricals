@@ -46,6 +46,7 @@ use App\Http\Controllers\Backend\AccesoriesDetailController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\MasterProductController;
+use App\Http\Controllers\Backend\MasterProductDetailsController;
 
 
 use App\Http\Controllers\Frontend\HomeController;
@@ -221,6 +222,11 @@ Route::resource('sub-category', SubCategoryController::class);
 // ==== Manage Add Products in Products Section
 Route::resource('master-products', MasterProductController::class);
 Route::get('/get-subcategories', [MasterProductController::class, 'getSubcategories'])->name('get.subcategories');
+
+// ==== Manage Product Details in Products Section
+Route::resource('master-product-details', MasterProductDetailsController::class);
+Route::get('/get-subcategories', [MasterProductDetailsController::class, 'getSubcategories'])->name('get.subcategories');
+Route::get('/get-products', [MasterProductDetailsController::class, 'getProducts'])->name('get.products');
 
 
 
