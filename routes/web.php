@@ -170,50 +170,6 @@ Route::resource('guide', ShoppingGuideController::class);
 Route::resource('guide-partB', ShoppingGuidePartBController::class);
 
 
-
-// ==== Manage Product Category in Products Section
-Route::resource('product-category', ProductCategoryController::class);
-
-// ==== Manage Product Category in Products Section
-Route::resource('add-products',ProductsController::class);
-
-// ==== Manage Product Category in Products Section
-Route::resource('product-detail',ProductDetailController::class);
-
-
-
-// ==== Manage Switch Category in Products Section
-Route::resource('switch-product-category', SwitchCategoryController::class);
-
-// ==== Manage Switch Category in Products Section
-Route::resource('switch-add-products',SwitchController::class);
-
-// ==== Manage Switch Category in Products Section
-Route::resource('switch-product-detail',SwitchDetailController::class);
-
-
-
-// ==== Manage Accesories Category in Products Section
-Route::resource('accessories-product-category', AccesoriesCategoryController::class);
-
-// ==== Manage Accesories Category in Products Section
-Route::resource('accessories-add-products',AccesoriesController::class);
-
-// ==== Manage Accesories Category in Products Section
-Route::resource('accessories-product-detail',AccesoriesDetailController::class);
-
-
-// ==== Manage Wires Category in Products Section
-Route::resource('wires-product-category', WiresCategoryController::class);
-
-// ==== Manage Wires Category in Products Section
-Route::resource('wires-add-products',WiresController::class);
-
-// ==== Manage Wires Category in Products Section
-Route::resource('wires-product-detail',WiresDetailController::class);
-
-
-
 // ==== Manage Category in Products Section
 Route::resource('category', CategoryController::class);
 
