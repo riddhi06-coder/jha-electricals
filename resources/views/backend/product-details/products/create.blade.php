@@ -184,29 +184,6 @@
 
 
 
-<!-- <script>
-    var productsByCategory = @json($groupedProducts);
-
-    document.addEventListener("DOMContentLoaded", function () {
-        let categoryDropdown = document.getElementById("category_id");
-        let productDropdown = document.getElementById("product_name");
-
-        categoryDropdown.addEventListener("change", function () {
-            let selectedCategory = this.value;
-            productDropdown.innerHTML = '<option value="">Select Product</option>';
-
-            if (productsByCategory[selectedCategory]) {
-                productsByCategory[selectedCategory].forEach(function (product) {
-                    let option = document.createElement("option");
-                    option.value = product.id;
-                    option.textContent = product.name; 
-                    productDropdown.appendChild(option);
-                });
-            }
-        });
-    });
-</script> -->
-
 <script>
     $(document).ready(function () {
         // Load Subcategories based on Category

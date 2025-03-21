@@ -147,7 +147,7 @@ class MasterProductDetailsController extends Controller
             'inserted_by'       => Auth::id(), 
         ]);
 
-        return redirect()->route('product-detail.index')->with('message', 'Product details saved successfully!');
+        return redirect()->route('master-product-details.index')->with('message', 'Product details saved successfully!');
     }
 
 
@@ -190,5 +190,81 @@ class MasterProductDetailsController extends Controller
     }
     
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'category_id'       => 'required|exists:master_category,id',
+            'sub_category_id'   => 'required|exists:master_sub_category,id',
+            'product_id'      => 'required|exists:master_products,id',
+            'section_heading'   => 'required|string|max:255',
+            'product_images.*'  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'existing_images.*' => 'string',
+            'product_codes.*'   => 'required|string',
+            'product_wattages.*'=> 'required|string',
+            'product_sizes.*'   => 'required|string',
+            'product_mrps.*'    => 'required|string',
+        ]);
+
+        $productDetail = ProductDetails::findOrFail($id);
+
+        $imagePaths = $request->existing_images ?? [];
+
+        if ($request->removed_images) {
+            $removedImages = json_decode($request->removed_images, true);
+            
+            foreach ($removedImages as $image) {
+                $imagePath = public_path('/uploads/products/') . $image;
+            }
+
+            $imagePaths = array_values(array_diff($imagePaths, $removedImages));
+        }
+
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $image) {
+                if ($image->isValid()) {
+                    $extension = $image->getClientOriginalExtension();
+                    $new_name = time() . rand(10, 999) . '.' . $extension;
+
+                    $destinationPath = public_path('/uploads/products/');
+                    if (!file_exists($destinationPath)) {
+                        mkdir($destinationPath, 0777, true);
+                    }
+
+                    $image->move($destinationPath, $new_name);
+                    $imagePaths[] = $new_name; 
+                }
+            }
+        }
+
+        $productDetail->update([
+            'category_id'      => $request->category_id,
+            'sub_category_id'   => $request->sub_category_id,
+            'product_id'        => $request->product_id,
+            'section_heading'  => $request->section_heading,
+            'product_images'   => json_encode($imagePaths), 
+            'product_codes'    => json_encode($request->product_codes),
+            'product_wattages' => json_encode($request->product_wattages),
+            'product_sizes'    => json_encode($request->product_sizes),
+            'product_mrps'     => json_encode($request->product_mrps),
+            'modified_at'      => Carbon::now(),
+            'modified_by'      => Auth::id(),
+        ]);
+
+        return redirect()->route('master-product-details.index')->with('message', 'Product details updated successfully!');
+    }
+
+    public function destroy(string $id)
+    {
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();
+        try {
+            $industries = ProductDetails::findOrFail($id);
+            $industries->update($data);
+
+            return redirect()->route('master-product-details.index')->with('message', 'Details deleted successfully!');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
+        }
+    }
     
 }
