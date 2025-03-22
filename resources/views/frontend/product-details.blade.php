@@ -119,7 +119,7 @@
                                             <td>{{ $code }}</td>
                                             <td>{{ $wattages[$index] ?? '-' }}</td>
                                             <td>{{ $sizes[$index] ?? '-' }}</td>
-                                            <td>₹{{ $mrps[$index] ?? 0 }}/-</td>
+                                            <td>₹ {{ $mrps[$index] ?? 0 }}/-</td>
                                         </tr>
                                     @endforeach
                                     

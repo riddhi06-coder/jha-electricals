@@ -26,12 +26,13 @@ use App\Models\CommercialLightPartA;
 use App\Models\CommercialLightPartB;
 use App\Models\CommercialLightPartC;
 use App\Models\Gallery;
-use App\Models\ProductCategory;
+use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\ShoppingPartA;
 use App\Models\ShoppingGuidePartB;
 use App\Models\BlogType;
 use App\Models\BlogDetails;
+use App\Models\Category;
 
 
 use Carbon\Carbon;
@@ -109,19 +110,43 @@ class AboutUsController extends Controller
 
     public function product_category()
     {
-        $heading = ProductCategory::whereNull('deleted_by')->first();
-        $categories = ProductCategory::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+        $heading = SubCategory::whereNull('deleted_by')->first();
+        $categories = SubCategory::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
         return view('frontend.product-category', compact('categories','heading'));
     }
 
     
     
+    // public function product_page($slug)
+    // {
+    //     $category = ProductCategory::where('slug', $slug)->whereNull('deleted_at')->firstOrFail();
+    //     $products = $category->products()->whereNull('deleted_at')->get();
+    //     return view('frontend.product-main', compact('category', 'products'));
+    // }
+
+
     public function product_page($slug)
     {
-        $category = ProductCategory::where('slug', $slug)->whereNull('deleted_at')->firstOrFail();
-        $products = $category->products()->whereNull('deleted_at')->get();
+        $category = SubCategory::where('slug', $slug)
+                    ->whereNull('deleted_at')
+                    ->firstOrFail();
+    
+        $products = DB::table('master_products')
+                    ->join('master_sub_category', 'master_products.sub_category_id', '=', 'master_sub_category.id')
+                    ->join('master_category', 'master_sub_category.category_id', '=', 'master_category.id')
+                    ->where('master_sub_category.id', $category->id) // Fetch products from this subcategory
+                    ->where('master_sub_category.category_id', $category->category_id) // Ensure subcategory belongs to this category
+                    ->where('master_products.sub_category_id', $category->id) // Product must belong to the subcategory
+                    ->where('master_products.category_id', $category->category_id) // Product must belong to the category
+                    ->whereNull('master_products.deleted_at')
+                    ->select('master_products.*')
+                    ->get();
+    
+
         return view('frontend.product-main', compact('category', 'products'));
     }
+
+
 
 
     public function shopping_guide()

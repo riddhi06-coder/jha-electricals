@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use App\Models\Product;
-use App\Models\ProductDetail;
+use App\Models\ProductDetails;
 
 use Carbon\Carbon;
 
@@ -21,14 +21,14 @@ class ProductDetailsController extends Controller
 
     public function details($slug)
     {
-        $product = ProductDetail::select(
-                'product_details.*', 
-                'product_category.category_name as category_name', 
-                'products.product_name as product_name'
+        $product = ProductDetails::select(
+                'master_product_details.*', 
+                'master_category.category_name as category_name', 
+                'master_products.product_name as product_name'
             )
-            ->join('products', 'product_details.product_id', '=', 'products.id')
-            ->join('product_category', 'product_details.category_id', '=', 'product_category.id')
-            ->where('products.slug', $slug)
+            ->join('master_products', 'master_product_details.product_id', '=', 'master_products.id')
+            ->join('master_category', 'master_product_details.category_id', '=', 'master_category.id')
+            ->where('master_products.slug', $slug)
             ->firstOrFail();
     
         return view('frontend.product-details', compact('product'));

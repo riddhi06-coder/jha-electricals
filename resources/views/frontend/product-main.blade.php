@@ -18,11 +18,11 @@
                 <div class="row">
                     <div class="col">
                         <div class="page-banner text-center">
-                            <h2>{{ $category->category_name }}</h2>
+                            <h2>{{ $category->sub_category_name }}</h2>
                             <ul class="page-breadcrumb">
                                 <li><a href="{{ route('home.page') }}">Home</a></li>
                                 <li><a href="{{ route('products.category') }}">Products</a></li>
-                                <li>{{ $category->category_name }}</li>
+                                <li>{{ $category->sub_category_name }}</li>
                             </ul>
                         </div>
                     </div>
@@ -55,6 +55,8 @@
                         </div>
                     @endforeach
                 </div>
+
+
             </div>
         </section>
 

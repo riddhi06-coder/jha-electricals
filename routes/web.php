@@ -265,10 +265,11 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::post('/subscribe', [AboutUsController::class, 'subscribe'])->name('subscribe');
     Route::get('/photo-gallery', [AboutUsController::class, 'gallery'])->name('photo.gallery');
     Route::get('/shopping-guide', [AboutUsController::class, 'shopping_guide'])->name('shopping.guide');
-    Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/blogs', [AboutUsController::class, 'blogs'])->name('blogs');
     Route::post('/submit-enquiry', [ProductDetailsController::class, 'submitEnquiry'])->name('enquiry.submit');
     Route::get('/blog-details/{slug}', [AboutUsController::class, 'blog_details'])->name('blog.details');
+
+    Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
     Route::get('/product-details/{slug}', [ProductDetailsController::class, 'details'])->name('product-details');
 });

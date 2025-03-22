@@ -20,10 +20,10 @@
           <div class="col">
 
             <div class="page-banner text-center">
-              <h2>{{ $heading->heading }}</h2>
+              <h2>Products</h2>
               <ul class="page-breadcrumb">
                 <li><a href="{{ route('home.page') }}">Home</a></li>
-                <li>{{ $heading->heading }}</li>
+                <li>Products</li>
               </ul>
             </div>
 
@@ -42,7 +42,7 @@
                         <div class="product-list-single-grid-sec mb-30">
                             <div class="product-image">
                                 <a href="{{ route('product.page', ['slug' => $category->slug]) }}">
-                                    <img src="{{ asset('uploads/products/' . $category->image) }}" class="img-fluid" alt="{{ $category->category_name }}">
+                                    <img src="{{ asset('/uploads/sub-category/' . $category->image) }}" class="img-fluid" alt="{{ $category->category_name }}">
                                 </a>
                                 <div class="product-action d-flex justify-content-between">
                                     <a class="product-btn" href="{{ route('product.page', ['slug' => $category->slug]) }}">Know More</a>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="product-list-content-sec">
                                 <h3 class="title">
-                                    <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a>
+                                    <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->sub_category_name }}</a>
                                 </h3>
                             </div>
                         </div>

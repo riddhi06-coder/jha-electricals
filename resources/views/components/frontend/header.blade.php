@@ -1,7 +1,19 @@
 @php
-    use App\Models\ProductCategory;
-
-    $categories = ProductCategory::whereNull('deleted_at')->with('products')->get();
+    $categories = DB::table('master_category')
+        ->select('master_category.id as category_id', 'master_category.category_name', 
+                 'master_sub_category.id as subcategory_id', 'master_sub_category.sub_category_name',
+                 'master_products.id as product_id', 'master_products.product_name')
+        ->leftJoin('master_sub_category', function ($join) {
+            $join->on('master_category.id', '=', 'master_sub_category.category_id')
+                ->whereNull('master_sub_category.deleted_by');
+        })
+        ->leftJoin('master_products', function ($join) {
+            $join->on('master_sub_category.id', '=', 'master_products.sub_category_id')
+                ->whereNull('master_products.deleted_by');
+        })
+        ->whereNull('master_category.deleted_by')
+        ->get()
+        ->groupBy('category_id'); // Group by category
 @endphp
 
  
@@ -72,25 +84,40 @@
                     <ul>
                       <li><a href="{{ route('about-us.page') }}">About Us</a></li>
                       
+                 
                       <li>
-                        <a href="{{ route('products.category') }}">Products</a>
-                        <ul class="mega-menu four-column left-0">
-                        @foreach($categories as $category)
-                          <li class="menu-item-has-children">
-                              <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a>
-                              @if($category->products->count() > 0)
-                                  <ul class="submenu2">
-                                      @foreach($category->products as $product)
-                                          <li>
-                                              <a href="{{ route('product-details', ['slug' => $product->slug]) }}">{{ $product->product_name }}</a>
-                                          </li>
-                                      @endforeach
-                                  </ul>
-                              @endif
-                          </li>
-                      @endforeach
-                        </ul>
-                      </li>
+                      <a href="{{ route('products.category') }}">Products</a>
+                      <ul class="sub-menu">
+                          @foreach ($categories as $category_id => $categoryGroup)
+                              @php 
+                                  $category = $categoryGroup->first();
+                              @endphp
+                              <li>
+                                  <a href="#">{{ $category->category_name }}</a>
+                                  @if ($categoryGroup->whereNotNull('subcategory_id')->count())
+                                      <ul class="sub-menu mega-menu four-column left-0">
+                                          @foreach ($categoryGroup->groupBy('subcategory_id') as $subcategory_id => $subcategoryGroup)
+                                              @php 
+                                                  $subcategory = $subcategoryGroup->first();
+                                              @endphp
+                                              <li>
+                                                  <ul>
+                                                      <li><a href="#" class="item-title">{{ $subcategory->sub_category_name }}</a></li>
+                                                      @foreach ($subcategoryGroup->whereNotNull('product_id') as $product)
+                                                          <li><a href="#">{{ $product->product_name }}</a></li>
+                                                      @endforeach
+                                                  </ul>
+                                              </li>
+                                          @endforeach
+                                      </ul>
+                                  @endif
+                              </li>
+                          @endforeach
+                      </ul>
+
+
+                    </li>
+
                       <li>
                         <span>Service & Support</span>
                         <ul class="sub-menu">
@@ -197,24 +224,6 @@
             <nav class="offcanvas-navigation">
               <ul>
                 <li class="menu-item-has-children"><a href="{{ route('about-us.page') }}">About Us</a>
-                </li>
-
-                <li class="menu-item-has-children">
-                    <a href="{{ route('products.category') }}">Products</a>
-                    <ul class="submenu2">
-                        @foreach($categories as $category)
-                            <li class="menu-item-has-children">
-                                <a href="{{ route('product.page', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a>
-                                @if($category->products->isNotEmpty())
-                                    <ul class="submenu2">
-                                        @foreach($category->products as $product)
-                                            <li><a href="#">{{ $product->product_name }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
                 </li>
 
                 <li class="menu-item-has-children">
