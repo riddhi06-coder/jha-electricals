@@ -115,7 +115,7 @@
                             @endforeach
                         </div>
 
-                        <a href="about-us.html" class="small-btn-style">Read More</a>
+                        <a href="{{ route('about-us.page') }}" class="small-btn-style">Read More</a>
                     </div>
                 </div>
             </div>
@@ -203,12 +203,12 @@
                                     <img src="{{ asset('/uploads/home/range/' . $range->image) }}" class="img-fluid" alt="{{ $range->product_name }}" width="266" height="355" loading="lazy">
                                 </a>
                                 <div class="product-action d-flex justify-content-between">
-                                    <a class="product-btn" href="#">Know More</a>
+                                    <a class="product-btn" href="{{ route('products.category') }}">Know More</a>
                                 </div>
                             </div>
                             <div class="product-content">
                                 <h3 class="title">
-                                    <a href="#">{{ $range->product_name }}</a>
+                                    <a href="{{ route('products.category') }}">{{ $range->product_name }}</a>
                                 </h3>
                                 <p class="product-price">Starting from <span class="discounted-price">{{ $range->product_price }}</span></p>
                             </div>
@@ -412,8 +412,6 @@
     <!-- Blog section end -->
 
 
-
-
       <!--NewsLetter section start-->
       <div class="newsLetter-section">
         <div class="container">
@@ -448,7 +446,7 @@
 
 
 
-         <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade bann-modal-sec" id="contactModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -458,72 +456,72 @@
                 </div>
                 <div class="modal-body">
 
-           
+        
 
                 <form action="{{ route('enquiry.submit') }}" method="POST">
-                  @csrf
-                  <div class="row">
-                      <!-- Name -->
-                      <div class="col-md-12 mb-3">
-                          <input type="text" class="form-control" name="name" placeholder="Name *" required value="{{ old('name') }}" pattern="^[a-zA-Z\s]+$" title="Only letters and spaces are allowed.">
-                          @error('name')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                @csrf
+                <div class="row">
+                    <!-- Name -->
+                    <div class="col-md-12 mb-3">
+                        <input type="text" class="form-control" name="name" placeholder="Name *" required value="{{ old('name') }}" pattern="^[a-zA-Z\s]+$" title="Only letters and spaces are allowed.">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Phone -->
-                      <div class="col-md-6 mb-3">
-                          <input type="tel" class="form-control" name="phone" placeholder="Phone Number *" required minlength="10" maxlength="12" value="{{ old('phone') }}">
-                          @error('phone')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Phone -->
+                    <div class="col-md-6 mb-3">
+                        <input type="tel" class="form-control" name="phone" placeholder="Phone Number *" required minlength="10" maxlength="12" value="{{ old('phone') }}">
+                        @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Email -->
-                      <div class="col-md-6 mb-3">
-                          <input type="email" class="form-control" name="email" placeholder="Email *" required value="{{ old('email') }}">
-                          @error('email')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Email -->
+                    <div class="col-md-6 mb-3">
+                        <input type="email" class="form-control" name="email" placeholder="Email *" required value="{{ old('email') }}">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Product -->
-                      <div class="col-md-6 mb-3">
-                          <input type="text" class="form-control" name="product" placeholder="Product Name *" required value="{{ old('product') }}">
-                          @error('product')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Product -->
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" name="product" placeholder="Product Name *" required value="{{ old('product') }}">
+                        @error('product')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Quantity -->
-                      <div class="col-md-6 mb-3">
-                          <input type="number" class="form-control" name="quantity" placeholder="Quantity *" required min="1" value="{{ old('quantity') }}">
-                          @error('quantity')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Quantity -->
+                    <div class="col-md-6 mb-3">
+                        <input type="number" class="form-control" name="quantity" placeholder="Quantity *" required min="1" value="{{ old('quantity') }}">
+                        @error('quantity')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Location -->
-                      <div class="col-md-12 mb-3">
-                          <input type="text" class="form-control" name="location" placeholder="Location *" required value="{{ old('location') }}">
-                          @error('location')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Location -->
+                    <div class="col-md-12 mb-3">
+                        <input type="text" class="form-control" name="location" placeholder="Location *" required value="{{ old('location') }}">
+                        @error('location')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Message -->
-                      <div class="col-md-12 mb-3">
-                          <textarea class="form-control" name="message" rows="3" placeholder="Message *">{{ old('message') }}</textarea>
-                          @error('message')
-                              <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                      </div>
+                    <!-- Message -->
+                    <div class="col-md-12 mb-3">
+                        <textarea class="form-control" name="message" rows="3" placeholder="Message *">{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                      <!-- Submit Button -->
-                      <div class="col-md-12 text-center">
+                    <!-- Submit Button -->
+                    <div class="col-md-12 text-center">
                             <button type="submit" class="small-btn-style">Submit</button>
                         </div>
-                  </div>
+                </div>
                 </form>
 
 
@@ -532,12 +530,10 @@
         </div>
     </div>
 
-      @include('components.frontend.footer')
-        
 
-       
-        
-        @include('components.frontend.main-js')
+    @include('components.frontend.footer')
+
+    @include('components.frontend.main-js')
 
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Backend\HomeBannerDetailsController;
 use App\Http\Controllers\Backend\HomeAboutDetailsController;
 use App\Http\Controllers\Backend\HomeFounderDetailsController;
@@ -56,6 +57,8 @@ use App\Http\Controllers\Frontend\CareerResourceController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\ProductDetailsController;
 
+use App\Models\MasterProduct;
+use Illuminate\Support\Facades\Log;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -247,10 +250,27 @@ Route::resource('privacy',PrivacyController::class);
 
 
 // ===================================================================Frontend================================================================
+Route::get('/search-products', function (Request $request) {
+    $query = $request->query('query');
 
+    if (!$query) {
+        Log::info("Search query is missing!");
+        return response()->json(['error' => 'No search query provided'], 400);
+    }
+
+    Log::info("Search query received: " . $query);
+
+    $products = MasterProduct::where('product_name', 'LIKE', "%{$query}%")
+        ->get();
+
+    Log::info("Products found: " . $products->count());
+
+    return response()->json($products);
+});
 
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
+    
     Route::get('/home', [HomeController::class, 'index'])->name('home.page');
     Route::get('/privacy-policy', [HomeController::class, 'privacy_policy'])->name('privacy.policy');
     Route::get('/thank-you', [HomeController::class, 'thankyou'])->name('thank.you');
@@ -274,4 +294,8 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/products', [AboutUsController::class, 'product_category'])->name('products.category');
     Route::get('/{slug}', [AboutUsController::class, 'product_page'])->name('product.page');
     Route::get('/product-details/{slug}', [ProductDetailsController::class, 'details'])->name('product-details');
+
+
+    
+    
 });

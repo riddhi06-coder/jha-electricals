@@ -30,6 +30,16 @@ class HomeController extends Controller
         $homeAbout = HomeAbout::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $homeFounder = HomeFounder::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $homeRange = HomeRange::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+
+        // $homeRange = HomeRange::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
+
+        // // Fetch the respective slug for each product name using LIKE query
+        // foreach ($homeRange as $range) {
+        //     $range->slug = \DB::table('master_products')
+        //         ->where('product_name', 'LIKE', '%' . $range->product_name . '%')
+        //         ->value('slug');
+        // }
+        
         $homeQualities = HomeQuality::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();
         $homeContact = HomeContact::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->first();
         $homeTestimonials = HomeTestimonial::whereNull('deleted_by')->orderBy('inserted_at', 'asc')->get();

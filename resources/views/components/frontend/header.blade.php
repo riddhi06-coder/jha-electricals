@@ -24,7 +24,44 @@
         ->groupBy('category_id'); // Group by category
 @endphp
 
- 
+ <style>
+      .search-dropdown {
+        position: absolute;
+        width: 100%;
+        background: white;
+        border: 1px solid #ccc;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .search-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .search-item a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+
+    .search-item:hover {
+        background: #f5f5f5;
+    }
+
+    .header-search-form {
+        display: none;
+    }
+
+    .header-search-form.active {
+        display: block;
+    }
+
+
+  </style>
  <!--Header section start-->
   <section class="topbar desktop-topbar">
       <div class="container">
@@ -52,22 +89,22 @@
                           <li><a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
                           <li>|</li>
                           <li>
-                              <div id="google_translate_element"></div>
-                              <script type="text/javascript">
-                                  function googleTranslateElementInit() {
-                                      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-                                  }
-                              </script>
-                              <label class="dropdown flag">
-                                  <div class="dd-button">
-                                      <span>Select Language</span>
-                                  </div>
-                                  <input type="checkbox" class="dd-input" id="test">
-                                  <ul class="dd-menu">
-                                      <li><a class="flag_link eng" data-lang="en">English</a></li>
-                                      <li><a class="flag_link eng" data-lang="hi">Hindi</a></li>
-                                  </ul>
-                              </label>
+                            <div id="google_translate_element"></div>
+                            <script type="text/javascript">
+                              function googleTranslateElementInit() {
+                                  new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+                              }
+                            </script>
+                            <label class="dropdown flag">
+                              <div class="dd-button">
+                                <span>Select Language</span>
+                              </div>
+                              <input type="checkbox" class="dd-input" id="test">
+                              <ul class="dd-menu">
+                                <li><a class="flag_link eng" data-lang="en">English</a></li>
+                                <li><a class="flag_link eng" data-lang="hi">Hindi</a></li>
+                              </ul>
+                            </label>
                           </li>
                       </ul>
                   </div>
@@ -146,17 +183,21 @@
                     </ul>
                   </nav>
                   <div class="header-right_wrap d-flex">
-                    <div class="header-search">
-                      <button class="header-search-toggle"><i
-                        class="fa fa-search"></i></button>
-                      <div class="header-search-form">
-                        <form action="#">
-                          <input type="text" placeholder="Type and hit enter">
-                          <button><i class="fa fa-search"></i></button>
-                        </form>
+                      <div class="header-search">
+                              <button class="header-search-toggle"><i class="fa fa-search"></i></button>
+                              <div class="header-search-form">
+                                  <form id="searchForm">
+                                      <input type="text" id="searchInput" placeholder="Type and hit enter" required>
+                                      <button type="submit"><i class="fa fa-search"></i></button>
+                                  </form>
+                                  <!-- Search results container (hidden initially) -->
+                                  <div id="searchResults" class="search-dropdown" style="display: none;">
+                                      <div id="productList"></div>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
               <!-- Header Logo Start -->
@@ -312,3 +353,100 @@
         </div>
       </div>
       <!-- Offcanvas Menu End -->
+
+
+      
+      <!-- For Google Translator -->
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              document.querySelectorAll(".flag_link").forEach(function (el) {
+                  el.addEventListener("click", function () {
+                      var lang = this.getAttribute("data-lang");
+                      var select = document.querySelector("select.goog-te-combo");
+                      if (select) {
+                          select.value = lang;
+                          select.dispatchEvent(new Event('change'));
+                      }
+                  });
+              });
+          });
+      </script>
+
+
+
+    <!------for search Functionality----->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Toggle search form visibility and ensure dropdown shows correctly
+            $('.header-search-toggle').on('click', function () {
+                $('.header-search-form').toggleClass('active'); // Use class for visibility
+                if ($('.header-search-form').hasClass('active')) {
+                    $('#searchInput').focus(); // Auto-focus on input
+                    $('#searchResults').show(); // ✅ Show dropdown immediately
+                } else {
+                    $('#searchResults').hide(); // Hide dropdown when closing
+                }
+            });
+
+            // Handle search submission
+            $('#searchForm').submit(function (e) {
+                e.preventDefault();
+                let query = $('#searchInput').val().trim();
+
+                if (query === "") {
+                    $('#searchResults').hide(); // Hide dropdown if search is empty
+                    return;
+                }
+
+                console.log("Searching for:", query); // ✅ Debugging log
+
+                $.ajax({
+                    url: "/search-products",
+                    method: "GET",
+                    data: { query: query },
+                    success: function (response) {
+                        console.log("Response received:", response); // ✅ Debugging log
+
+                        let productList = $('#productList');
+                        productList.empty();
+                        $('#searchResults').show(); // ✅ Ensure results box remains visible
+
+                        if (response.length === 0) {
+                            productList.append('<p>No products found.</p>');
+                        } else {
+                            response.forEach(product => {
+                                let productItem = `
+                                    <div class="search-item">
+                                        <a href="/product-details/${product.slug}">
+                                            <span>${product.product_name}</span>
+                                        </a>
+                                    </div>`;
+                                productList.append(productItem);
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Search error:", error);
+                    }
+                });
+            });
+
+            // Hide search form & dropdown when clicking outside
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('.header-search, #searchResults').length) {
+                    $('.header-search-form').removeClass('active'); // Use class to hide
+                    $('#searchResults').hide();
+                }
+            });
+
+            // Show dropdown on typing in the search input
+            $('#searchInput').on('input', function () {
+                if ($(this).val().trim() !== "") {
+                    $('#searchResults').show();
+                } else {
+                    $('#searchResults').hide();
+                }
+            });
+        });
+    </script>
