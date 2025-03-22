@@ -18,32 +18,37 @@
             </div>
         @endif
 
-    <!-- Page Banner Section Start -->
-    <div class="page-banner-section section bg-image" data-bg="{{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }}"
-      style="background-image: url({{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }});background-position: right;">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="page-banner text-center">
-                <h2>{{ $product->category_name }}</h2>  
-                <ul class="page-breadcrumb">
-                    <li><a href="{{ route('home.page') }}">Home</a></li>
-                    <li><a href="{{ route('products.category') }}">Products</a></li>
-                    <li>
-                        <a href="{{ route('product.page', ['slug' => Str::slug($product->category_name)]) }}">
-                            {{ $product->category_name }}
-                        </a>
-                    </li>
+        <!-- Page Banner Section Start -->
+        <div class="page-banner-section section bg-image" data-bg="{{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }}"
+        style="background-image: url({{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }});background-position: right;">
+        <div class="container">
+            <div class="row">
+            <div class="col">
+                <div class="page-banner text-center">
+                    <h2>{{ $product->sub_category_name }}</h2>  
+                    <ul class="page-breadcrumb">
+                        <li><a href="{{ route('home.page') }}">Home</a></li>
+                        <li><a href="{{ route('products.category') }}">Products</a></li>
+                        <li>
+                            <a href="#">
+                                {{ $product->category_name }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('product.page', ['slug' => Str::slug($product->sub_category_name)]) }}">
+                                {{ $product->sub_category_name }}
+                            </a>
+                        </li>
 
-                    <li>{{ $product->product_name }}</li>  
-                </ul>
+                        <li>{{ $product->product_name }}</li>  
+                    </ul>
+                </div>
+
             </div>
-
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- Page Banner Section End -->
+        </div>
+        <!-- Page Banner Section End -->
 
 
     <div class="ledplsr-sec">

@@ -1,8 +1,16 @@
 @php
     $categories = DB::table('master_category')
-        ->select('master_category.id as category_id', 'master_category.category_name', 
-                 'master_sub_category.id as subcategory_id', 'master_sub_category.sub_category_name',
-                 'master_products.id as product_id', 'master_products.product_name')
+        ->select(
+            'master_category.id as category_id', 
+            'master_category.category_name', 
+            'master_category.slug as category_slug',  // Added category slug
+            'master_sub_category.id as subcategory_id', 
+            'master_sub_category.sub_category_name',
+            'master_sub_category.slug as subcategory_slug',  // Added subcategory slug
+            'master_products.id as product_id', 
+            'master_products.product_name',
+            'master_products.slug as product_slug'  // Added product slug
+        )
         ->leftJoin('master_sub_category', function ($join) {
             $join->on('master_category.id', '=', 'master_sub_category.category_id')
                 ->whereNull('master_sub_category.deleted_by');
@@ -83,40 +91,37 @@
                   <nav class="main-menu main-menu-two">
                     <ul>
                       <li><a href="{{ route('about-us.page') }}">About Us</a></li>
-                      
                  
                       <li>
-                      <a href="{{ route('products.category') }}">Products</a>
-                      <ul class="sub-menu">
-                          @foreach ($categories as $category_id => $categoryGroup)
-                              @php 
-                                  $category = $categoryGroup->first();
-                              @endphp
-                              <li>
-                                  <a href="#">{{ $category->category_name }}</a>
-                                  @if ($categoryGroup->whereNotNull('subcategory_id')->count())
-                                      <ul class="sub-menu mega-menu four-column left-0">
-                                          @foreach ($categoryGroup->groupBy('subcategory_id') as $subcategory_id => $subcategoryGroup)
-                                              @php 
-                                                  $subcategory = $subcategoryGroup->first();
-                                              @endphp
-                                              <li>
-                                                  <ul>
-                                                      <li><a href="#" class="item-title">{{ $subcategory->sub_category_name }}</a></li>
-                                                      @foreach ($subcategoryGroup->whereNotNull('product_id') as $product)
-                                                          <li><a href="#">{{ $product->product_name }}</a></li>
-                                                      @endforeach
-                                                  </ul>
-                                              </li>
-                                          @endforeach
-                                      </ul>
-                                  @endif
-                              </li>
-                          @endforeach
-                      </ul>
-
-
-                    </li>
+                        <a href="{{ route('products.category') }}">Products</a>
+                        <ul class="sub-menu">
+                            @foreach ($categories as $category_id => $categoryGroup)
+                                @php 
+                                    $category = $categoryGroup->first();
+                                @endphp
+                                <li>
+                                    <a href="#">{{ $category->category_name }}</a>
+                                    @if ($categoryGroup->whereNotNull('subcategory_id')->count())
+                                        <ul class="sub-menu mega-menu four-column left-0">
+                                            @foreach ($categoryGroup->groupBy('subcategory_id') as $subcategory_id => $subcategoryGroup)
+                                                @php 
+                                                    $subcategory = $subcategoryGroup->first();
+                                                @endphp
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="{{ route('product.page', ['slug' => $category->subcategory_slug]) }}" class="item-title">{{ $subcategory->sub_category_name }}</a></li>
+                                                        @foreach ($subcategoryGroup->whereNotNull('product_id') as $product)
+                                                            <li><a href="{{ route('product-details', ['slug' => $product->product_slug]) }}">{{ $product->product_name }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                      </li>
 
                       <li>
                         <span>Service & Support</span>
@@ -225,6 +230,40 @@
               <ul>
                 <li class="menu-item-has-children"><a href="{{ route('about-us.page') }}">About Us</a>
                 </li>
+
+                <li class="menu-item-has-children">
+                    <a href="{{ route('products.category') }}">Products</a>
+                    <ul class="submenu2">
+                        @foreach ($categories as $categoryGroup)
+                            @php
+                                $category = $categoryGroup->first();
+                            @endphp
+                            <li class="menu-item-has-children">
+                                <a href="{{ route('product.page', ['slug' => $category->category_slug]) }}">{{ $category->category_name }}</a>
+                                @if ($categoryGroup->whereNotNull('subcategory_id')->count())
+                                    <ul class="submenu2">
+                                        @foreach ($categoryGroup->groupBy('subcategory_id') as $subcategoryGroup)
+                                            @php
+                                                $subcategory = $subcategoryGroup->first();
+                                            @endphp
+                                            <li class="menu-item-has-children">
+                                                <a href="#">{{ $subcategory->sub_category_name }}</a>
+                                                @if ($subcategoryGroup->whereNotNull('product_id')->count())
+                                                    <ul class="submenu2">
+                                                        @foreach ($subcategoryGroup as $product)
+                                                            <li><a href="{{ route('product-details', ['slug' => $product->product_slug]) }}">{{ $product->product_name }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+
 
                 <li class="menu-item-has-children">
                   <a href="#">Service & Support</a>

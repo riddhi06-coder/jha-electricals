@@ -24,10 +24,12 @@ class ProductDetailsController extends Controller
         $product = ProductDetails::select(
                 'master_product_details.*', 
                 'master_category.category_name as category_name', 
-                'master_products.product_name as product_name'
+                'master_products.product_name as product_name',
+                'master_sub_category.sub_category_name as sub_category_name'
             )
             ->join('master_products', 'master_product_details.product_id', '=', 'master_products.id')
             ->join('master_category', 'master_product_details.category_id', '=', 'master_category.id')
+            ->leftJoin('master_sub_category', 'master_product_details.sub_category_id', '=', 'master_sub_category.id') // Join sub-category table
             ->where('master_products.slug', $slug)
             ->firstOrFail();
     
