@@ -12,138 +12,132 @@
         @include('components.frontend.header')
 
         
-	      @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
 
-        <!-- Page Banner Section Start -->
-        <div class="page-banner-section section bg-image" data-bg="{{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }}"
-        style="background-image: url({{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }});background-position: right;">
+    <!-- Page Banner Section Start -->
+    <div class="page-banner-section section bg-image" data-bg="{{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }}" 
+        style="background-image: url({{ asset('frontend/assets/img/bg/breadcrumb-img.webp') }});">
         <div class="container">
             <div class="row">
-            <div class="col">
-                <div class="page-banner text-center">
-                    <h2>{{ $product->sub_category_name }}</h2>  
-                    <ul class="page-breadcrumb">
-                        <li><a href="{{ route('home.page') }}">Home</a></li>
-                        <li><a href="{{ route('products.category') }}">Products</a></li>
-                        <li>
-                            <a href="#">
-                                {{ $product->category_name }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('product.page', ['slug' => Str::slug($product->sub_category_name)]) }}">
-                                {{ $product->sub_category_name }}
-                            </a>
-                        </li>
-
-                        <li>{{ $product->product_name }}</li>  
-                    </ul>
-                </div>
-
-            </div>
-            </div>
-        </div>
-        </div>
-        <!-- Page Banner Section End -->
-
-
-    <div class="ledplsr-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="ledplsr-title-sec">
-                        <h2>{{ $product->product_name }}</h2>
+                <div class="col">
+                    <div class="page-banner text-center">
+                        <h2>{{ $product->product_name ?? $specialDetails->product_name ?? 'Product Name' }}</h2>
+                        <ul class="page-breadcrumb">
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('/products') }}">Products</a></li>
+                            @if(!empty($product->sub_category_name) || !empty($specialDetails->sub_category_name))
+                                <li><a href="#">{{ $product->sub_category_name ?? $specialDetails->sub_category_name }}</a></li>
+                            @endif
+                            <li>{{ $product->product_name ?? $specialDetails->product_name }}</li>
+                        </ul>
                     </div>
-                </div>
-
-                @php
-                    $images = json_decode($product->product_images, true) ?? [];
-                @endphp
-
-                <div class="col-lg-8 col-md-8">
-                    <div class="ledplsr-product-image-sec">
-                        @if (!empty($images[0]))
-                            <img src="{{ asset('/uploads/products/' . $images[0]) }}" class="img-fluid" alt="{{ $product->product_name }}">
-                        @else
-                            <img src="{{ asset('img/banner/102-img.jpg') }}" class="img-fluid" alt="Default Image">
-                        @endif
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4">
-                    @if (!empty($images[1]))
-                        <div class="ledplsr-product-image-two-sec">
-                            <img src="{{ asset('/uploads/products/' . $images[1]) }}" class="img-fluid" alt="{{ $product->product_name }}">
-                        </div>
-                    @endif
-                    
-                    @if (!empty($images[2]))
-                        <div class="ledplsr-product-image-three-sec">
-                            <img src="{{ asset('/uploads/products/' . $images[2]) }}" class="img-fluid" alt="{{ $product->product_name }}">
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="led-panel-light-sq-ron-con-sec">
+
+    <div class="hdfr-unilay-wires-one-sec">
+      <div class="container">
+        <div class="row align-items-center">
+        <div class="col-lg-6">
+            <div class="hdfr-unilay-wires-img-sec">
+                <img src="{{ asset('/uploads/wire-details/' . ($specialDetails->product_images ?? 'default.jpg')) }}" alt="Product Image">
+            </div>
+        </div>
+            <div class="col-lg-6">
+                <div class="hdfr-unilay-wires-listing-sec">
+                    {!! $specialDetails->detailed_description ?? '<p>No description available.</p>' !!}
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+    
+    
+    <!--========-->
+    <div class="wires-two-sec" style="background-image: url('{{ asset('/uploads/wire-details/' . ($specialDetails->background_images ?? 'default-bg.jpg')) }}'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wires-two-sec-title-sec">
+                        <h3>Application</h3>
+                        {!! $specialDetails->description ?? '<p>No description available.</p>' !!} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--========-->
+
+    <!-- === -->
+    <div class="hdfr-unilay-wires-sq-ron-con-sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="lplsrc-title-sec">
-                        <h2>{{ $product->section_heading }}</h2>
+                    <div class="hdfr-unilay-wires-title-sec">
+                        <h2>Product Data</h2>
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="panel">
+                    <div class="hdfr-unilay-wires-panel">
                         <div class="panel-body table-responsive">
                             <table class="table table-hover">
-                                <thead>
-                                    <tr class="active">
-                                        <th>Code</th>
-                                        <th>Wattage</th>
-                                        <th>Outer Size (mm)</th>
-                                        <th>MRP</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    @php
-                                        $codes = json_decode($product->product_codes, true) ?? [];
-                                        $wattages = json_decode($product->product_wattages, true) ?? [];
-                                        $sizes = json_decode($product->product_sizes, true) ?? [];
-                                        $mrps = json_decode($product->product_mrps, true) ?? [];
-                                    @endphp
-
-                                    @foreach ($codes as $index => $code)
-                                        <tr>
-                                            <td>{{ $code }}</td>
-                                            <td>{{ $wattages[$index] ?? '-' }}</td>
-                                            <td>{{ $sizes[$index] ?? '-' }}</td>
-                                            <td>₹ {{ $mrps[$index] ?? 0 }}/-</td>
-                                        </tr>
-                                    @endforeach
-                                    
-                                    @if(empty($codes))
-                                        <tr>
-                                            <td colspan="4" class="text-center">No specifications available.</td>
-                                        </tr>
-                                    @endif
+                                    <tr>
+                                        <td><strong>Approvals</strong></td>
+                                        <td>{{ $specialDetails->approvals ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Voltage Grade</strong></td>
+                                        <td>{{ $specialDetails->voltage_grade ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Conductor</strong></td>
+                                        <td>{{ $specialDetails->conductor ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Conductor Specialty</strong></td>
+                                        <td>{{ $specialDetails->conductor_specialty ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Insulation</strong></td>
+                                        <td>{{ $specialDetails->insulation ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Colours</strong></td>
+                                        <td>{{ $specialDetails->colours ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Marking</strong></td>
+                                        <td>{{ $specialDetails->marking ?? 'N/A' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Packing</strong></td>
+                                        <td>{{ $specialDetails->packing ?? 'N/A' }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="hdfr-unilay-wires-btn-sec cta-banner-section">
+                        @if (!empty($specialDetails->brochures))
+                            <a href="{{ asset('/uploads/wire-details/brochures/' . $specialDetails->brochures) }}" 
+                            class="small-btn-style" target="_blank" download>
+                                Download Brochure
+                            </a>
+                        @else
+                            <p>No brochure available.</p>
+                        @endif
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-
-
 
 
     <div class="call-to-action-wrap led-cta-sec">
@@ -164,9 +158,8 @@
     </div>
 
 
-
-     <!-- Modal -->
-    <div class="modal fade bann-modal-sec" id="contactModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <!-- Modal -->
+      <div class="modal fade bann-modal-sec" id="contactModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bann-modal-header-sec">
@@ -236,10 +229,11 @@
                           @enderror
                       </div>
 
-                      <!-- Submit Button -->
-                      <div class="col-md-12 text-center">
+                         <!-- Submit Button -->
+                        <div class="col-md-12 text-center">
                             <button type="submit" class="small-btn-style">Submit</button>
                         </div>
+
                   </div>
                 </form>
 
@@ -249,7 +243,7 @@
         </div>
     </div>
 
-
+        
         @include('components.frontend.footer')
         
         @include('components.frontend.main-js')
