@@ -244,6 +244,8 @@ Route::resource('blog-detail',BlogDetailsController::class);
 // ==== Manage Privacy Policy Page
 Route::resource('privacy',PrivacyController::class);
 
+
+
 // ===================================================================Frontend================================================================
 
 
