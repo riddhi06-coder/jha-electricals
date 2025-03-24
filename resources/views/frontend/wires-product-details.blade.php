@@ -61,7 +61,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wires-two-sec-title-sec">
-                        <h3>Application</h3>
                         {!! $specialDetails->description ?? '<p>No description available.</p>' !!} 
                     </div>
                 </div>

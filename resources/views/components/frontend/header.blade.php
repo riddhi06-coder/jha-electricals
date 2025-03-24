@@ -146,7 +146,7 @@
                                                 @endphp
                                                 <li>
                                                     <ul>
-                                                        <li><a href="{{ route('product.page', ['slug' => $category->subcategory_slug]) }}" class="item-title">{{ $subcategory->sub_category_name }}</a></li>
+                                                        <li><a href="{{ route('product.page', ['slug' => $subcategory->subcategory_slug]) }}" class="item-title">{{ $subcategory->sub_category_name }}</a></li>
                                                         @foreach ($subcategoryGroup->whereNotNull('product_id') as $product)
                                                             <li><a href="{{ route('product-details', ['slug' => $product->product_slug]) }}">{{ $product->product_name }}</a></li>
                                                         @endforeach
@@ -166,7 +166,6 @@
                           <li><a href="{{ route('professional.installation') }}">Professional Installation</a></li>
                           <li><a href="{{ route('prewiring.consultation') }}">Pre-Wiring Consultations</a></li>
                           <li><a href="{{ route('postinstallation.training') }}">Post-Installation Training</a></li>
-                          <!--<li><a href="#">Online Knowledge Base</a></li>-->
                         </ul>
                       </li>
                       <li>
