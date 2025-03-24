@@ -261,6 +261,7 @@ Route::get('/search-products', function (Request $request) {
     Log::info("Search query received: " . $query);
 
     $products = MasterProduct::where('product_name', 'LIKE', "%{$query}%")
+        ->whereNull('deleted_by')
         ->get();
 
     Log::info("Products found: " . $products->count());
