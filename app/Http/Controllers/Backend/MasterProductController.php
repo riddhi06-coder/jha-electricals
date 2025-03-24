@@ -128,7 +128,12 @@ class MasterProductController extends Controller
         $request->validate([
             'category_id' => 'required|exists:master_category,id',
             'sub_category_id' => 'required|exists:master_sub_category,id',
-            'product_name' => 'required|string|max:255|unique:master_products,product_name,' . $id,
+            'product_name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('master_products', 'product_name')->ignore($id)->whereNotNull('deleted_by')
+            ],
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
             'category_id.required' => 'Please select a product category.',
