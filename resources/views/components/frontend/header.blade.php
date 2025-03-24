@@ -399,7 +399,7 @@
                 }
 
                 console.log("Searching for:", query); // ✅ Debugging log
-
+                let assetBaseUrl = "{{ rtrim(asset(''), '/') }}"; 
                 $.ajax({
                     url: "{{ route('search.products') }}",
                     method: "GET",
@@ -417,7 +417,7 @@
                             response.forEach(product => {
                                 let productItem = `
                                     <div class="search-item">
-                                        <a href="/product-details/${product.slug}">
+                                        <a href="${assetBaseUrl}/product-details/${product.slug}">
                                             <span>${product.product_name}</span>
                                         </a>
                                     </div>`;
