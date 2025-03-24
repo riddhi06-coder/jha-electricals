@@ -401,7 +401,7 @@
                 console.log("Searching for:", query); // ✅ Debugging log
 
                 $.ajax({
-                    url: "/search-products",
+                    url: "{{ route('search.products') }}",
                     method: "GET",
                     data: { query: query },
                     success: function (response) {

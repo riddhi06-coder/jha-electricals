@@ -266,7 +266,8 @@ Route::get('/search-products', function (Request $request) {
     Log::info("Products found: " . $products->count());
 
     return response()->json($products);
-});
+})->name('search.products'); // Add an explicit route name
+
 
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
