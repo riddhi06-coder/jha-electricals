@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -48,7 +50,13 @@ class MasterProductController extends Controller
         $request->validate([
             'category_id' => 'required|exists:master_category,id',
             'sub_category_id' => 'required|exists:master_sub_category,id',
-            'product_name' => 'required|string|max:255|unique:master_products,product_name',
+            'product_name' => [
+                            'required',
+                            'string',
+                            'max:255',
+                            Rule::unique('master_products', 'product_name')->whereNull('deleted_by')
+                        ],
+
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
             'category_id.required' => 'Please select a product category.',
