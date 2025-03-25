@@ -60,8 +60,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="wires-two-sec-title-sec">
-                        {!! $specialDetails->description ?? '<p>No description available.</p>' !!} 
+                    <div class="wires-two-sec-title-sec" style="color: white !important;">
+                        @if (!empty($specialDetails->description))
+                            @php
+                                $trimmedDescription = trim($specialDetails->description); 
+                                $words = preg_split('/\s+/', $trimmedDescription, 2); 
+                            @endphp
+                            <h3 style="color: white !important;">{{ $words[0] }}</h3>
+                            <p style="color: white !important;">{{ $words[1] ?? '' }}</p>
+                        @else
+                            <p style="color: white !important;">No description available.</p>
+                        @endif
                     </div>
                 </div>
             </div>

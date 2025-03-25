@@ -223,14 +223,14 @@
        @include('components.backend.main-js')
 
 <!----for summernote for section II descripton---->
-<script>
+<!-- <script>
   $(document).ready(function() {
     $('#description').summernote({
       height: 200, 
       focus: true 
     });
   });
-</script>
+</script> -->
 
 
 <!----for Catgeory, sub category and product name fetching---->
