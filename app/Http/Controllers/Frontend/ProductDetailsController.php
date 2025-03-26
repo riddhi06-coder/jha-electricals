@@ -87,8 +87,6 @@ class ProductDetailsController extends Controller
         return view('frontend.wires-product-details', compact('specialDetails'));
     }
 
-
-
     public function submitEnquiry(Request $request)
     {
         $validatedData = $request->validate([
