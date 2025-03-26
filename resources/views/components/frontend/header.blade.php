@@ -19,7 +19,8 @@
             $join->on('master_sub_category.id', '=', 'master_products.sub_category_id')
                 ->whereNull('master_products.deleted_by');
         })
-        ->whereNull('master_category.deleted_by')
+        ->whereNull('master_category.deleted_at')
+        ->whereNull('master_sub_category.deleted_at')
         ->get()
         ->groupBy('category_id'); // Group by category
 @endphp
