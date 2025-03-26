@@ -9,7 +9,7 @@
             'master_sub_category.slug as subcategory_slug',  // Added subcategory slug
             'master_products.id as product_id', 
             'master_products.product_name',
-            'master_products.slug as product_slug'  // Added product slug
+            'master_products.slug as product_slug',  // Added product slug
         )
         ->leftJoin('master_sub_category', function ($join) {
             $join->on('master_category.id', '=', 'master_sub_category.category_id')

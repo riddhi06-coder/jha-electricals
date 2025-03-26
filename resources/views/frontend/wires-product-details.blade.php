@@ -88,60 +88,86 @@
                         <h2>Product Data</h2>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="hdfr-unilay-wires-panel">
-                        <div class="panel-body table-responsive">
-                            <table class="table table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Approvals</strong></td>
-                                        <td>{{ $specialDetails->approvals ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Voltage Grade</strong></td>
-                                        <td>{{ $specialDetails->voltage_grade ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Conductor</strong></td>
-                                        <td>{{ $specialDetails->conductor ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Conductor Specialty</strong></td>
-                                        <td>{{ $specialDetails->conductor_specialty ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Insulation</strong></td>
-                                        <td>{{ $specialDetails->insulation ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Colours</strong></td>
-                                        <td>{{ $specialDetails->colours ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Marking</strong></td>
-                                        <td>{{ $specialDetails->marking ?? 'N/A' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Packing</strong></td>
-                                        <td>{{ $specialDetails->packing ?? 'N/A' }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                @if (!empty(array_filter([
+                    $specialDetails->approvals ?? null,
+                    $specialDetails->voltage_grade ?? null,
+                    $specialDetails->conductor ?? null,
+                    $specialDetails->conductor_specialty ?? null,
+                    $specialDetails->insulation ?? null,
+                    $specialDetails->colours ?? null,
+                    $specialDetails->marking ?? null,
+                    $specialDetails->packing ?? null
+                ])))
+                    <div class="col-md-12">
+                        <div class="hdfr-unilay-wires-panel">
+                            <div class="panel-body table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        @if (!empty($specialDetails->approvals))
+                                            <tr>
+                                                <td><strong>Approvals</strong></td>
+                                                <td>{{ $specialDetails->approvals }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->voltage_grade))
+                                            <tr>
+                                                <td><strong>Voltage Grade</strong></td>
+                                                <td>{{ $specialDetails->voltage_grade }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->conductor))
+                                            <tr>
+                                                <td><strong>Conductor</strong></td>
+                                                <td>{{ $specialDetails->conductor }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->conductor_specialty))
+                                            <tr>
+                                                <td><strong>Conductor Specialty</strong></td>
+                                                <td>{{ $specialDetails->conductor_specialty }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->insulation))
+                                            <tr>
+                                                <td><strong>Insulation</strong></td>
+                                                <td>{{ $specialDetails->insulation }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->colours))
+                                            <tr>
+                                                <td><strong>Colours</strong></td>
+                                                <td>{{ $specialDetails->colours }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->marking))
+                                            <tr>
+                                                <td><strong>Marking</strong></td>
+                                                <td>{{ $specialDetails->marking }}</td>
+                                            </tr>
+                                        @endif
+                                        @if (!empty($specialDetails->packing))
+                                            <tr>
+                                                <td><strong>Packing</strong></td>
+                                                <td>{{ $specialDetails->packing }}</td>
+                                            </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="hdfr-unilay-wires-btn-sec cta-banner-section">
-                        @if (!empty($specialDetails->brochures))
+                @endif
+
+                @if (!empty($specialDetails->brochures))
+                    <div class="col-md-12">
+                        <div class="hdfr-unilay-wires-btn-sec cta-banner-section">
                             <a href="{{ asset('/uploads/wire-details/brochures/' . $specialDetails->brochures) }}" 
-                            class="small-btn-style" target="_blank" download>
+                                class="small-btn-style" target="_blank" download>
                                 Download Brochure
                             </a>
-                        @else
-                            <p>No brochure available.</p>
-                        @endif
+                        </div>
                     </div>
-                </div>
+                @endif
 
             </div>
         </div>

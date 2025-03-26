@@ -344,7 +344,10 @@
                 <!-- Section Title Start -->
                 <div class="col">
                 <div class="section-title mb-40 wow fadeInDown animated" data-wow-delay="400ms" data-wow-duration="400ms">
-                    @if($homeBlogs->isNotEmpty())
+                <h2>Latest <span>Blogs</span></h2>
+
+
+                    <!-- @if($homeBlogs->isNotEmpty())
                         @php
                             $firstBlog = $homeBlogs->sortBy('inserted_at')->first();  // Sort blogs and get the first one
                             $titleParts = explode(' ', $firstBlog->title);  // Split the blog title into words
@@ -355,9 +358,10 @@
 
                         <h2>{{ $firstWord }} <span>{{ $secondWord }}</span> {{ $remainingWords }}</h2>
 
-                    @else
-                        <h2>Latest <span>Blogs</span></h2>
-                    @endif
+                    @else -->
+                        <!-- <h2>Latest <span>Blogs</span></h2> -->
+
+                    <!-- @endif -->
                 </div>
 
                 </div>
