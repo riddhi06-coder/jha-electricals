@@ -104,15 +104,15 @@ class MasterWireDetailsController extends Controller
             'detailed_description' => 'required|string',
             'background_images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
             'description' => 'required|string',
-            'approvals' => 'required|string|max:255',
-            'voltage_grade' => 'required|string|max:255',
-            'conductor' => 'required|string',
-            'conductor_specialty' => 'required|string|max:255',
-            'insulation' => 'required|string|max:255',
-            'colours' => 'required|string|max:255',
-            'marking' => 'required|string',
-            'packing' => 'required|string|max:255',
-            'brochures.*' => 'mimes:pdf|max:3072',
+            'approvals' => 'nullable|string|max:255',
+            'voltage_grade' => 'nullable|string|max:255',
+            'conductor' => 'nullable|string',
+            'conductor_specialty' => 'nullable|string|max:255',
+            'insulation' => 'nullable|string|max:255',
+            'colours' => 'nullable|string|max:255',
+            'marking' => 'nullable|string',
+            'packing' => 'nullable|string|max:255',
+            'brochures.*' => 'nullable|mimes:pdf|max:3072',
         ], [
             'category_id.required' => 'Please select a product category.',
             'category_id.exists' => 'Selected category is invalid.',
@@ -130,15 +130,6 @@ class MasterWireDetailsController extends Controller
             'background_image.mimes' => 'Only JPG, JPEG, PNG, and WEBP files are allowed.',
             'background_image.max' => 'The background image size must be less than 2MB.',
             'description.required' => 'Please enter a description.',
-            'approvals.required' => 'Please enter approvals.',
-            'voltage_grade.required' => 'Please enter voltage grade.',
-            'conductor.required' => 'Please enter conductor details.',
-            'conductor_specialty.required' => 'Please enter conductor specialty.',
-            'insulation.required' => 'Please enter insulation type.',
-            'colours.required' => 'Please enter available colours.',
-            'marking.required' => 'Please enter marking details.',
-            'packing.required' => 'Please enter packing details.',
-            'brochure.required' => 'Please upload a brochure.',
             'brochure.mimes' => 'Only PDF files are allowed for the brochure.',
             'brochure.max' => 'The brochure file size must be less than 3MB.',
         ]);
@@ -162,6 +153,8 @@ class MasterWireDetailsController extends Controller
             $backgroundImageName = time() . '_bg.' . $image->getClientOriginalExtension();
             $image->move(public_path('/uploads/wire-details/'), $backgroundImageName);
         }
+
+        $brochureName = null;
 
         // Upload Brochure PDF
         if ($request->hasFile('brochure')) {
@@ -266,15 +259,15 @@ class MasterWireDetailsController extends Controller
             'detailed_description' => 'required|string',
             'background_image'  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
             'description'       => 'required|string',
-            'approvals'         => 'required|string|max:255',
-            'voltage_grade'     => 'required|string|max:255',
-            'conductor'         => 'required|string',
-            'conductor_specialty' => 'required|string|max:255',
-            'insulation'        => 'required|string|max:255',
-            'colours'           => 'required|string|max:255',
-            'marking'           => 'required|string',
-            'packing'           => 'required|string|max:255',
-            'brochure'          => 'mimes:pdf|max:3072',
+            'approvals'         => 'nullable|string|max:255',
+            'voltage_grade'     => 'nullable|string|max:255',
+            'conductor'         => 'nullable|string',
+            'conductor_specialty' => 'nullable|string|max:255',
+            'insulation'        => 'nullable|string|max:255',
+            'colours'           => 'nullable|string|max:255',
+            'marking'           => 'nullable|string',
+            'packing'           => 'nullable|string|max:255',
+            'brochure'          => 'nullable|mimes:pdf|max:3072',
         ]);
 
         if ($validator->fails()) {
@@ -305,18 +298,24 @@ class MasterWireDetailsController extends Controller
             $backgroundImageName = $details->background_images; // Retain old background image
         }
 
-        // Update Brochure (if new brochure is uploaded)
+        $brochureName = $details->brochures ?? null;
+
+        // Update Brochure (if a new brochure is uploaded)
         if ($request->hasFile('brochure')) {
             $brochure = $request->file('brochure');
             $brochureName = time() . '.' . $brochure->getClientOriginalExtension();
             $brochure->move(public_path('/uploads/wire-details/brochures/'), $brochureName);
-            // Delete old brochure
-            if ($details->brochures) {
+            
+            // Delete old brochure if it exists
+            if (!empty($details->brochures)) {
+                $oldBrochurePath = public_path('/uploads/wire-details/brochures/') . $details->brochures;
+            }  else {
+                $brochureName = $details->brochures; 
             }
-        } else {
-            $brochureName = $details->brochures; // Retain old brochure
+    
         }
-
+        
+    
         // Update record
         $details->update([
             'category_id'         => $request->category_id,

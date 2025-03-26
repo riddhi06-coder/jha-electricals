@@ -163,8 +163,8 @@
 
                                     @foreach(['approvals', 'voltage_grade', 'conductor', 'conductor_specialty', 'insulation', 'colours', 'marking', 'packing'] as $field)
                                         <div class="col-12">
-                                            <label class="form-label" for="{{ $field }}">{{ ucfirst(str_replace('_', ' ', $field)) }} <span class="txt-danger">*</span></label>
-                                            <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ old($field, $details->$field) }}" required>
+                                            <label class="form-label" for="{{ $field }}">{{ ucfirst(str_replace('_', ' ', $field)) }}</label>
+                                            <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ old($field, $details->$field) }}">
                                             @error($field) <div class="invalid-feedback">{{ $message }}</div> @enderror
                                         </div>
                                     @endforeach
@@ -175,8 +175,8 @@
 
                                     <!-- Brochure Upload -->
                                     <div class="col-12">
-                                        <label class="form-label" for="brochure">Upload Brochure (PDF) <span class="txt-danger">*</span></label>
-                                        <input type="file" class="form-control" id="brochure" name="brochure" accept="application/pdf" onchange="previewBrochure(this, 'existing_brochure_preview')" required>
+                                        <label class="form-label" for="brochure">Upload Brochure (PDF)</label>
+                                        <input type="file" class="form-control" id="brochure" name="brochure" accept="application/pdf" onchange="previewBrochure(this, 'existing_brochure_preview')">
                                         <small class="text-secondary"><b>Note: Only PDF files are allowed (Max: 3MB).</b></small>
                                         <div class="invalid-feedback">Please upload a brochure.</div>
                                     </div>

@@ -135,57 +135,57 @@
 
                                     <!-- Approvals -->
                                     <div class="col-12">
-                                        <label class="form-label" for="approvals">Approvals <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="approvals" name="approvals"  required>
+                                        <label class="form-label" for="approvals">Approvals </label>
+                                        <input type="text" class="form-control" id="approvals" name="approvals" >
                                         <div class="invalid-feedback">Please enter approvals.</div>
                                     </div>
 
                                     <!-- Voltage Grade -->
                                     <div class="col-12">
-                                        <label class="form-label" for="voltage_grade">Voltage Grade <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="voltage_grade" name="voltage_grade" required>
+                                        <label class="form-label" for="voltage_grade">Voltage Grade </label>
+                                        <input type="text" class="form-control" id="voltage_grade" name="voltage_grade">
                                         <div class="invalid-feedback">Please enter voltage grade.</div>
                                     </div>
 
                                     <!-- Conductor -->
                                     <div class="col-12">
-                                        <label class="form-label" for="conductor">Conductor <span class="txt-danger">*</span></label>
-                                        <textarea class="form-control" id="conductor" name="conductor" required></textarea>
+                                        <label class="form-label" for="conductor">Conductor </label>
+                                        <textarea class="form-control" id="conductor" name="conductor"></textarea>
                                         <div class="invalid-feedback">Please enter conductor details.</div>
                                     </div>
 
                                     <!-- Conductor Specialty -->
                                     <div class="col-12">
-                                        <label class="form-label" for="conductor_specialty">Conductor Specialty <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="conductor_specialty" name="conductor_specialty" required>
+                                        <label class="form-label" for="conductor_specialty">Conductor Specialty </label>
+                                        <input type="text" class="form-control" id="conductor_specialty" name="conductor_specialty">
                                         <div class="invalid-feedback">Please enter conductor specialty.</div>
                                     </div>
 
                                     <!-- Insulation -->
                                     <div class="col-12">
-                                        <label class="form-label" for="insulation">Insulation <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="insulation" name="insulation" required>
+                                        <label class="form-label" for="insulation">Insulation </label>
+                                        <input type="text" class="form-control" id="insulation" name="insulation">
                                         <div class="invalid-feedback">Please enter insulation type.</div>
                                     </div>
 
                                     <!-- Colours -->
                                     <div class="col-12">
-                                        <label class="form-label" for="colours">Colours <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="colours" name="colours" required>
+                                        <label class="form-label" for="colours">Colours </label>
+                                        <input type="text" class="form-control" id="colours" name="colours">
                                         <div class="invalid-feedback">Please enter available colours.</div>
                                     </div>
 
                                     <!-- Marking -->
                                     <div class="col-12">
-                                        <label class="form-label" for="marking">Marking <span class="txt-danger">*</span></label>
-                                        <textarea class="form-control" id="marking" name="marking" required></textarea>
+                                        <label class="form-label" for="marking">Marking </label>
+                                        <textarea class="form-control" id="marking" name="marking"></textarea>
                                         <div class="invalid-feedback">Please enter marking details.</div>
                                     </div>
 
                                     <!-- Packing -->
                                     <div class="col-12">
-                                        <label class="form-label" for="packing">Packing <span class="txt-danger">*</span></label>
-                                        <input type="text" class="form-control" id="packing" name="packing" required>
+                                        <label class="form-label" for="packing">Packing </label>
+                                        <input type="text" class="form-control" id="packing" name="packing">
                                         <div class="invalid-feedback">Please enter packing details.</div>
                                     </div>
 
@@ -195,8 +195,8 @@
 
                                     <!-- Brochure Upload -->
                                     <div class="col-12">
-                                        <label class="form-label" for="brochure">Upload Brochure (PDF) <span class="txt-danger">*</span></label>
-                                        <input type="file" class="form-control" id="brochure" name="brochure" accept="application/pdf" onchange="previewBrochure(this)" required>
+                                        <label class="form-label" for="brochure">Upload Brochure (PDF) </label>
+                                        <input type="file" class="form-control" id="brochure" name="brochure" accept="application/pdf" onchange="previewBrochure(this)">
                                         <small class="text-secondary"><b>Note: Only PDF files are allowed (Max: 3MB).</b></small>
                                         <div class="invalid-feedback">Please upload a brochure.</div>
                                     </div>
