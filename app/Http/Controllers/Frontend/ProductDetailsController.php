@@ -52,6 +52,7 @@ class ProductDetailsController extends Controller
             ->join('master_category', 'master_product_details.category_id', '=', 'master_category.id')
             ->leftJoin('master_sub_category', 'master_product_details.sub_category_id', '=', 'master_sub_category.id') 
             ->where('master_products.slug', $slug)
+            ->whereNull('master_product_details.deleted_at')
             ->first();
 
         if (!$product) {
@@ -75,6 +76,7 @@ class ProductDetailsController extends Controller
                     ->join('master_category', 'master_wire_details.category_id', '=', 'master_category.id')
                     ->leftJoin('master_sub_category', 'master_wire_details.sub_category_id', '=', 'master_sub_category.id')
                     ->where('master_products.slug', $slug)
+                    ->whereNull('master_wire_details.deleted_at')
                     ->first();
 
         if (!$specialDetails) {
