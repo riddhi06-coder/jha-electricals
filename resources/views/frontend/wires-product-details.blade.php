@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col">
                     <div class="page-banner text-center">
-                        <h2>{{ $product->product_name ?? $specialDetails->product_name ?? 'Product Name' }}</h2>
+                        <h2>{{ $product->sub_category_name ?? $specialDetails->sub_category_name ?? 'Product Name' }}</h2>
                         <ul class="page-breadcrumb">
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ url('/products') }}">Products</a></li>
