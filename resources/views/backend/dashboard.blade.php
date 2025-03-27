@@ -17,83 +17,128 @@
           <div class="container-fluid">            
             <div class="page-title"> 
               <div class="row">
-                
-                
               </div>
             </div>
           </div>
           <!-- Container-fluid starts -->
           <div class="container-fluid">
-            <div class="row"> 
              
-              <div class="col-xxl-6 box-col-12"> 
-                <div class="row">
-                  <div class="col-xl-5 col-sm-6">
-                    <div class="card height-equal">
-                      <div class="card-body"> 
-                        <ul class="product-costing">
-                          <li class="product-cost">
-                            <div class="product-icon bg-primary-light">
-                              <svg>
-                                <use href="{{ asset('admin/assets/svg/icon-sprite.svg#activity') }}"></use>
-                              </svg>
-                            </div>
-                            <div><span class="f-w-500 f-14 mb-0">Total Sales</span>
-                              <h2 class="f-w-600">₹98,459</h2>
-                            </div>
-                          </li>
-                          <li> <span class="f-light f-14 f-w-500">We have sale +18.2k this week.</span></li>
-                        </ul>
-                        <ul class="product-costing">
-                          <li class="product-cost">
-                            <div class="product-icon bg-warning-light">
-                              <svg>
-                                <use href="{{ asset('admin/assets/svg/icon-sprite.svg#people') }}"></use>
-                              </svg>
-                            </div>
-                            <div><span class="f-w-500 f-14 mb-0">Total Visitors</span>
-                              <h2 class="f-w-600">54,156</h2>
-                            </div>
-                          </li>
-                          <li> <span class="f-light f-14 f-w-500">We have total +3.5k visitors this week.</span></li>
-                        </ul>
-                        <ul class="product-costing">
-                          <li class="product-cost">
-                            <div class="product-icon bg-light">
-                              <svg>
-                                <use href="{{ asset('admin/assets/svg/icon-sprite.svg#task-square') }}"></use>
-                              </svg>
-                            </div>
-                            <div><span class="f-w-500 f-14 mb-0">Total Orders</span>
-                              <h2 class="f-w-600">5,125</h2>
-                            </div>
-                          </li>
-                          <li> <span class="f-light f-14 f-w-500">We have total +5k orders this week.</span></li>
-                        </ul>
-                        <ul class="product-costing">
-                          <li class="product-cost">
-                            <div class="product-icon bg-danger-light">
-                              <svg>
-                                <use href="{{ asset('admin/assets/svg/icon-sprite.svg#money-recive') }}"></use>
-                              </svg>
-                            </div>
-                            <div><span class="f-w-500 f-14 mb-0">Refunded</span>
-                              <h2 class="f-w-600">₹20,000</h2>
-                            </div>
-                          </li>
-                          <li> <span class="f-light f-14 f-w-500">We got +66k refund this week.</span></li>
+            <div class="row"> 
+                  <div class="col-xl-3 col-sm-6">
+                    <div class="card o-hidden small-widget h-100" >
+                      <div class="card-body total-project border-b-primary border-2"><span class="f-light f-w-500 f-14">Total Catgeory</span>
+                        <div class="project-details"> 
+                          <div class="project-counter"> 
+                          <h2 class="f-w-600">{{ \App\Models\Category::whereNull('deleted_by')->count() }}</h2>
+                            <span class="f-12 f-w-400">(This month)</span>
+
+                          </div>
+                          <div class="product-sub bg-primary-light">
+                            <svg class="invoice-icon">
+                              <use href="{{ asset('admin/assets/svg/icon-sprite.svg#color-swatch') }}"></use>
+                            </svg>
+                          </div>
+                        </div>
+                        <ul class="bubbles">
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
                         </ul>
                       </div>
                     </div>
                   </div>
-
-                </div>
+                  <div class="col-xl-3 col-sm-6">
+                    <div class="card o-hidden small-widget h-100">
+                      <div class="card-body total-Progress border-b-warning border-2"> <span class="f-light f-w-500 f-14">Total Sub Category</span>
+                        <div class="project-details">
+                          <div class="project-counter">
+                            <h2 class="f-w-600">{{ \App\Models\SubCategory::whereNull('deleted_by')->count() }}</h2><span class="f-12 f-w-400">(This month) </span>
+                          </div>
+                          <div class="product-sub bg-warning-light"> 
+                            <svg class="invoice-icon">
+                              <use href="{{ asset('admin/assets/svg/icon-sprite.svg#tick-circle') }}"></use>
+                            </svg>
+                          </div>
+                        </div>
+                        <ul class="bubbles">
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6">
+                    <div class="card o-hidden small-widget h-100">
+                      <div class="card-body total-Complete border-b-secondary border-2"><span class="f-light f-w-500 f-14">Total Products</span>
+                        <div class="project-details">
+                          <div class="project-counter">
+                            <h2 class="f-w-600">{{ \App\Models\MasterProduct::whereNull('deleted_by')->count() }}</h2><span class="f-12 f-w-400">(This month) </span>
+                          </div>
+                          <div class="product-sub bg-secondary-light"> 
+                            <svg class="invoice-icon">
+                              <use href="{{ asset('admin/assets/svg/icon-sprite.svg#add-square') }}"></use>
+                            </svg>
+                          </div>
+                        </div>
+                        <ul class="bubbles"> 
+                          <li class="bubble"> </li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"> </li>
+                          <li class="bubble"></li>
+                          <li class="bubble"> </li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"> </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6">
+                    <div class="card o-hidden small-widget h-100">
+                      <div class="card-body total-upcoming"><span class="f-light f-w-500 f-14">Total Blogs</span>
+                        <div class="project-details"> 
+                          <div class="project-counter">
+                            <h2 class="f-w-600">{{ \App\Models\BlogType::whereNull('deleted_by')->count() }}</h2><span class="f-12 f-w-400">(This month) </span>
+                          </div>
+                          <div class="product-sub bg-light-light"> 
+                            <svg class="invoice-icon">
+                              <use href="{{ asset('admin/assets/svg/icon-sprite.svg#edit-2') }}"></use>
+                            </svg>
+                          </div>
+                        </div>
+                        <ul class="bubbles"> 
+                          <li class="bubble"> </li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                          <li class="bubble"></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
               </div>
-
             </div>
+
           </div>
           <!-- Container-fluid Ends -->
-        </div>
         <!-- footer start-->
         @include('components.backend.footer')
       </div>
