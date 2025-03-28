@@ -3,6 +3,14 @@
     
 <head>
     @include('components.frontend.head')
+
+    <style>
+        .pre-wiring-consu-content-sec, 
+        .pre-wiring-consu-title-sec, 
+        .pre-wiring-listing-sec {
+            visibility: visible !important;
+        }
+    </style>
 </head>
 
 
@@ -43,8 +51,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="pre-wiring-consu-content-sec wow fadeInRight animated" data-wow-delay="400ms" data-wow-duration="400ms" 
-                        style="visibility: visible; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInRight;">
+                    <div class="pre-wiring-consu-content-sec wow fadeInRight animated pre-wiring-consu-title-sec pre-wiring-listing-sec" data-wow-delay="400ms" data-wow-duration="400ms" 
+                        style="visibility: visible !important; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInRight;">
                         <p>{!! $prewiring->detailed_description !!}</p>
                     </div>
                 </div>
