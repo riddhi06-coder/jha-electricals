@@ -11,9 +11,6 @@
 
         @include('components.frontend.header')
 	 
-
-
-
         @php
             $bannerImage = $career->first() ? asset('uploads/career/' . $career->first()->banner_image) : asset('uploads/application/default-banner.webp');
         @endphp
@@ -207,13 +204,12 @@
               <p>Interested candidates are invited to submit their resume/CV to <a href="mailto:hr@jhaelectricals.com">hr@jhaelectricals.com</a> and CC: <a href="sales@jhaelecticals.com">sales@jhaelecticals.com.</a></p>
             </div>
             <div class="cta-btn-sec">
-              <a href="#" class="small-btn-style">Contact Us</a>
+              <a href="{{ route('contact.us') }}" class="small-btn-style">Contact Us</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
 
      <!-- Career Page Modal -->
     <div class="modal fade careers-apply-now-modal-sec" id="applyNowModal" tabindex="-1" aria-labelledby="applyNowModalLabel" aria-hidden="true">
@@ -290,7 +286,6 @@
             </div>
         </div>
     </div>
-
 
 
         @include('components.frontend.footer')
