@@ -167,10 +167,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Data*" required></td>
-                                                <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Data*" required></td>
-                                                <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Data*" required></td>
-                                                <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter Data*" required></td>
+                                                <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Data"></td>
+                                                <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Data"></td>
+                                                <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Data"></td>
+                                                <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter Data"></td>
                                                 <td><button type="button" class="btn btn-success" onclick="addSpecRow()">Add More</button></td>
                                             </tr>
                                         </tbody>
@@ -344,7 +344,7 @@
         let row = table.insertRow(rowCount);
 
         row.innerHTML = `
-            <td><input type="text" class="form-control" name="product_header[]" placeholder="Enter Name" required></td>
+            <td><input type="text" class="form-control" name="product_header[]" placeholder="Enter Name"></td>
             <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
         `;
     }

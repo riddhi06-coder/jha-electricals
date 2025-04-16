@@ -87,10 +87,10 @@ class MasterProductDetailsController extends Controller
             'product_id'      => 'required|exists:master_products,id',
             'section_heading'   => 'required|string|max:255',
             'product_images.*'  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
-            'product_codes.*'   => 'required|string',
-            'product_wattages.*'=> 'required|string',
-            'product_sizes.*'   => 'required|string',
-            'product_mrps.*'    => 'required|string',
+            'product_codes.*'   => 'nullable|string',
+            'product_wattages.*'=> 'nullable|string',
+            'product_sizes.*'   => 'nullable|string',
+            'product_mrps.*'    => 'nullable|string',
 
             'product_header' => 'required|array|min:1',
             'product_header.*' => 'required|string|max:255',
@@ -107,11 +107,6 @@ class MasterProductDetailsController extends Controller
             'product_images.*.image'     => 'Each file must be an image.',
             'product_images.*.mimes'     => 'Only JPG, JPEG, PNG, and WEBP formats are allowed.',
             'product_images.*.max'       => 'Each image should not exceed 2MB in size.',
-            'product_codes.*.required'   => 'Please enter a product code.',
-            'product_wattages.*.required'=> 'Please enter the wattage.',
-            'product_sizes.*.required'   => 'Please enter the outer size.',
-            'product_mrps.*.required'    => 'Please enter the MRP.',
-
             
             'product_header.required' => 'Please add at least one product header.',
             'product_header.array' => 'Product headers must be an array.',
@@ -215,10 +210,11 @@ class MasterProductDetailsController extends Controller
             'section_heading'   => 'required|string|max:255',
             'product_images.*'  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
             'existing_images.*' => 'string',
-            'product_codes.*'   => 'required|string',
-            'product_wattages.*'=> 'required|string',
-            'product_sizes.*'   => 'required|string',
-            'product_mrps.*'    => 'required|string',
+
+            'product_codes.*'   => 'nullable|string',
+            'product_wattages.*'=> 'nullable|string',
+            'product_sizes.*'   => 'nullable|string',
+            'product_mrps.*'    => 'nullable|string',
             
             'product_header' => 'required|array|min:1',
             'product_header.*' => 'required|string|max:255',
