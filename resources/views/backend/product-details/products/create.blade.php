@@ -131,24 +131,46 @@
                                     <div class="mb-4"></div>
 
 
-                                    <!-- Product Specification Table -->
-                                    <h4>Product Specifications</h4>
-                                    <table class="table table-bordered p-3" id="specsTable" style="border: 2px solid #dee2e6;">
+                                    <!-- Product Headers Table -->
+                                    <h4>Product Table Headers</h4>
+                                    <table class="table table-bordered p-3" id="headerTable" style="border: 2px solid #dee2e6;">
                                         <thead>
                                             <tr>
-                                                <th>Code <span class="txt-danger">*</span></th>
-                                                <th>Wattage <span class="txt-danger">*</span></th>
-                                                <th>Outer Size (mm) <span class="txt-danger">*</span></th>
-                                                <th>MRP <span class="txt-danger">*</span></th>
+                                                <th>Header Name <span class="txt-danger">*</span></th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Code" required></td>
-                                                <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Wattage" required></td>
-                                                <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Outer Size" required></td>
-                                                <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter MRP" required></td>
+                                                <td><input type="text" class="form-control" name="product_header[]" placeholder="Enter Name" required></td>
+                                                <td><button type="button" class="btn btn-success" onclick="addHeaderRow()">Add More</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <div class="mb-4"></div>
+
+
+                                    <!-- Product Specification Table -->
+                                    <h4>Product Specifications</h4>
+                                    <table class="table table-bordered p-3" id="specsTable" style="border: 2px solid #dee2e6;">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Data*" required></td>
+                                                <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Data*" required></td>
+                                                <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Data*" required></td>
+                                                <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter Data*" required></td>
                                                 <td><button type="button" class="btn btn-success" onclick="addSpecRow()">Add More</button></td>
                                             </tr>
                                         </tbody>
@@ -308,10 +330,21 @@
         let row = table.insertRow(rowCount);
 
         row.innerHTML = `
-            <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Code" required></td>
-            <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Wattage" required></td>
-            <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Outer Size" required></td>
-            <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter MRP" required></td>
+            <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Data*" required></td>
+            <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Data*" required></td>
+            <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Data*" required></td>
+            <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter Data*" required></td>
+            <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+        `;
+    }
+
+    function addHeaderRow() {
+        let table = document.getElementById('headerTable').getElementsByTagName('tbody')[0];
+        let rowCount = table.rows.length;
+        let row = table.insertRow(rowCount);
+
+        row.innerHTML = `
+            <td><input type="text" class="form-control" name="product_header[]" placeholder="Enter Name" required></td>
             <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
         `;
     }

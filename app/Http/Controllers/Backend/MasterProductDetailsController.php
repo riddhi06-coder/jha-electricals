@@ -80,6 +80,7 @@ class MasterProductDetailsController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'category_id'       => 'required|exists:master_category,id',
             'sub_category_id'   => 'required|exists:master_sub_category,id',
@@ -90,6 +91,10 @@ class MasterProductDetailsController extends Controller
             'product_wattages.*'=> 'required|string',
             'product_sizes.*'   => 'required|string',
             'product_mrps.*'    => 'required|string',
+
+            'product_header' => 'required|array|min:1',
+            'product_header.*' => 'required|string|max:255',
+
         ], [
             'category_id.required'       => 'Please select a product category.',
             'category_id.exists'         => 'The selected product category is invalid.',
@@ -106,6 +111,14 @@ class MasterProductDetailsController extends Controller
             'product_wattages.*.required'=> 'Please enter the wattage.',
             'product_sizes.*.required'   => 'Please enter the outer size.',
             'product_mrps.*.required'    => 'Please enter the MRP.',
+
+            
+            'product_header.required' => 'Please add at least one product header.',
+            'product_header.array' => 'Product headers must be an array.',
+            'product_header.min' => 'Please add at least one product header.',
+            'product_header.*.required' => 'Each product header field is required.',
+            'product_header.*.string' => 'Each product header must be a valid string.',
+            'product_header.*.max' => 'Each product header must not exceed 255 characters.',
         ]);
 
         // Handle Image Uploads
@@ -132,6 +145,7 @@ class MasterProductDetailsController extends Controller
         $productWattagesJson = json_encode($request->product_wattages);
         $productSizesJson    = json_encode($request->product_sizes);
         $productMrpsJson     = json_encode($request->product_mrps);
+        $productheaders     = json_encode($request->product_header);
 
         ProductDetails::create([
             'category_id'       => $request->category_id,
@@ -143,6 +157,7 @@ class MasterProductDetailsController extends Controller
             'product_wattages'  => $productWattagesJson,
             'product_sizes'     => $productSizesJson,
             'product_mrps'      => $productMrpsJson,
+            'product_header'      => $productheaders,
             'inserted_at'       => Carbon::now(),
             'inserted_by'       => Auth::id(), 
         ]);
@@ -185,6 +200,7 @@ class MasterProductDetailsController extends Controller
         $details->product_wattages = json_decode($details->product_wattages, true);
         $details->product_sizes = json_decode($details->product_sizes, true);
         $details->product_mrps = json_decode($details->product_mrps, true);
+        $details->product_header = json_decode($details->product_header, true);
     
         return view('backend.product-details.products.edit', compact('details', 'categories', 'groupedSubcategories', 'groupedProducts', 'products'));
     }
@@ -203,6 +219,9 @@ class MasterProductDetailsController extends Controller
             'product_wattages.*'=> 'required|string',
             'product_sizes.*'   => 'required|string',
             'product_mrps.*'    => 'required|string',
+            
+            'product_header' => 'required|array|min:1',
+            'product_header.*' => 'required|string|max:255',
         ]);
 
         $productDetail = ProductDetails::findOrFail($id);
@@ -246,6 +265,7 @@ class MasterProductDetailsController extends Controller
             'product_wattages' => json_encode($request->product_wattages),
             'product_sizes'    => json_encode($request->product_sizes),
             'product_mrps'     => json_encode($request->product_mrps),
+            'product_header'     => json_encode($request->product_header),
             'modified_at'      => Carbon::now(),
             'modified_by'      => Auth::id(),
         ]);

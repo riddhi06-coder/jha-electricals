@@ -18,6 +18,7 @@ class ProductDetails extends Model
         'product_id',
         'section_heading',
         'product_images',
+        'product_header',
         'product_codes',
         'product_wattages',
         'product_sizes',

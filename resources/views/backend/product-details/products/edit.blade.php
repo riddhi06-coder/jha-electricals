@@ -153,6 +153,45 @@
                                         <div class="invalid-feedback">Please enter a Section heading.</div>
                                     </div>
 
+
+                                    <div class="mb-4"></div>
+
+
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h4 class="mb-0">Product Table Headers</h4>
+                                        <button type="button" class="btn btn-success" onclick="addHeaderRow()">Add More</button>
+                                    </div>
+
+                                    <table class="table table-bordered p-3" id="headerTable" style="border: 2px solid #dee2e6;">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Header Name <span class="txt-danger">*</span></th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (!empty($details->product_header) && is_array($details->product_header))
+                                                @foreach ($details->product_header as $index => $header)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product_header[]" value="{{ $header }}" placeholder="Enter Name" required>
+                                                        </td>
+                                                        <td>
+                                                            @if ($index == 0)
+                                                                <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                                                            @else
+                                                                <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+
+
+
                                     <div class="mb-4"></div>
 
                                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -162,10 +201,10 @@
                                     <table class="table table-bordered p-3" id="specsTable" style="border: 2px solid #dee2e6;">
                                         <thead>
                                             <tr>
-                                                <th>Code <span class="txt-danger">*</span></th>
-                                                <th>Wattage <span class="txt-danger">*</span></th>
-                                                <th>Outer Size (mm) <span class="txt-danger">*</span></th>
-                                                <th>MRP <span class="txt-danger">*</span></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -368,13 +407,27 @@ function removeRow(button, imageName = null) {
         let row = table.insertRow(rowCount);
 
         row.innerHTML = `
-            <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Code" required></td>
-            <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Wattage" required></td>
-            <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Outer Size" required></td>
-            <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter MRP" required></td>
+            <td><input type="text" class="form-control" name="product_codes[]" placeholder="Enter Data" required></td>
+            <td><input type="text" class="form-control" name="product_wattages[]" placeholder="Enter Data" required></td>
+            <td><input type="text" class="form-control" name="product_sizes[]" placeholder="Enter Data" required></td>
+            <td><input type="text" class="form-control" name="product_mrps[]" placeholder="Enter Data" required></td>
             <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
         `;
     }
+
+
+    
+    function addHeaderRow() {
+        let table = document.getElementById('headerTable').getElementsByTagName('tbody')[0];
+        let rowCount = table.rows.length;
+        let row = table.insertRow(rowCount);
+
+        row.innerHTML = `
+            <td><input type="text" class="form-control" name="product_header[]" placeholder="Enter Name" required></td>
+            <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+        `;
+    }
+
 
     function removeRow(button) {
         let row = button.closest('tr');
