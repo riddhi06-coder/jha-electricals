@@ -102,7 +102,7 @@
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-body table-responsive">
-                            <table class="table table-hover">
+                            <!-- <table class="table table-hover">
                                 <thead>
                                     <tr class="active">
                                         @if (!empty($product->product_header) && is_array($product->product_header))
@@ -136,7 +136,67 @@
                                         </tr>
                                     @endif
                                 </tbody>
-                            </table>
+                            </table> -->
+
+
+                            <table class="table table-hover">
+    <thead>
+        <tr class="active">
+            @if (!empty($product->product_header) && is_array($product->product_header))
+                @foreach ($product->product_header as $header)
+                    <th>{{ $header }}</th>
+                @endforeach
+            @endif
+        </tr>
+    </thead>
+
+    <tbody>
+        @php
+            $headers  = $product->product_header ?? [];
+            $codes    = json_decode($product->product_codes, true) ?? [];
+            $wattages = json_decode($product->product_wattages, true) ?? [];
+            $sizes    = json_decode($product->product_sizes, true) ?? [];
+            $mrps     = json_decode($product->product_mrps, true) ?? [];
+        @endphp
+
+        @forelse ($codes as $index => $code)
+            <tr>
+                @foreach ($headers as $header)
+                    @switch($header)
+                        @case('Code')
+                            @if (!empty($code))
+                                <td>{{ $code }}</td>
+                            @endif
+                            @break
+
+                        @case('Wattage')
+                            @if (!empty($wattages[$index]))
+                                <td>{{ $wattages[$index] }}</td>
+                            @endif
+                            @break
+
+                        @case('Outer Size (mm)')
+                            @if (!empty($sizes[$index]))
+                                <td>{{ $sizes[$index] }}</td>
+                            @endif
+                            @break
+
+                        @case('MRP')
+                            @if (!empty($mrps[$index]))
+                                <td>₹ {{ $mrps[$index] }}/-</td>
+                            @endif
+                            @break
+                    @endswitch
+                @endforeach
+            </tr>
+        @empty
+            <tr>
+                <td colspan="{{ count($headers) }}" class="text-center">No specifications available.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
                         </div>
                     </div>
                 </div>
