@@ -102,7 +102,8 @@
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-body table-responsive">
-                            <!-- <table class="table table-hover">
+
+                            <table class="table table-hover">
                                 <thead>
                                     <tr class="active">
                                         @if (!empty($product->product_header) && is_array($product->product_header))
@@ -115,70 +116,35 @@
 
                                 <tbody>
                                     @php
-                                        $codes = json_decode($product->product_codes, true) ?? [];
-                                        $wattages = json_decode($product->product_wattages, true) ?? [];
-                                        $sizes = json_decode($product->product_sizes, true) ?? [];
-                                        $mrps = json_decode($product->product_mrps, true) ?? [];
+                                        $headers  = $product->product_header ?? [];
+                                        $rowCount = count(json_decode($product->product_codes, true) ?? []);
+
+                                        // Combine all rows based on index
+                                        $rows = [];
+                                        for ($i = 0; $i < $rowCount; $i++) {
+                                            $rows[] = [
+                                                json_decode($product->product_codes, true)[$i] ?? '',
+                                                json_decode($product->product_wattages, true)[$i] ?? '',
+                                                json_decode($product->product_sizes, true)[$i] ?? '',
+                                                json_decode($product->product_mrps, true)[$i] ?? '',
+                                            ];
+                                        }
                                     @endphp
 
-                                    @foreach ($codes as $index => $code)
+                                    @forelse ($rows as $row)
                                         <tr>
-                                            <td>{{ $code }}</td>
-                                            <td>{{ $wattages[$index] ?? '-' }}</td>
-                                            <td>{{ $sizes[$index] ?? '-' }}</td>
-                                            <td>₹ {{ $mrps[$index] ?? 0 }}/-</td>
+                                            @for ($i = 0; $i < count($headers); $i++)
+                                                <td>{{ $row[$i] ?? '-' }}</td>
+                                            @endfor
                                         </tr>
-                                    @endforeach
-                                    
-                                    @if(empty($codes))
+                                    @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No specifications available.</td>
+                                            <td colspan="{{ count($headers) }}" class="text-center">No specifications available.</td>
                                         </tr>
-                                    @endif
+                                    @endforelse
                                 </tbody>
-                            </table> -->
-
-                            <table class="table table-hover">
-    <thead>
-        <tr class="active">
-            @if (!empty($product->product_header) && is_array($product->product_header))
-                @foreach ($product->product_header as $header)
-                    <th>{{ $header }}</th>
-                @endforeach
-            @endif
-        </tr>
-    </thead>
-
-    <tbody>
-        @php
-            $headers  = $product->product_header ?? [];
-            $rowCount = count(json_decode($product->product_codes, true) ?? []);
-
-            // Combine all rows based on index
-            $rows = [];
-            for ($i = 0; $i < $rowCount; $i++) {
-                $rows[] = [
-                    json_decode($product->product_codes, true)[$i] ?? '',
-                    json_decode($product->product_wattages, true)[$i] ?? '',
-                    json_decode($product->product_sizes, true)[$i] ?? '',
-                    json_decode($product->product_mrps, true)[$i] ?? '',
-                ];
-            }
-        @endphp
-
-        @forelse ($rows as $row)
-            <tr>
-                @for ($i = 0; $i < count($headers); $i++)
-                    <td>{{ $row[$i] ?? '-' }}</td>
-                @endfor
-            </tr>
-        @empty
-            <tr>
-                <td colspan="{{ count($headers) }}" class="text-center">No specifications available.</td>
-            </tr>
-        @endforelse
-    </tbody>
-</table>
+                            </table>
+                            
 
                         </div>
                     </div>
