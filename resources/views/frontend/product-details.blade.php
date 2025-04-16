@@ -102,7 +102,7 @@
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-body table-responsive">
-                            <!-- <table class="table table-hover">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr class="active">
                                         @if (!empty($product->product_header) && is_array($product->product_header))
@@ -136,56 +136,7 @@
                                         </tr>
                                     @endif
                                 </tbody>
-                            </table> -->
-
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr class="active">
-                                        @if (!empty($product->product_header) && is_array($product->product_header))
-                                            @foreach ($product->product_header as $header)
-                                                <th>{{ $header }}</th>
-                                            @endforeach
-                                        @endif
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @php
-                                        $headers  = $product->product_header ?? [];
-                                        $codes    = json_decode($product->product_codes, true) ?? [];
-                                        $wattages = json_decode($product->product_wattages, true) ?? [];
-                                        $sizes    = json_decode($product->product_sizes, true) ?? [];
-                                        $mrps     = json_decode($product->product_mrps, true) ?? [];
-                                    @endphp
-
-                                    @forelse ($codes as $index => $code)
-                                        <tr>
-                                            @foreach ($headers as $header)
-                                                @php
-                                                    $header = strtolower(trim($header));
-                                                @endphp
-
-                                                @if ($header == 'code')
-                                                    <td>{{ $code }}</td>
-                                                @elseif ($header == 'wattage')
-                                                    <td>{{ $wattages[$index] ?? '-' }}</td>
-                                                @elseif ($header == 'outer size (mm)')
-                                                    <td>{{ $sizes[$index] ?? '-' }}</td>
-                                                @elseif ($header == 'mrp')
-                                                    <td>₹ {{ $mrps[$index] ?? 0 }}/-</td>
-                                                @else
-                                                    <td>-</td> {{-- fallback for unrecognized header --}}
-                                                @endif
-                                            @endforeach
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="{{ count($headers) }}" class="text-center">No specifications available.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
