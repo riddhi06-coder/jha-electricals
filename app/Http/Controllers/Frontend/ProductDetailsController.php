@@ -55,6 +55,8 @@ class ProductDetailsController extends Controller
             ->whereNull('master_product_details.deleted_at')
             ->first();
 
+        $product->product_header = json_decode($product->product_header, true);
+
         if (!$product) {
             abort(404, "Product details not found");
         }

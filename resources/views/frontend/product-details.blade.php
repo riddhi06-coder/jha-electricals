@@ -105,12 +105,14 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr class="active">
-                                        <th>Code</th>
-                                        <th>Wattage</th>
-                                        <th>Outer Size (mm)</th>
-                                        <th>MRP</th>
+                                        @if (!empty($product->product_header) && is_array($product->product_header))
+                                            @foreach ($product->product_header as $header)
+                                                <th>{{ $header }}</th>
+                                            @endforeach
+                                        @endif
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     @php
                                         $codes = json_decode($product->product_codes, true) ?? [];
