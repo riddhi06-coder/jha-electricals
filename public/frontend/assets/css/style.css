@@ -12726,3 +12726,64 @@ h5.blog-details-title {
         background-position: center right;
     }
 }
+
+
+/*============ New CSS =================*/
+  .mega-menu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .mega-item {
+    width: 50%;
+    padding: 0px 12px;
+    margin: 20px 0;
+    border-left: 1px solid #eeeeee;
+  }
+
+/* Adjust layout based on height */
+  @media (max-height: 600px) {
+    .mega-menu {
+    flex-direction: column;
+  }
+
+  .mega-item {
+      width: 100%;  /* Take full width */
+      border-left: none;  /* Remove border */
+      margin: 10px 0;  /* Adjust margin for better spacing */
+    }
+  }
+
+  /* For larger screens where items are split into two columns */
+  @media (min-height: 601px) {
+    .mega-menu {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .mega-item {
+      width: 50%;  /* Each item takes 50% width */
+    }
+  }
+
+  ul.product-listing-columns {
+    column-width: 350px;
+    column-gap: 15px;
+    max-height: 600px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.product-listing-columns li {
+    break-inside: avoid;
+    /* margin-bottom: 10px; */
+  }
+
+  ul.product-listing-columns li a {
+    text-decoration: none;
+  }
+
+  ul.product-listing-columns li a:hover {
+    color: #007BFF;
+  }

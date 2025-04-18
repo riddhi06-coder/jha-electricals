@@ -133,7 +133,7 @@
                       <li><a href="{{ route('about-us.page') }}">About Us</a></li>
                  
 
-                      <li>
+                      <!-- <li>
                         <a href="{{ route('products.category') }}">Products</a>
                         <ul class="sub-menu">
                             @foreach ($categories as $category_id => $categoryGroup)
@@ -162,182 +162,56 @@
                                 </li>
                             @endforeach
                         </ul>
+                      </li> -->
+
+
+
+
+                      <li>
+                        <a href="{{ route('products.category') }}">Products</a>
+                        <ul class="sub-menu">
+
+                        @foreach ($categories as $category)
+                            <li>
+                                <a href="#">{{ $category[0]->category_name }}</a>
+                                <ul class="sub-menu mega-menu left-0">
+                                    <li class="mega-item">
+                                        <ul class="product-listing-columns">
+                                            @php
+                                                $subCategories = collect($category)->groupBy('subcategory_id');
+                                            @endphp
+
+                                            @foreach ($subCategories as $subCategory)
+                                                {{-- Sub-category heading --}}
+                                                <li>
+                                                    <a href="{{ route('product.page', ['slug' => $subcategory->subcategory_slug]) }}" class="item-title">
+                                                        {{ $subCategory[0]->sub_category_name }}
+                                                    </a>
+                                                </li>
+
+                                                {{-- Products under each sub-category --}}
+                                                @foreach ($subCategory as $item)
+                                                    @if ($item->product_id)
+                                                        <li>
+                                                            <a href="{{ route('product-details', ['slug' => $product->product_slug]) }}">
+                                                                {{ $item->product_name }}
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endforeach
+
+                        </ul>
                       </li>
 
 
-                      <!-- <li>
-                        <a href="products.html">Products</a>
-                        <ul class="sub-menu">
-                          <li><a href="#">Lighting</a>
-                            <ul class="sub-menu mega-menu four-column left-0">
-                              <li>
-                                <ul>
-                                  <li><a href="led-panel-lights.html" class="item-title">LED Panel Lights</a></li>
-                                  <li><a href="led-panel-light-square-round-conceaded-type.html">LED Panel Light(Square/Round Conceaded Type)</a></li>
-                                  <li><a href="#">LED Panel Light - Glow Model</a></li>
-                                  <li><a href="#">LED Panel Light - Polyglow</a></li>
-                                  <li><a href="#">LED Panel Light - Zenith</a></li>
-                                  <li><a href="#">LED Panel Light (Square+Round Surface Type)</a></li>
-                                  <li><a href="#">Twister Surface Light With Holder</a></li>
-                                  <li><a href="#">LED Panel Light (Rectangle Concealed Type)</a></li>
-                                  <li><a href="#">LED Down Light</a></li>
-                                  <li><a href="#" class="item-title">COB Spot Lights</a></li>
-                                  <li><a href="#">COB Spot Lights - Flat Model(Ro./Sq. Movable Type)</a></li>
-                                  <li><a href="#">Delta COB Spot Light (Round Conceaded Type)</a></li>
-                                  <li><a href="#">Curve COB Spot Light (Round Conceaded Type)</a></li>
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>
-                                  <li><a href="#">COB Spot Lights</a></li>
-                                  <li><a href="#">Silver Chrome/Rose Gold Delta COB Spot Light(Round Conceaded Type)</a>
-                                  </li>
-                                  <li><a href="#">New COB Lens</a></li>
-                                  <li><a href="#">COB Spot Light (Conceaded &amp; Junction Box Fittigs)</a></li>
-                                  <li><a href="#">COB Spot Light Surface Cylinder &amp; Hanging Light</a></li>
-                                  <li><a href="#">COB Spot Light (Spike &amp; Wall Outdoor Light)</a></li>
-                                  <li><a href="#">PC Lens COB Spot Light(Tiltable)</a></li>
-                                  <li><a href="#" class="item-title">Outdoor Wall Light</a></li>
-                                  <li><a href="#" class="item-title">LED Bulb / Lamp Light</a></li>
-                                  <li><a href="#" class="item-title">LED Tube / T</a></li>
-                                  <li><a href="#" class="item-title">LED Track Light(ARM Type)</a></li>
-                                  <li><a href="#" class="item-title">LED Track Light(Cylinder Type)</a></li>
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>
-                                  <li><a href="#" class="item-title">LED Track Light(Linear Type)</a></li>
-                                  <li><a href="#" class="item-title">LED Bulk Head Alfa</a></li>
-                                  <li><a href="#" class="item-title">LED Street Light</a></li>
-                                  <li><a href="#">LED Street Light(Super Delux Model)</a></li>
-                                  <li><a href="#">Super Lens LED Street Light</a></li>
-                                  <li><a href="#">Lens LED Street Light (Back Side Driver System)</a></li>
-                                  <li><a href="#" class="item-title">LED Flood Light</a></li>
-                                  <li><a href="#">Flood Light</a></li>
-                                  <li><a href="#">Back Choke Flood Light</a></li>
-                                  <li><a href="#">Down Choke Super Delux Flood Light</a></li>
-                                  <li><a href="#">Down Choke Lens Flood Light</a></li>
-                                  <li><a href="#" class="item-title">High Bay Light</a></li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                          <li><a href="#">Switches</a>
-                            <ul class="sub-menu mega-menu four-column left-0">
-                              <li>
-                                <ul>
-                                  <li><a href="#" class="item-title">Jha Switch</a></li>
-                                  <li><a href="#">Nova (Rocker Switch)</a></li>
-                                  <li><a href="#">Astra (Big Switch)</a></li>
-                                  <li><a href="#">Muse (Flat Round Switch "Capsule")</a></li>
-                                  <li><a href="#">Nexus (Flat Switch)</a></li>
-                                  <li><a href="#">Chromium Switch (Silver)</a></li>
-                                  <li><a href="#">Enigma (Half Round Switch)</a></li>
-                                  <li><a href="#">Aura (Full Round Switch)</a></li>
-                                  <li><a href="#" class="item-title">Jha Penta Series</a></li>
-                                  <li><a href="#">6A. Switches / Indicator</a></li>
-                                  <li><a href="#">6A. Socket / Kit Kat Fuse</a></li>                                
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>                     
-                                  <li><a href="#">16 A. Switch / 6A. & 16A. Universal Socket</a></li>
-                                  <li><a href="#">Dimmer / Fan Regulator</a></li>           
-                                  <li><a href="#">MCB / Isolator</a></li>
-                                  <li><a href="#">6A. 3 in 1</a></li>
-                                  <li><a href="#">6A. & 16A. 5 in 1</a></li>
-                                  <li><a href="#">Double S.S. Combined</a></li>
-                                  <li><a href="#">32A. D.P. Switch with Indicator</a></li>
-                                  <li><a href="#" class="item-title">Jha Black/Grey Series</a></li>
-                                  <li><a href="#">Noir (Black Rocker)</a></li>
-                                  <li><a href="#">Eclipse (Black Flat Round Switch "Capsule")</a></li>
-                                  <li><a href="#">Jet (Black Big Switch)</a></li>
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>                                
-                                  <li><a href="#">Onyx (Black Flat Switch)</a></li>
-                                  <li><a href="#">Charcoal (Black Chromium Switch)</a></li>
-                                  <li><a href="#">BlackCurve (Black Half Round Switch)</a></li>
-                                  <li><a href="#">DarkGlobe (Black Full Round Switch)</a></li>
-                                  <li><a href="#" class="item-title">Jha Plates Series</a></li>
-                                  <li><a href="#">Deco (Radius Plate - Black & White)</a></li>
-                                  <li><a href="#">Gleam (Radius Plate - Silver & White)</a></li>
-                                  <li><a href="#">Clique (Radius Plate - Metallic)</a></li>
-                                  <li><a href="#">Heavenwood (Radius Plate Rosewood)</a></li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                          <li><a href="#">Accessories</a>
-                            <ul class="sub-menu mega-menu four-column left-0">
-                              <li>
-                                <ul>
-                                    <li><a href="#" class="item-title">Accessories</a></li>
-                                  <li><a href="#">Holder</a></li>
-                                  <li><a href="#">Top & Plug</a></li>
-                                  <li><a href="#">Ceiling Rose</a></li>    
-                                  <li><a href="#">Bell</a></li>
-                                  <li><a href="#">Regulator & Dimmer</a></li>
-                                  <li><a href="#">Auxiliaries</a></li>   
-                                  <li><a href="#" class="item-title">Jha GangBox</a></li>
-                                  <li><a href="#">PowerNest (Modular Surface Gang Box - White)</a></li>
-                                  <li><a href="#">Connex (Modular Surface Gang Box - Silver)</a></li>                         
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>
-                                  <li><a href="#">Concealer (Concealed Gang Boxes)</a></li>
-                                  <li><a href="#">Safezone (Metal Gang Boxes)</a></li>
-                                  <li><a href="#" class="item-title">Jha MCB Distribution Box</a></li>
-                                  <li><a href="#">SPN MCB Distribution Box (Double Door)</a></li>
-                                  <li><a href="#">TPN MCB Distribution Box (Double Door)</a></li>
-                                  <li><a href="#">SPN Gold MCB Distribution Box (Double Door)</a></li>
-                                  <li><a href="#">TPN Gold MCB Distribution Box (Double Door)</a></li>
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>                                
-                                  <li><a href="#">Single Pole MCB (SP) 10kA</a></li>
-                                  <li><a href="#">Double Pole MCB (DP) 10kA</a></li>
-                                  <li><a href="#">Triple Pole MCB (TP) 10kA</a></li>
-                                  <li><a href="#">Triple Pole Neutral MCB (TPN) 10kA</a></li>
-                                  <li><a href="#">Isolator</a></li>
-                                  <li><a href="#">R.C.C.B. (E.L.C.B.)</a></li>
-                                  <li><a href="#">Changeover</a></li>
-                                  <li><a href="#">Surface D.P. Enclosure</a></li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                          <li><a href="#">Wires</a>
-                            <ul class="sub-menu mega-menu four-column wires-mega-menu left-0">
-                              <li>
-                                <ul>
-                                  <li><a href="#" class="item-title">Building Wires</a></li>
-                                  <li><a href="#">HDFR-Unilay Wires</a></li>
-                                  <li><a href="#">Extra Safe Wires</a></li>  
-                                  <li><a href="flame-retardant-low-smoke.html">Flame Retardant Low Smoke</a></li>
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>
-                                  <li><a href="#" class="item-title">PVC Submersible Cable</a></li>
-                                  <li><a href="#" class="item-title">Submersible Winding Wires</a></li> 
-                                </ul>
-                              </li>
-                              <li>
-                                <ul>
-                                  <li><a href="#" class="item-title">Winding Wires</a></li>
-                                  <li><a href="#">Enameled Round Copper Winding Wire</a></li> 
-                                  <li><a href="#">Solar Cables</a></li> 
-                                  <li><a href="#">ZHFR Cables</a></li> 
-                                </ul>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li> -->
+
+
 
                       <li>
                         <span>Service & Support</span>
